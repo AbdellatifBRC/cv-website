@@ -1,0 +1,13 @@
+image 
+nom / prénom 
+adresse mail / num de téléphone
+adresse / code postale / ville 
+date de naissance / lieu / sexe /natonalité /etat civil 
+profil 
+formation
+experience professionelles
+compétences
+langues
+centre d'interets
+-----section supp 
+cours/stage/activité extra pro / références / qualité / centeficats / réalisation / section perso 
