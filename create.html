@@ -26,13 +26,81 @@
     </style>
     <script>
       // progress bar script
-      function addprogress(progress) {
-        var progress = document.getElementById(progress);
+      //var progress = document.getElementById("progress1");
+      //progress.onclick=function() {addprogress()};     
+     //document.getElementById("progress1").addEventListener("click", addprogress);
+     
+      //stupid code but it works
+      function addprogress1(progress) {
+        var progress = document.getElementById("progress1");
+        //document.getElementById("progress1").onclick= addprogress ;
         var myprogressbar = document.getElementById("progressbar");
-        var progressbar_width = myprogressbar.style.width;
+        //var progressbar_width = myprogressbar.style.width;
         var mywidth = 10 ;
-        progressbar_width = mywidth + '%' ;
+        //for (let i = 0; i < j; i++) {
+                
+        mywidth += mywidth;
+        //}
+               
+        //while (myprogressbar.style.width<=100) {
+        myprogressbar.style.width = mywidth + '%' ;
+        //}
+         
+         
       }
+      function addprogress2(progress) {
+        var progress = document.getElementById("progress2");
+        //document.getElementById("progress1").onclick= addprogress ;
+        var myprogressbar = document.getElementById("progressbar");
+        //var progressbar_width = myprogressbar.style.width;
+        var mywidth = 20 ;
+        //for (let i = 0; i < j; i++) {
+                
+        mywidth += mywidth;
+        //}
+               
+        //while (myprogressbar.style.width<=100) {
+        myprogressbar.style.width = mywidth + '%' ;
+        //}
+         
+         
+      }
+      function addprogress3(progress) {
+        var progress = document.getElementById("progress3");
+        //document.getElementById("progress1").onclick= addprogress ;
+        var myprogressbar = document.getElementById("progressbar");
+        //var progressbar_width = myprogressbar.style.width;
+        var mywidth = 30 ;
+        //for (let i = 0; i < j; i++) {
+                
+        mywidth += mywidth;
+        //}
+               
+        //while (myprogressbar.style.width<=100) {
+        myprogressbar.style.width = mywidth + '%' ;
+        //}
+         
+         
+      }
+      function addprogress4(progress) {
+        var progress = document.getElementById("progress4");
+        //document.getElementById("progress1").onclick= addprogress ;
+        var myprogressbar = document.getElementById("progressbar");
+        //var progressbar_width = myprogressbar.style.width;
+        var mywidth = 40 ;
+        //for (let i = 0; i < j; i++) {
+                
+        mywidth += mywidth;
+        //}
+               
+        //while (myprogressbar.style.width<=100) {
+        myprogressbar.style.width = mywidth + '%' ;
+        //}
+         
+         
+      }
+        //var progress = document.getElementById(progress);
+        //progress.forEach(addprogress);
       function move() {
         var elem = document.getElementById("myBar");
         var width = 1;
@@ -92,10 +160,10 @@
                        <button class="btn btn-light" style="width:150px; height:150px"><i class="fas fa-camera"></i></button>
                      </div>
                      <div class="col-sm-8">
-                        <input type="text" class="form-control" placeholder="Nom"  id="progress1"  onclick="addprogress('progress1')">
-                        <input type="text" class="form-control" placeholder="Prénom"   id="progress2"  onblur="addprogress('progress2')">
-                        <input type="text" class="form-control" placeholder="Adresse Email"  id="progress3"  onblur="addprogress('progress3')">
-                        <input type="text" class="form-control" placeholder="Numero Téléphone"  id="progress4"  onblur="addprogress('progress4')">
+                        <input type="text" class="form-control" placeholder="Nom"  id="progress1"  onclick="addprogress1('')">
+                        <input type="text" class="form-control" placeholder="Prénom"   id="progress2"  onclick="addprogress2('')">
+                        <input type="text" class="form-control" placeholder="Adresse Email"  id="progress3"  onclick="addprogress3('')" >
+                        <input type="text" class="form-control" placeholder="Numero Téléphone"  id="progress4" onclick="addprogress4('')" >
                      </div>                   
                     </div>
                     <hr>
