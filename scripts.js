@@ -21,6 +21,25 @@
         
         
       }
+      function removeprogress(progress) {
+        var progress = document.getElementById("progress"); //returning id of each input
+        var myprogressbar = document.getElementById("progressbar"); //returning id of progress bar
+        var myprogressbartext = myprogressbar.textContent;
+        var widthprogress = myprogressbar.style.width ; //returning the value of width as a string
+        // error -- empty -- no string returning
+        var widthprogressint= parseInt( widthprogress,10) ;// value of width as an integer -- error : value is nan
+        //document.write( progressvalue); // testing values 
+        var mywidth = -10;
+        //var progressvalue = document.getElementById(progress).value;
+        //document.write(widthprogressint);
+        //if (progressvalue == !"") {
+        widthprogressint += mywidth ;// adding 10 to value of width
+        myprogressbar.style.width = widthprogressint + '%' ; //output of new value of width
+        myprogressbar.textContent =  widthprogressint + '%' ; // output of the text 
+        //}
+        
+        
+      }
       //stupid code but it works (kichghol)
       /*function addprogress1(progress) {
         var progress = document.getElementById("progress1");
