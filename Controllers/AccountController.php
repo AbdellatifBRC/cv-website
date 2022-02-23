@@ -14,7 +14,10 @@ class AccountController{
     public function performAction($action){
         switch($action){
             case "signup":
-                $response_array = $this->SignUp();
+                $this->SignUp();
+                break;
+            case "confirmemail":
+                $this->ConfirmEmail();
                 break;
             default:
                 die("default");
@@ -59,7 +62,8 @@ class AccountController{
                         // prepare the necessary variables to send an email
                         $to = $email->value;
                         $subject = "CV Website Email Verification";
-                        $message = " Thank you for choosing us! Please confirm your email using the following link: \n" . $selector . " " . $token;
+                        $message = " Thank you for choosing us! Please confirm your email using the following link: \n
+                        http://localhost/cv-website/Views/EmailConfirmationView.html?selector=" . $selector . "&token=" . $token;
                         $headers = 'From:arthurmorganredemption28@gmail.com' . "\r\n"; 
                         // send the verification email to the user
                         mail($to, $subject, $message, $headers);
@@ -76,6 +80,44 @@ class AccountController{
                 } catch (\Delight\Auth\TooManyRequestsException $e) {
                     $response_array["requests_error"] = "Too many requests<br><br>";
                 }
+            }
+        }
+
+        echo json_encode($response_array);
+    }
+
+    public function ConfirmEmail(){
+        // require the authentication library
+        require '../Libraries/AuthLib/vendor/autoload.php';
+        $auth = new \Delight\Auth\Auth($this->dbconn);
+
+        // this array will be sent as a response to the client
+        $response_array["already_loggedin"] = false;
+        $response_array["error"] = "";
+        $response_array["email_confirmed"] = false;
+
+        // check if the user is logged in
+        if($auth->isLoggedIn()){
+            $response_array["already_loggedin"] = true;
+        } else if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["token"]) && isset($_POST["selector"])){
+            // sanitize the input
+            $token = new Input($_POST["token"]);
+            $token->Sanitize();
+            $selector = new Input($_POST["selector"]);
+            $selector->Sanitize();
+
+            try {
+                $auth->confirmEmail($selector->value, $token->value);
+            
+                $response_array["email_confirmed"] = true;
+            } catch (\Delight\Auth\InvalidSelectorTokenPairException $e) {
+                $response_array["error"] = "Invalid token";
+            } catch (\Delight\Auth\TokenExpiredException $e) {
+                $response_array["error"] = "Token expired";
+            } catch (\Delight\Auth\UserAlreadyExistsException $e) {
+                $response_array["error"] = "Email address already exists";
+            } catch (\Delight\Auth\TooManyRequestsException $e) {
+                $response_array["error"] = "Too many requests";
             }
         }
 
