@@ -31,7 +31,21 @@
         .create p {text-align: center;}
         .btn-create {border-radius: 3px;padding: 5px 5%;font-family: 'Lobster', cursive;}
         /*.btn-create:hover {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}*/
-        
+        .models {position: relative;}
+        .models .btn-model {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
     </style>
 </head>
 <body>
@@ -64,14 +78,18 @@
         <hr>
         <br>
         <div class="row">
-            <div class="col-sm-4">
-                <img src="ex.png" alt="Los Angeles" class="img-fluid mx-auto d-block w-15">
+            <div class="col-sm-4 models">
+                <img src="ex.png" alt="Los Angeles" class="img-fluid mx-auto d-block w-15">               
+                <button class="btn btn-model  btn-primary">Voir Modele</button>                                 
             </div>
-            <div class="col-sm-4">
-                <img src="ex1.png" alt="Chicago" class=" img-fluid mx-auto d-block w-15">
+            <div class="col-sm-4 models">
+                <br>
+                <img src="ex.png" alt="Chicago" class=" img-fluid mx-auto d-block w-15">
+                <button class="btn btn-model  btn-primary">Voir Modele</button> 
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4 models">
                 <img src="ex.png" alt="New York" class=" img-fluid mx-auto d-block w-15">
+                <button class="btn btn-model  btn-primary">Voir Modele</button> 
             </div>
         </div>
         
