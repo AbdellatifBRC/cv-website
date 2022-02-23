@@ -11,7 +11,6 @@ class Input{
         $this->value= trim($this->value);
         $this->value= stripslashes($this->value);
         $this->value = htmlspecialchars($this->value);
-        return $this->value;
     }
 }
 
