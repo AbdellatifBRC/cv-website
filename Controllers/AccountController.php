@@ -20,6 +20,9 @@ class AccountController{
             case "resendconfirmationemail":
                 $this->ResendConfirmationReq();
                 break;
+            case "signin":
+                $this->SignIn();
+                break;
             default:
                 die("default");
                 break;
@@ -158,6 +161,45 @@ class AccountController{
                 $response_array["error"] = "There have been too many requests -- try again later";
             } catch(PDOException $e) {
                 $response_array["error"] = "Db error";
+            }
+        }
+
+        echo json_encode($response_array);
+    }
+
+    // sign in users
+    public function SignIn(){
+        // this array will be sent as a response to the client
+        $response_array["error"] = "";
+        $response_array["signed_in"] = false;
+
+        // check if the user is logged in
+        if ($this->accountModel->auth->isLoggedIn()) {
+            $response_array["signed_in"] = true;
+        } else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"]) && isset($_POST["psw"])){
+            // sanitize the user's input
+            $email = new Input($_POST["email"]);
+            $email->Sanitize();
+            $password = new Input($_POST["psw"]);
+            $password->Sanitize();
+
+            try {
+                $this->accountModel->auth->login($email->value, $password->value);
+    
+                // indicate that the user has successfully signed in
+                $response_array["signed_in"] = true;
+            }
+            catch (\Delight\Auth\InvalidEmailException $e) {
+                $response_array["error"] = "Your email and password don't match<br><br>";
+            }
+            catch (\Delight\Auth\InvalidPasswordException $e) {
+                $response_array["error"] = "Your email and password don't match<br><br>";
+            }
+            catch (\Delight\Auth\EmailNotVerifiedException $e) {
+                $response_array["error"] = "You have to confirm your email before you can sign in<br><br>";
+            }
+            catch (\Delight\Auth\TooManyRequestsException $e) {
+                $response_array["error"] = "Too many requests<br><br>";
             }
         }
 
