@@ -1,14 +1,12 @@
 <?php
 
 class AccountController{
-    private $dbconnector;
-    private $dbconn;
+    private $accountModel;
 
     public function __construct(){
-        require_once "../Config/DbConnect.php";
-
-        $this->dbconnector = new DbConnect();
-        $this->dbconn = $this->dbconnector->connect();
+        // create an account account model
+        require "../Models/AccountModel.php";
+        $this->accountModel = new AccountModel();
     }
 
     public function performAction($action){
@@ -26,10 +24,6 @@ class AccountController{
     }
 
     public function SignUp(){
-        // require the authentication library
-        require '../Libraries/AuthLib/vendor/autoload.php';
-        $auth = new \Delight\Auth\Auth($this->dbconn);
-
         // this array will be sent as a response to the client
         $response_array["already_loggedin"] = false;
         $response_array["email_error"] = "";
@@ -38,7 +32,7 @@ class AccountController{
         $response_array["signed_up"] = false;
 
         // check if the user is logged in
-        if ($auth->isLoggedIn()) {
+        if ($this->accountModel->auth->isLoggedIn()) {
             $response_array["already_loggedin"] = true;
         } else if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"]) && isset($_POST["psw"]) && isset($_POST["psw-repeat"])){
             // sanitize the user's input
@@ -58,7 +52,7 @@ class AccountController{
                 $response_array["password_error"] = "Your passwords do not match<br><br>";
             } else{
                 try {
-                    $userId = $auth->register($email->value, $password->value, null, function ($selector, $token) use ($email, &$response_array){
+                    $userId = $this->accountModel->auth->register($email->value, $password->value, null, function ($selector, $token) use ($email, &$response_array){
                         // prepare the necessary variables to send an email
                         $to = $email->value;
                         $subject = "CV Website Email Verification";
@@ -87,17 +81,13 @@ class AccountController{
     }
 
     public function ConfirmEmail(){
-        // require the authentication library
-        require '../Libraries/AuthLib/vendor/autoload.php';
-        $auth = new \Delight\Auth\Auth($this->dbconn);
-
         // this array will be sent as a response to the client
         $response_array["already_loggedin"] = false;
         $response_array["error"] = "";
         $response_array["email_confirmed"] = false;
 
         // check if the user is logged in
-        if($auth->isLoggedIn()){
+        if($this->accountModel->auth->isLoggedIn()){
             $response_array["already_loggedin"] = true;
         } else if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["token"]) && isset($_POST["selector"])){
             // sanitize the input
@@ -107,7 +97,7 @@ class AccountController{
             $selector->Sanitize();
 
             try {
-                $auth->confirmEmail($selector->value, $token->value);
+                $this->accountModel->auth->confirmEmail($selector->value, $token->value);
             
                 $response_array["email_confirmed"] = true;
             } catch (\Delight\Auth\InvalidSelectorTokenPairException $e) {
