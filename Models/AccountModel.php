@@ -15,6 +15,15 @@ class AccountModel{
         require '../Libraries/AuthLib/vendor/autoload.php';
         $this->auth = new \Delight\Auth\Auth($this->dbconn);
     }
+
+    // delete an email confirmation request
+    public function DeleteConfirmationReq($email, $selector, $token){
+        $stmt = $this->dbconn->prepare("DELETE FROM users_confirmations WHERE email = :email AND selector != :selector AND token != :token");
+        $stmt->bindParam(":email", $email);
+        $stmt->bindParam(":selector", $selector);
+        $stmt->bindParam(":token", $token);
+        $stmt->execute();
+    }
 }
 
 ?>

@@ -17,12 +17,16 @@ class AccountController{
             case "confirmemail":
                 $this->ConfirmEmail();
                 break;
+            case "resendconfirmationemail":
+                $this->ResendConfirmationReq();
+                break;
             default:
                 die("default");
                 break;
         }
     }
 
+    // sign up users
     public function SignUp(){
         // this array will be sent as a response to the client
         $response_array["already_loggedin"] = false;
@@ -62,7 +66,7 @@ class AccountController{
                         // send the verification email to the user
                         mail($to, $subject, $message, $headers);
 
-                        // indicate that the user has successfully signed yp
+                        // indicate that the user has successfully signed up
                         $response_array["signed_up"] = true;
                     });
                 } catch (\Delight\Auth\InvalidEmailException $e) {
@@ -80,6 +84,7 @@ class AccountController{
         echo json_encode($response_array);
     }
 
+    // confirm an email (activate an account)
     public function ConfirmEmail(){
         // this array will be sent as a response to the client
         $response_array["already_loggedin"] = false;
@@ -99,6 +104,7 @@ class AccountController{
             try {
                 $this->accountModel->auth->confirmEmail($selector->value, $token->value);
             
+                // indicate that the email has been successfully confirmed
                 $response_array["email_confirmed"] = true;
             } catch (\Delight\Auth\InvalidSelectorTokenPairException $e) {
                 $response_array["error"] = "Invalid token";
@@ -108,6 +114,50 @@ class AccountController{
                 $response_array["error"] = "Email address already exists";
             } catch (\Delight\Auth\TooManyRequestsException $e) {
                 $response_array["error"] = "Too many requests";
+            }
+        }
+
+        echo json_encode($response_array);
+    }
+
+    // resend a confirmation email
+    public function ResendConfirmationReq(){
+        // this array will be sent as a response to the client
+        $response_array["already_loggedin"] = false;
+        $response_array["error"] = "";
+        $response_array["confirmation_resent"] = false;
+
+        // check if the user is logged in
+        if($this->accountModel->auth->isLoggedIn()){
+            $response_array["already_loggedin"] = true;
+        } else if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["email"])){
+            // sanitize the input
+            $email = new Input($_POST["email"]);
+            $email->Sanitize();
+
+            try {
+                $this->accountModel->auth->resendConfirmationForEmail($email->value, function ($selector, $token) use ($email, &$response_array) {
+                    // delete the old request
+                    $this->accountModel->DeleteConfirmationReq($email->value, $selector, $token);
+
+                    // prepare the necessary variables to send an email
+                    $to = $email->value;
+                    $subject = "CV Website Email Verification";
+                    $message = " Thank you for choosing us! As per your request, this a new link to confirm your email address: \n
+                    http://localhost/cv-website/Views/EmailConfirmationView.html?selector=" . $selector . "&token=" . $token;
+                    $headers = 'From:arthurmorganredemption28@gmail.com' . "\r\n"; 
+                    // send the verification email to the user
+                    mail($to, $subject, $message, $headers);
+
+                    // indicate that the request has been successfully re-sent
+                    $response_array["confirmation_resent"] = true;
+                });
+            } catch (\Delight\Auth\ConfirmationRequestNotFound $e) {
+                $response_array["error"] = "No earlier request has been found that could be re-sent";
+            } catch (\Delight\Auth\TooManyRequestsException $e) {
+                $response_array["error"] = "There have been too many requests -- try again later";
+            } catch(PDOException $e) {
+                $response_array["error"] = "Db error";
             }
         }
 
