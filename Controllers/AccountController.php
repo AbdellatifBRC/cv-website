@@ -172,6 +172,8 @@ class AccountController{
         // this array will be sent as a response to the client
         $response_array["error"] = "";
         $response_array["signed_in"] = false;
+        // don't keep the user logged in after the session ends
+        $rememberDuration = null;
 
         // check if the user is logged in
         if ($this->accountModel->auth->isLoggedIn()) {
@@ -184,7 +186,17 @@ class AccountController{
             $password->Sanitize();
 
             try {
-                $this->accountModel->auth->login($email->value, $password->value);
+                // check the user selected the "remember me" checkbox
+                if (isset($_POST["remember_me"])) {
+                    $remember_me = new Input($_POST["remember_me"]);
+                    $remember_me->Sanitize();
+                    if($remember_me->value === "on"){
+                        // keep the user logged in for one month
+                        $rememberDuration = (int) (60 * 60 * 24 * 30);
+                    }
+                }
+
+                $this->accountModel->auth->login($email->value, $password->value, $rememberDuration);
     
                 // indicate that the user has successfully signed in
                 $response_array["signed_in"] = true;
