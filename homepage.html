@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" 
     crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <title>HOME</title>
     <style>
         body {background-color: #ededed;}
         .centring {margin: auto; display: flex;justify-content: center; align-items: center;}
-        .create{
+        /*.create{
             position:absolute;
             top: 50%;
             left: 50%;
@@ -24,21 +25,138 @@
             border-radius: 5px;
             width:300px;
 
-            }
-            .create h4 {text-align: center;}
-            .create p {text-align: center;}
-        .btn-create {border-radius: 5px;}
-        .btn-create:hover {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+            }*/
+        .create {border:solid 2px;border-radius: 5px;padding: 50px 10px;}
+        .create h2 {text-align: center;font-family: 'Lobster', cursive;}
+        .create p {text-align: center;}
+        .create a {text-decoration: none;}
+        .btn-create {border-radius: 3px;padding: 5px 5%;font-family: 'Lobster', cursive;}
+        
+        /*.btn-create:hover {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}*/
+        .models {position: relative;}
+        .models .btn-model {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  ;
+}
+.infos a {margin: 25px;text-decoration: none;}
     </style>
+    <script>
+
+        /*for (var i = 0; i < 2; i++) {
+          // mybtn =;
+           // model = ;
+            document.getElementsByClassName("models")[i].addEventListener("onclick", function()  {
+            //document.getElementsByClassName("btn-model")[i].style.display = "block";
+            alert("Hello World!");
+        } );
+        }*/
+            /*function model(params) {
+                for (let j = 0; j < 3; j++) {
+                 document.getElementsByClassName("btn-model")[j].style.display = "block";     
+                }
+                
+            }
+            allmodels = document.getElementById("all-models");
+            /*allmodels.addEventListener("click",function(){
+                for (var i = 0; i < 3; i++) {
+                //const element = array[i];
+                //document.getElementsByClassName("btn-model")[i].style.display = "block";
+                        document.getElementsByClassName("models")[i].addEventListener("click", function()  {
+                        //document.getElementsByClassName("btn-model")[i].style.display = "block";
+                        document.getElementsByClassName("btn-model")[i].style.display = "block";
+                        //alert("Hello World!");
+                    } );
+                } 
+            });*/
+
+            /*allmodels.addEventListener("click",function(){
+                for (var i = 0; i < 3; i++) {
+                      document.getElementsByClassName("btn-model")[i].style.display = "block";
+                    
+                } 
+            });*/
+           
+            
+            //alert("Hello World!");
+        
+        
+    </script>
+
 </head>
 <body>
-    <div class="container-full">
-        <div class="create">
-            <p>Langues :  | <b>Arabe</b>  | <b>Français</b>  | <b>Anglais</b>  |</p>
-            <hr>
-            <h4>Suivre Les Étapes Pour Créer Un CV</h4>
-            <button class="btn btn-light btn-create centring">Créer</button>
+    <!-- Grey with black text -->
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <a class="nav-link active" href="#"> <b>CV-MAKER</b> </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Modele CV</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Connexion</a>
+                </li>               
+            </ul>
         </div>
+    </nav>
+    <br>
+    <div class="container">
+        <div class="create">
+            <p>Langues :   <b>Arabe</b>  | <b>Français</b>  | <b>Anglais</b>  </p>
+            <br>
+            <h2>Suivre Les Étapes Pour Créer Un CV</h2>
+            <br>
+            <a href="create.html"><button class="btn btn-outline-dark btn-create centring">Créer</button></a>
+        </div>
+        <hr>
+        <br>
+        <div class="row" id="all-models">
+            <div class="col-sm-4 models" >
+                <img src="ex.png" alt="Los Angeles" class="img-fluid mx-auto d-block w-15">               
+                <button class="btn btn-model  btn-primary">Voir Modele</button>                                 
+            </div>
+            <div class="col-sm-4 models" >
+                <br>
+                <img src="ex.png" alt="Chicago" class=" img-fluid mx-auto d-block w-15">
+                <button class="btn btn-model  btn-primary">Voir Modele</button> 
+            </div>
+            <div class="col-sm-4 models" >
+                <img src="ex.png" alt="New York" class=" img-fluid mx-auto d-block w-15">
+                <button class="btn btn-model  btn-primary">Voir Modele</button> 
+            </div>
+        </div>
+        <hr>
+        <div class="footer">
+            <br>
+            <div class="infos centring">
+                <a href="#">about-us</a>
+                <a href="#">about-us</a>
+                <a href="#">about-us</a>
+                <a href="#">about-us</a> 
+            </div>
+            <br>
+            <div class="comments">
+                <form action="">
+                    <input class="form-control" type="email" name="emailcomment" id="" placeholder="Email">
+                    <br>
+                    <textarea class="form-control" name="comment" id="" cols="30" rows="10" placeholder="Comment"></textarea>
+                </form>
+            </div>
+        </div>
+        <br>
     </div>
 </body>
 </html>
