@@ -29,7 +29,9 @@
         .create {border:solid 2px;border-radius: 5px;padding: 50px 10px;}
         .create h2 {text-align: center;font-family: 'Lobster', cursive;}
         .create p {text-align: center;}
+        .create a {text-decoration: none;}
         .btn-create {border-radius: 3px;padding: 5px 5%;font-family: 'Lobster', cursive;}
+        
         /*.btn-create:hover {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}*/
         .models {position: relative;}
         .models .btn-model {
@@ -45,8 +47,52 @@
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  ;
 }
+.infos a {margin: 25px;text-decoration: none;}
     </style>
+    <script>
+
+        /*for (var i = 0; i < 2; i++) {
+          // mybtn =;
+           // model = ;
+            document.getElementsByClassName("models")[i].addEventListener("onclick", function()  {
+            //document.getElementsByClassName("btn-model")[i].style.display = "block";
+            alert("Hello World!");
+        } );
+        }*/
+            /*function model(params) {
+                for (let j = 0; j < 3; j++) {
+                 document.getElementsByClassName("btn-model")[j].style.display = "block";     
+                }
+                
+            }
+            allmodels = document.getElementById("all-models");
+            /*allmodels.addEventListener("click",function(){
+                for (var i = 0; i < 3; i++) {
+                //const element = array[i];
+                //document.getElementsByClassName("btn-model")[i].style.display = "block";
+                        document.getElementsByClassName("models")[i].addEventListener("click", function()  {
+                        //document.getElementsByClassName("btn-model")[i].style.display = "block";
+                        document.getElementsByClassName("btn-model")[i].style.display = "block";
+                        //alert("Hello World!");
+                    } );
+                } 
+            });*/
+
+            /*allmodels.addEventListener("click",function(){
+                for (var i = 0; i < 3; i++) {
+                      document.getElementsByClassName("btn-model")[i].style.display = "block";
+                    
+                } 
+            });*/
+           
+            
+            //alert("Hello World!");
+        
+        
+    </script>
+
 </head>
 <body>
     <!-- Grey with black text -->
@@ -73,26 +119,44 @@
             <br>
             <h2>Suivre Les Étapes Pour Créer Un CV</h2>
             <br>
-            <button class="btn btn-outline-dark btn-create centring">Créer</button>
+            <a href="create.html"><button class="btn btn-outline-dark btn-create centring">Créer</button></a>
         </div>
         <hr>
         <br>
-        <div class="row">
-            <div class="col-sm-4 models">
+        <div class="row" id="all-models">
+            <div class="col-sm-4 models" >
                 <img src="ex.png" alt="Los Angeles" class="img-fluid mx-auto d-block w-15">               
                 <button class="btn btn-model  btn-primary">Voir Modele</button>                                 
             </div>
-            <div class="col-sm-4 models">
+            <div class="col-sm-4 models" >
                 <br>
                 <img src="ex.png" alt="Chicago" class=" img-fluid mx-auto d-block w-15">
                 <button class="btn btn-model  btn-primary">Voir Modele</button> 
             </div>
-            <div class="col-sm-4 models">
+            <div class="col-sm-4 models" >
                 <img src="ex.png" alt="New York" class=" img-fluid mx-auto d-block w-15">
                 <button class="btn btn-model  btn-primary">Voir Modele</button> 
             </div>
         </div>
-        
+        <hr>
+        <div class="footer">
+            <br>
+            <div class="infos centring">
+                <a href="#">about-us</a>
+                <a href="#">about-us</a>
+                <a href="#">about-us</a>
+                <a href="#">about-us</a> 
+            </div>
+            <br>
+            <div class="comments">
+                <form action="">
+                    <input class="form-control" type="email" name="emailcomment" id="" placeholder="Email">
+                    <br>
+                    <textarea class="form-control" name="comment" id="" cols="30" rows="10" placeholder="Comment"></textarea>
+                </form>
+            </div>
+        </div>
+        <br>
     </div>
 </body>
 </html>
