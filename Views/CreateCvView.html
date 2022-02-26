@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" 
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+     integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+     <script src="../scripts.js"></script>
+    <title>Create CV</title>
+    <style>
+        body {background-color: #ededed;}
+        .centring {margin: auto; display: flex;justify-content: center; align-items: center;}
+        .form-infos {background-color: white;}
+        .form-control {border-radius: 0px;}
+        .btn {border-radius: 0px;}
+        .progress-bar {width: 10%;}
+
+    </style>
+    <script>
+      function ModifySection(section, action, controller){
+        $("#" + action + "_" + section + "_section_form").off("submit");
+        $("#" + action + "_" + section + "_section_form").on("submit", function (e) {
+            var dataString = $(this).serialize();
+            dataString += "&action=" + action;
+            
+            $.ajax({
+                type: "POST",
+                url: "../Controllers/" + controller + ".php",
+                data: dataString,
+                success: function (data) {
+                    data = JSON.parse(data);
+                    if(data["action_completed"] === true){
+                      alert("Action Completed!");
+                    } else if(data["logged_in"] === false){
+                      alert("not logged in");
+                    } else{
+                      alert(data["error"]);
+                    }
+                }
+            });
+        
+            e.preventDefault();
+        });
+      }
+    </script>
+</head>
+<body>
+    <div class="container">       
+        <div>
+            <ul class="nav justify-content-center ">
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Arabe</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Français</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Anglais</a>
+                  </li>
+            </ul>
+        </div>
+        <div class="row centring">
+            <div class="col-sm-10 form-infos">
+                <br>
+                <div class="progress sticky-top">
+                    <div id="progressbar" class="progress-bar" style="width: 10%;" >10%</div>
+                </div>
+                <hr>
+                
+                  <div class="" id="myform">
+                      <div class="first-part row">
+                      <div class="col-sm-4">
+                        <button class="btn btn-light" style="width:150px; height:150px"><i class="fas fa-camera"></i></button>
+                      </div>
+                      <div class="col-sm-8">
+                          <input type="text" class="form-control" placeholder="Nom" value=""  id="progress1" name="myinput"  onchange="addprogress('progress1')" >
+                          <input type="text" class="form-control" placeholder="Prénom" value=""   id="progress2" name="myinput"  onchange="addprogress('progress2')">
+                          <input type="text" class="form-control" placeholder="Adresse Email" value="" id="progress3" name="myinput"  onchange="addprogress('progress3')" >
+                          <input type="text" class="form-control" placeholder="Numero Téléphone"  value="" id="progress4" name="myinput" onchange="addprogress('progress4')" >
+                      </div>                   
+                      </div>
+                      <hr>
+                      <div class="second-part">
+                        <div class="form-group form-inline">
+                          <select class="form-control" id="sel1">
+                            <option selected>01</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                          </select>
+                          <select class="form-control" id="sel1">
+                            <option selected>Janvier</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                          </select>
+                          <select class="form-control" id="sel1">
+                            <option selected>2003</option>
+                            <option>3</option>
+                            <option>4</option>
+                          </select>
+                          
+                        </div>
+                        <input type="text" class="form-control" placeholder="Place de naissance">
+                        <input type="text" class="form-control" placeholder="Adresse">
+                        <input type="text" class="form-control" placeholder="Code postale">
+                      </div>
+                      <hr>
+                      <div class="third-part">
+                        <button class="btn btn-light btn-block" data-toggle="collapse" data-target="#profile">Profile <i class="fas fa-plus-square"></i></button>
+                        <div id="profile" class="collapse">
+                          <form id="save_profile_section_form">
+                            <textarea name="profile_description" class="form-control" cols="30" rows="5"></textarea>
+                            <button type="submit" onclick="ModifySection('profile', 'save', 'ProfileSectionController')">Save Profile</button>
+                          </form>
+                        </div>
+                        <br>
+                        <button class="btn btn-light btn-block" data-toggle="collapse" data-target="#formation">Formations <i class="fas fa-plus-square"></i></button>
+                        <div id="formation" class="collapse">
+                          <textarea name="" class="form-control" cols="30" rows="5"></textarea>
+                        </div>
+                        <br>
+                        <button class="btn btn-light btn-block" data-toggle="collapse" data-target="#exper">Experiences professionelles <i class="fas fa-plus-square"></i></button>
+                        <div id="exper" class="collapse">
+                          <textarea name="" class="form-control" cols="30" rows="5" ></textarea>
+                        </div>
+                        <br>
+                        <button class="btn btn-light btn-block" data-toggle="collapse" data-target="#langue">Langues <i class="fas fa-plus-square"></i></button>
+                        <div id="langue" class="collapse">
+                          <textarea name="" class="form-control"  cols="30" rows="5" ></textarea>
+                        </div>
+                        <br>
+                        <button class="btn btn-light btn-block" data-toggle="collapse" data-target="#comp">Compétences <i class="fas fa-plus-square"></i></button>
+                        <div id="comp" class="collapse">
+                          <textarea name="" class="form-control" cols="30" rows="5" ></textarea>
+                        </div>
+                        <br>
+                        <button class="btn btn-light btn-block" data-toggle="collapse" data-target="#cent">Centres d'intérêt <i class="fas fa-plus-square"></i></button>
+                        <div id="cent" class="collapse">
+                          <textarea name="" class="form-control" cols="30" rows="5"></textarea>
+                        </div>
+                        <br>                   
+                      </div>
+                  </div>
+                  <hr>
+                  <div class="btn-group btn-block">                   
+                        <button class="btn btn-primary" onclick="addtextarea('')">Ajouter un text area</button>
+                  </div>
+                  <button class="btn btn-primary btn-block">Valider</button>
+                
+                <br>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
