@@ -42,7 +42,7 @@
                         $("#save_" + section + "_section_form").trigger("reset");
                       }
                     } else if(data["logged_in"] === false){
-                      alert("not logged in");
+                      window.open('SignInView.html?req=modifysection', '_blank', 'width=1000, height=400, top=200, left=300');
                     } else{
                       alert(data["error"]);
                     }
