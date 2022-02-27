@@ -15,7 +15,7 @@ abstract class CvSectionController{
                 $this->SaveData();
                 break;
             case "delete":
-                // TODO
+                $this->DeleteData();
                 break;
             default:
                 break;
@@ -23,7 +23,7 @@ abstract class CvSectionController{
     }
 
     abstract public function SaveData();
-    //abstract public function DeleteData($ColumnsValues);
+    abstract public function DeleteData();
 }
 
 ?>

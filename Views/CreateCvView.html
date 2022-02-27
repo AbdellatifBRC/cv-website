@@ -38,6 +38,9 @@
                     data = JSON.parse(data);
                     if(data["action_completed"] === true){
                       alert("Action Completed!");
+                      if(action == "delete"){
+                        $("#save_" + section + "_section_form").trigger("reset");
+                      }
                     } else if(data["logged_in"] === false){
                       alert("not logged in");
                     } else{
@@ -119,6 +122,9 @@
                           <form id="save_profile_section_form">
                             <textarea name="profile_description" class="form-control" cols="30" rows="5"></textarea>
                             <button type="submit" onclick="ModifySection('profile', 'save', 'ProfileSectionController')">Save Profile</button>
+                          </form>
+                          <form id="delete_profile_section_form">
+                            <button type="submit" onclick="ModifySection('profile', 'delete', 'ProfileSectionController')">Clear Profile</button>
                           </form>
                         </div>
                         <br>
