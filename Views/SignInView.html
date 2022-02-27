@@ -83,7 +83,13 @@
                         success: function (data) {
                             data = JSON.parse(data);
                             if(data["signed_in"] === true){
-                                window.location.replace("http://localhost/cv-website/homepage.html");
+                                var url = new URL(window.location.href);
+                                var req = url.searchParams.get("req");
+                                if(req == null){
+                                    window.location.replace("http://localhost/cv-website/homepage.html");
+                                } else if(req == "modifysection"){
+                                    window.close();
+                                }
                             } else{
                                 $("#error").html(data["error"]);
                             }
@@ -93,13 +99,24 @@
                     e.preventDefault();
                 });
             }
+
+            function SignUpLink(){
+                var url = new URL(window.location.href);
+                var req = url.searchParams.get("req");
+                if(req == null){
+                    window.location.replace("http://localhost/cv-website/Views/SignUpView.html");
+                } else if(req == "modifysection"){
+                    window.location.replace("http://localhost/cv-website/Views/SignUpView.html?req=modifysection");
+                }
+            }
         </script>
     </head>
     <body>
-        <form id="sign_in_form" action="../Controllers/AccountController.php?action=signup" method="post" style="border:1px solid #ccc">
+        <form id="sign_in_form" method="post" style="border:1px solid #ccc">
             <div class="container">
                 <h1>Sign In</h1>
                 <p>Please fill in this form to sign in to your account.</p>
+                <p>Or if you don't have an account <a onclick="SignUpLink()">Click here to create one now</a></p>
                 <hr>
 
                 <label for="email"><b>Email</b></label>

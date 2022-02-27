@@ -82,10 +82,20 @@
                         data: dataString,
                         success: function (data) {
                             data = JSON.parse(data);
+                            var url = new URL(window.location.href);
+                            var req = url.searchParams.get("req");
                             if(data["signed_up"] === true){
-                                window.location.replace("http://localhost/cv-website/homepage.html");
+                                if(req == null){
+                                    window.location.replace("http://localhost/cv-website/homepage.html");
+                                } else if(req="modifysection"){
+                                    window.location.replace("http://localhost/cv-website/Views/SignInView.html?req=modifysection");
+                                }
                             } else if(data["already_loggedin"] === true) {
-                                window.location.replace("http://localhost/cv-website/homepage.html");
+                                if(req == null){
+                                    window.location.replace("http://localhost/cv-website/homepage.html");
+                                } else if(req == "modifysection"){
+                                    window.close();
+                                }
                             } else{
                                 for(section in data){
                                     $("#"+section).html(data[section]);
@@ -97,6 +107,16 @@
                     e.preventDefault();
                 });
             }
+
+            function SignInLink(){
+                var url = new URL(window.location.href);
+                var req = url.searchParams.get("req");
+                if(req == null){
+                    window.location.replace("http://localhost/cv-website/Views/SignInView.html");
+                } else if(req == "modifysection"){
+                    window.location.replace("http://localhost/cv-website/Views/SignInView.html?req=modifysection");
+                }
+            }
         </script>
     </head>
     <body>
@@ -104,6 +124,7 @@
             <div class="container">
                 <h1>Sign Up</h1>
                 <p>Please fill in this form to create an account.</p>
+                <p>Or if you have an account <a onclick="SignInLink()">Click here to sign In</a></p>
                 <hr>
 
                 <label for="email"><b>Email</b></label>
