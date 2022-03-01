@@ -43,6 +43,7 @@
         $("#" + action + "_" + section + "_section_form").on("submit", function (e) {
             var dataString = new URLSearchParams(CvFormsData["save_" + section + "_section_form"]).toString();
             var newFormData = $(this).serialize();
+            var newFormDataArray = $(this).serializeArray();
             if(newFormData != ""){
               dataString += "&" + newFormData;
             }
@@ -57,10 +58,23 @@
                     if(data["action_completed"] === true){
                       alert("Action Completed!");
                       if(action == "delete"){
-                        $("#save_" + section + "_section_form").trigger("reset");
+                        if(section == "profile"){
+                          $("#save_profile_section_form").trigger("reset");
+                        } else{
+                          $("#" + section).remove();
+                        }
+                      } else{
+                        for(var i=0;i<newFormDataArray.length;i++){
+                          if(CvFormsData["save_" + section + "_section_form"] == null){
+                            CvFormsData["save_" + section + "_section_form"] = {};
+                          }
+                          CvFormsData["save_" + section + "_section_form"]["old_" + newFormDataArray[i]["name"]] = newFormDataArray[i]["value"];
+                        }
                       }
                     } else if(data["logged_in"] === false){
                       window.open('SignInView.html?req=modifysection', '_blank', 'width=1000, height=400, top=200, left=300');
+                    } else if(action == "delete" && data["error"] == ""){
+                      $("#" + section).remove();
                     } else{
                       alert(data["error"]);
                     }
