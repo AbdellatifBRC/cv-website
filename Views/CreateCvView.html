@@ -70,6 +70,29 @@
             e.preventDefault();
         });
       }
+
+      function AddSubsec(parentId, section, action, controller){
+        $("#" + action + "_" + section + "_section_form").off("submit");
+        $("#" + action + "_" + section + "_section_form").on("submit", function (e) {
+          var dataString = "&subsecs_in_section=" + document.getElementsByClassName(section).length + "&action=" + action;
+          
+          $.ajax({
+            type: "POST",
+            url: "../Controllers/" + controller + ".php",
+            data: dataString,
+            success: function (data) {
+                data = JSON.parse(data);
+                if(data["action_completed"] === true){
+                  document.getElementById(parentId).insertAdjacentHTML("beforeend", data["new_subsec_html"])
+                } else{
+                  alert(data["error"]);
+                }
+            }
+          });
+      
+          e.preventDefault();
+        });
+      }
     </script>
 </head>
 <body>
@@ -148,16 +171,19 @@
                         <br>
                         <button class="btn btn-light btn-block" data-toggle="collapse" data-target="#formation">Formations <i class="fas fa-plus-square"></i></button>
                         <div id="formation" class="collapse">
-                          <div class="courses" id="courses_1">
-                            <form id="save_course_section_form">
+                          <div class="course" id="course_1">
+                            <form id="save_course_1_section_form">
                               <input type="text" id="" name="course_name">
-                              <button type="submit" onclick="ModifySection('course', 'save', 'CourseSectionController')">Save Course</button>
+                              <button type="submit" onclick="ModifySection('course_1', 'save', 'CourseSectionController')">Save Course</button>
                             </form>
-                            <form id="delete_course_section_form">
-                              <button type="submit" onclick="ModifySection('course', 'delete', 'CourseSectionController')">Delete Course</button>
+                            <form id="delete_course_1_section_form">
+                              <button type="submit" onclick="ModifySection('course_1', 'delete', 'CourseSectionController')">Delete Course</button>
                             </form>
                           </div>
                         </div>
+                        <form id="addsubsec_course_section_form">
+                          <button onclick="AddSubsec('formation', 'course', 'addsubsec', 'CourseSectionController')">Add Course</button>
+                        </form>
                         <br>
                         <button class="btn btn-light btn-block" data-toggle="collapse" data-target="#exper">Experiences professionelles <i class="fas fa-plus-square"></i></button>
                         <div id="exper" class="collapse">
