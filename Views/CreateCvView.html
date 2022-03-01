@@ -24,10 +24,28 @@
 
     </style>
     <script>
+      var CvFormsData = {};
+      window.onload = function(){
+        var formsCollection = document.getElementsByTagName("form");
+        for(var i=0;i<formsCollection.length;i++){
+          if(formsCollection[i].id.startsWith("save")){
+            CvFormsData[formsCollection[i].id] = {}
+            var data = new FormData(formsCollection[i]);
+            for (var [key, value] of data) {
+                CvFormsData[formsCollection[i].id]["old_" + key] = value
+            }
+          }
+        }
+      }
+      
       function ModifySection(section, action, controller){
         $("#" + action + "_" + section + "_section_form").off("submit");
         $("#" + action + "_" + section + "_section_form").on("submit", function (e) {
-            var dataString = $(this).serialize();
+            var dataString = new URLSearchParams(CvFormsData["save_" + section + "_section_form"]).toString();
+            var newFormData = $(this).serialize();
+            if(newFormData != ""){
+              dataString += "&" + newFormData;
+            }
             dataString += "&action=" + action;
             
             $.ajax({
@@ -130,7 +148,15 @@
                         <br>
                         <button class="btn btn-light btn-block" data-toggle="collapse" data-target="#formation">Formations <i class="fas fa-plus-square"></i></button>
                         <div id="formation" class="collapse">
-                          <textarea name="" class="form-control" cols="30" rows="5"></textarea>
+                          <div class="courses" id="courses_1">
+                            <form id="save_course_section_form">
+                              <input type="text" id="" name="course_name">
+                              <button type="submit" onclick="ModifySection('course', 'save', 'CourseSectionController')">Save Course</button>
+                            </form>
+                            <form id="delete_course_section_form">
+                              <button type="submit" onclick="ModifySection('course', 'delete', 'CourseSectionController')">Delete Course</button>
+                            </form>
+                          </div>
                         </div>
                         <br>
                         <button class="btn btn-light btn-block" data-toggle="collapse" data-target="#exper">Experiences professionelles <i class="fas fa-plus-square"></i></button>
