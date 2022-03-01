@@ -88,7 +88,13 @@
       function AddSubsec(parentId, section, action, controller){
         $("#" + action + "_" + section + "_section_form").off("submit");
         $("#" + action + "_" + section + "_section_form").on("submit", function (e) {
-          var dataString = "&subsecs_in_section=" + document.getElementsByClassName(section).length + "&action=" + action;
+          var subsections = document.getElementsByClassName(section);
+          var subsectionsIdNums= [];
+          for(var i=0;i<subsections.length;i++){
+            subsectionsIdNums[i] = subsections[i].id.split("_")[1];
+          }
+
+          var dataString = "&subsecs_in_section=" + Math.max.apply(Math, subsectionsIdNums) + "&action=" + action;
           
           $.ajax({
             type: "POST",
