@@ -17,6 +17,8 @@ abstract class CvSectionController{
             case "delete":
                 $this->DeleteData();
                 break;
+            case "addsubsec":
+                $this->AddSubsecToSec();
             default:
                 break;
         }
@@ -24,6 +26,7 @@ abstract class CvSectionController{
 
     abstract public function SaveData();
     abstract public function DeleteData();
+    abstract public function AddSubsecToSec();
 }
 
 ?>

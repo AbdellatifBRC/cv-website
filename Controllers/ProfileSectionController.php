@@ -69,6 +69,11 @@ class ProfileSectionController extends CvSectionController{
 
         echo json_encode($response_array);
     }
+
+    // users can not another profile section, so just display an error
+    public function AddSubsecToSec(){
+        echo json_encode(array("error" => "You can not add another profile section"));
+    }
 }
 
 // a request has been sent from a view
