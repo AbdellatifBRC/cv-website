@@ -110,7 +110,45 @@ class ExperienceSectionController extends CvSectionController{
 
     // add another experience subsection
     public function AddSubsecToSec(){
+        // this array will be sent as a response to the client
+        $response_array["action_completed"] = false;
+        $response_array["error"] = "";
+        $response_array["new_subsec_html"] = "";
+        
+        if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["subsecs_in_section"])){
+            try{
 
+                // sanitize the user's input
+                $experiencesNumber = new Input($_POST["subsecs_in_section"]);
+                $experiencesNumber->Sanitize();
+                if(preg_match("/^(0|[1-9]+[0-9]*)$/", $experiencesNumber->value)){
+                    $response_array["new_subsec_html"] = "
+                    <div class='experience' id='experience_" . strval($experiencesNumber->value + 1) . "'>
+                        <form id='save_experience_" . strval($experiencesNumber->value + 1) . "_section_form'>
+                        <input type='text' name='position' placeholder='Position'>
+                        <input type='text' name='company_name' placeholder='Company Name'>
+                        <input type='text' name='company_location' placeholder='Company Location'>
+                        <input type='date' class='form-control' name='position_start_date' placeholder=''>
+                        <input type='date' class='form-control' name='position_end_date' placeholder=''>
+                        <textarea name='experience_description' class='form-control' cols='30' rows='5' ></textarea>
+                            <button type='submit' onclick=" . '"'. "ModifySection('experience_" . strval($experiencesNumber->value + 1) . "', 'save', 'ExperienceSectionController')" . '"'. ">Save Experience</button>
+                        </form>
+                        <form id='delete_experience_" . strval($experiencesNumber->value + 1) . "_section_form'>
+                            <button type='submit' onclick=" . '"' . "ModifySection('experience_" . strval($experiencesNumber->value + 1) . "', 'delete', 'ExperienceSectionController')" . '"' . ">Delete Experience</button>
+                        </form>
+                    </div>";
+
+                    // indicate that the action has completed
+                    $response_array["action_completed"] = true;
+                } else{
+                    $response_array["error"] = "Invalid data";
+                }
+            } catch (Exception $e) {
+                $response_array["error"] = $e->getMessage();
+            }
+        }
+
+        echo json_encode($response_array);
     }
 }
 
