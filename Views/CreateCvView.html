@@ -196,7 +196,7 @@
                             </div>
                           </div>
                         </div>
-                        <br>
+                        
                         <!--2nd-->
                         <div class="card-header">
                           <a class="btn" data-bs-toggle="collapse" href="#collapsetwo">
@@ -218,6 +218,41 @@
                               </div>
                               <br>
                               <button class="btn btn-primary ">ajouter une formation</button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!--3rd-->
+                        <div class="card-header">
+                          <a class="btn" data-bs-toggle="collapse" href="#collapsethree">
+                            <h5>Experiences professionelles</h5>
+                          </a>
+                        </div>
+                        <div id="collapsethree" class="collapse show" data-bs-parent="#accordion">
+                          <div class="card-body">
+                            <div class="exp-pro">
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <label for="exp-date-debut" class="form-label">Date début l'experience</label>
+                                  <input type="date" class="form-control" id="exp-date-debut">
+                                  <br>
+                                  <label for="exp-date-fin" class="form-label">Date fin l'experience</label>
+                                  <input type="date" class="form-control" id="exp-date-fin">
+                                </div>
+                                
+                                <div class="col-sm-8">
+                                  <label for="exp" class="form-label">Description</label>
+                                  
+                                  <textarea class="form-control" rows="3" id="exp" placeholder="Ex : ingénieur en systemes embarquées" name="text" ></textarea>
+                                  <br>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+                                    <label class="form-check-label">Experience En Cours</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <br>
+                              <button class="btn btn-primary ">ajouter une experience</button>
                             </div>
                           </div>
                         </div>
