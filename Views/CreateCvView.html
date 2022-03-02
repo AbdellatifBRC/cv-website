@@ -73,6 +73,8 @@
                       }
                     } else if(data["logged_in"] === false){
                       window.open('SignInView.html?req=modifysection', '_blank', 'width=1000, height=400, top=200, left=300');
+                    } else if(action == "delete" && data["error"] == ""){
+                      $("#" + section).remove();
                     } else{
                       alert(data["error"]);
                     }
