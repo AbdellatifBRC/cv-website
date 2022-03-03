@@ -108,7 +108,44 @@ class EducationSectionController extends CvSectionController{
 
     // add another education subsection
     public function AddSubsecToSec(){
+        // this array will be sent as a response to the client
+        $response_array["action_completed"] = false;
+        $response_array["error"] = "";
+        $response_array["new_subsec_html"] = "";
         
+        if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["subsecs_in_section"])){
+            try{
+
+                // sanitize the user's input
+                $educationsNumber = new Input($_POST["subsecs_in_section"]);
+                $educationsNumber->Sanitize();
+                if(preg_match("/^(0|[1-9]+[0-9]*)$/", $educationsNumber->value)){
+                    $response_array["new_subsec_html"] = "
+                    <div class='education' id='education_" . strval($educationsNumber->value + 1) . "'>
+                        <form id='save_education_" . strval($educationsNumber->value + 1) . "_section_form'>
+                            <input type='text' name='degree' placeholder='Degree'>
+                            <input type='text' name='field' placeholder='Field'>
+                            <input type='text' name='school_name' placeholder='School Name'>
+                            <input type='date' class='form-control' name='education_start_date' placeholder=''>
+                            <input type='date' class='form-control' name='education_end_date' placeholder=''>
+                            <button type='submit' onclick=" . '"'. "ModifySection('education_" . strval($educationsNumber->value + 1) . "', 'save', 'EducationSectionController')" . '"'. ">Save Education</button>
+                        </form>
+                        <form id='delete_education_" . strval($educationsNumber->value + 1) . "_section_form'>
+                            <button type='submit' onclick=" . '"' . "ModifySection('education_" . strval($educationsNumber->value + 1) . "', 'delete', 'EducationSectionController')" . '"' . ">Delete Education</button>
+                        </form>
+                    </div>";
+
+                    // indicate that the action has completed
+                    $response_array["action_completed"] = true;
+                } else{
+                    $response_array["error"] = "Invalid data";
+                }
+            } catch (Exception $e) {
+                $response_array["error"] = $e->getMessage();
+            }
+        }
+
+        echo json_encode($response_array);
     }
 }
 
