@@ -69,7 +69,41 @@ class EducationSectionController extends CvSectionController{
 
     // delete an education
     public function DeleteData(){
+        // this array will be sent as a response to the client
+        $response_array["action_completed"] = false;
+        $response_array["error"] = "";
         
+        if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["old_degree"]) && isset($_POST["old_field"]) && isset($_POST["old_school_name"])){
+            try{
+                if($this->sectionModel->auth->isLoggedIn()){
+                    // indicate that the user is logged in
+                    $response_array["logged_in"] = true;
+
+                    // sanitize the input
+                    $oldDegree = new Input($_POST["old_degree"]);
+                    $oldDegree->Sanitize();
+                    $oldField = new Input($_POST["old_field"]);
+                    $oldField->Sanitize();
+                    $oldSchoolName = new Input($_POST["old_school_name"]);
+                    $oldSchoolName->Sanitize();
+
+                    // get the user id
+                    $userId = $this->sectionModel->auth->getUserId();
+
+                    // delete the education
+                    $this->sectionModel->DeleteData(array("user_id" => $userId, "old_degree" => $oldDegree->value, "old_field" => $oldField->value, "old_school_name" => $oldSchoolName->value));
+
+                    // indicate that the action has completed
+                    $response_array["action_completed"] = true;
+                } else{
+                    $response_array["logged_in"] = false;
+                }
+            } catch (Exception $e) {
+                $response_array["error"] = $e->getMessage();
+            }
+        }
+
+        echo json_encode($response_array);
     }
 
     // add another education subsection
