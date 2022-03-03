@@ -50,7 +50,37 @@ class HobbySectionController extends CvSectionController{
 
     // delete a hobby
     public function DeleteData(){
+        // this array will be sent as a response to the client
+        $response_array["action_completed"] = false;
+        $response_array["error"] = "";
         
+        if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["old_hobby_name"])){
+            try{
+                if($this->sectionModel->auth->isLoggedIn()){
+                    // indicate that the user is logged in
+                    $response_array["logged_in"] = true;
+
+                    // sanitize the user's input
+                    $oldHobbyName = new Input($_POST["old_hobby_name"]);
+                    $oldHobbyName->Sanitize();
+
+                    // get the user id
+                    $userId = $this->sectionModel->auth->getUserId();
+
+                    // delete the hobby
+                    $this->sectionModel->DeleteData(array("user_id" => $userId, "old_hobby_name" => $oldHobbyName->value));
+
+                    // indicate that the action has completed
+                    $response_array["action_completed"] = true;
+                } else{
+                    $response_array["logged_in"] = false;
+                }
+            } catch (Exception $e) {
+                $response_array["error"] = $e->getMessage();
+            }
+        }
+        
+        echo json_encode($response_array);
     }
 
     // add another hobby subsection
