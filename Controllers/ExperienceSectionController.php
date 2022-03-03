@@ -25,7 +25,7 @@ class ExperienceSectionController extends CvSectionController{
                     $newEndDate = new Input($_POST["position_end_date"]);
                     $newEndDate->Sanitize();
                     $newDescription = new Input($_POST["experience_description"]);
-                    $newPosition->Sanitize();
+                    $newDescription->Sanitize();
 
                     // check to see if the user already saved this experience
                     $oldPosition = new Input("");
