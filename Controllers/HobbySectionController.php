@@ -85,7 +85,39 @@ class HobbySectionController extends CvSectionController{
 
     // add another hobby subsection
     public function AddSubsecToSec(){
+        // this array will be sent as a response to the client
+        $response_array["action_completed"] = false;
+        $response_array["error"] = "";
+        $response_array["new_subsec_html"] = "";
+        
+        if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["subsecs_in_section"])){
+            try{
+                // sanitize the user's input
+                $hobbiesNumber = new Input($_POST["subsecs_in_section"]);
+                $hobbiesNumber->Sanitize();
+                if(preg_match("/^(0|[1-9]+[0-9]*)$/", $hobbiesNumber->value)){
+                    $response_array["new_subsec_html"] = "
+                    <div class='hobby' id='hobby_" . strval($hobbiesNumber->value + 1) . "'>
+                        <form id='save_hobby_" . strval($hobbiesNumber->value + 1) . "_section_form'>
+                            <input type='text' name='hobby_name' placeholder='Hobby'>
+                            <button type='submit' onclick=" . '"'. "ModifySection('hobby_" . strval($hobbiesNumber->value + 1) . "', 'save', 'HobbySectionController')" . '"'. ">Save Hobby</button>
+                        </form>
+                        <form id='delete_hobby_" . strval($hobbiesNumber->value + 1) . "_section_form'>
+                            <button type='submit' onclick=" . '"' . "ModifySection('hobby_" . strval($hobbiesNumber->value + 1) . "', 'delete', 'HobbySectionController')" . '"' . ">Delete Hobby</button>
+                        </form>
+                    </div>";
 
+                    // indicate that the action has completed
+                    $response_array["action_completed"] = true;
+                } else{
+                    $response_array["error"] = "Invalid data";
+                }
+            } catch (Exception $e) {
+                $response_array["error"] = $e->getMessage();
+            }
+        }
+
+        echo json_encode($response_array);
     }    
 }
 
