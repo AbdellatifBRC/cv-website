@@ -61,7 +61,44 @@ class SkillSectionController extends CvSectionController{
 
     // delete a skill
     public function DeleteData(){
+        // this array will be sent as a response to the client
+        $response_array["action_completed"] = false;
+        $response_array["error"] = "";
         
+        if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["old_skill_name"]) && isset($_POST["old_skill_level"])){
+            try{
+                if($this->sectionModel->auth->isLoggedIn()){
+                    // indicate that the user is logged in
+                    $response_array["logged_in"] = true;
+
+                    // sanitize the user's input
+                    $oldSkillName = new Input($_POST["old_skill_name"]);
+                    $oldSkillName->Sanitize();
+                    $oldSkillLevel = new Input($_POST["old_skill_level"]);
+                    $oldSkillLevel->Sanitize();
+
+                    // ensure a valid level format
+                    if(preg_match("/^(0|[1-9][0-9]|100|)$/", $oldSkillLevel->value)){
+                        // get the user id
+                        $userId = $this->sectionModel->auth->getUserId();
+
+                        // delete the skill
+                        $this->sectionModel->DeleteData(array("user_id" => $userId, "old_skill_name" => $oldSkillName->value, "old_skill_level" => $oldSkillLevel->value));
+
+                        // indicate that the action has completed
+                        $response_array["action_completed"] = true;
+                    } else{
+                        $response_array["error"] = "Invalid level";
+                    }
+                } else{
+                    $response_array["logged_in"] = false;
+                }
+            } catch (Exception $e) {
+                $response_array["error"] = $e->getMessage();
+            }
+        }
+        
+        echo json_encode($response_array);
     }
 
     // add another skill subsection
