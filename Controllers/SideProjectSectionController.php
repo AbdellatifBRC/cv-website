@@ -88,7 +88,50 @@ class SideProjetSectionController extends CvSectionController{
 
     // add another side project subsection
     public function AddSubsecToSec(){
+        // this array will be sent as a response to the client
+        $response_array["action_completed"] = false;
+        $response_array["error"] = "";
+        $response_array["new_subsec_html"] = "";
         
+        if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["subsecs_in_section"])){
+            try{
+
+                // sanitize the user's input
+                $sideProjectsNumber = new Input($_POST["subsecs_in_section"]);
+                $sideProjectsNumber->Sanitize();
+                if(preg_match("/^(0|[1-9]+[0-9]*)$/", $sideProjectsNumber->value)){
+                    $response_array["new_subsec_html"] = "
+                    <div class='row project' id='project_" . strval($sideProjectsNumber->value + 1) . "'>
+                        <form id='save_project_" . strval($sideProjectsNumber->value + 1) . "_section_form'>
+                            <div class'col-sm-4'>
+                                <label for='project-title-" . strval($sideProjectsNumber->value + 1) . "' class='form-label'>titre de projet</label>
+                                <input type='text' class='form-control' placeholder='' name='side_project_title' id='project-title-" . strval($sideProjectsNumber->value + 1) . "'>
+                            </div>
+                            <div class'col-sm-4'>
+                                <label for='project-" . strval($sideProjectsNumber->value + 1) . "' class='form-label'>description</label>
+                                <textarea class='form-control' rows='3' id='project-" . strval($sideProjectsNumber->value + 1) . "' placeholder='' name='side_project_description'></textarea>
+                            </div>
+                            <div class'col-sm-4'>
+                                <button type='submit' onclick=" . '"'. "ModifySection('project_" . strval($sideProjectsNumber->value + 1) . "', 'save', 'SideProjectSectionController')" . '"'. ">Save Project</button>
+                            </div>
+                        </form>
+                        <form id='delete_project_" . strval($sideProjectsNumber->value + 1) . "_section_form'>
+                            <button type='submit' onclick=" . '"' . "ModifySection('project_" . strval($sideProjectsNumber->value + 1) . "', 'delete', 'SideProjectSectionController')" . '"' . ">Delete Project</button>
+                        </form>
+                    </div>
+                    <br>";
+
+                    // indicate that the action has completed
+                    $response_array["action_completed"] = true;
+                } else{
+                    $response_array["error"] = "Invalid data";
+                }
+            } catch (Exception $e) {
+                $response_array["error"] = $e->getMessage();
+            }
+        }
+
+        echo json_encode($response_array);
     }
 }
 
