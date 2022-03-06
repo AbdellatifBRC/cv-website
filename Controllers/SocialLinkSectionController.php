@@ -93,7 +93,50 @@ class SocialLinkSectionController extends CvSectionController{
 
     // add another social link subsection
     public function AddSubsecToSec(){
+        // this array will be sent as a response to the client
+        $response_array["action_completed"] = false;
+        $response_array["error"] = "";
+        $response_array["new_subsec_html"] = "";
         
+        if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["subsecs_in_section"])){
+            try{
+
+                // sanitize the user's input
+                $socialLinksNumber = new Input($_POST["subsecs_in_section"]);
+                $socialLinksNumber->Sanitize();
+                if(preg_match("/^(0|[1-9]+[0-9]*)$/", $socialLinksNumber->value)){
+                    $response_array["new_subsec_html"] = "
+                    <div class='row link' id='link_" . strval($socialLinksNumber->value + 1) . "'>
+                        <form id='save_link_" . strval($socialLinksNumber->value + 1) . "_section_form'>
+                            <div class'col-sm-4'>
+                                <label for='website-name-" . strval($socialLinksNumber->value + 1) . "' class='form-label'>nom du site</label>
+                                <input type='text' class='form-control' placeholder='' name='website_name' id='website-name-" . strval($socialLinksNumber->value + 1) . "'>
+                            </div>
+                            <div class'col-sm-4'>
+                                <label for='link-" . strval($socialLinksNumber->value + 1) . "' class='form-label'>lien</label>
+                                <input type='text' class='form-control' placeholder='' name='website_link' id='link-" . strval($socialLinksNumber->value + 1) . "'>
+                            </div>
+                            <div class'col-sm-4'>
+                                <button type='submit' onclick=" . '"'. "ModifySection('link_" . strval($socialLinksNumber->value + 1) . "', 'save', 'SocialLinkSectionController')" . '"'. ">Save Link</button>
+                            </div>
+                        </form>
+                        <form id='delete_link_" . strval($socialLinksNumber->value + 1) . "_section_form'>
+                            <button type='submit' onclick=" . '"' . "ModifySection('link_" . strval($socialLinksNumber->value + 1) . "', 'delete', 'SocialLinkSectionController')" . '"' . ">Delete Link</button>
+                        </form>
+                    </div>
+                    <br>";
+
+                    // indicate that the action has completed
+                    $response_array["action_completed"] = true;
+                } else{
+                    $response_array["error"] = "Invalid data";
+                }
+            } catch (Exception $e) {
+                $response_array["error"] = $e->getMessage();
+            }
+        }
+
+        echo json_encode($response_array);
     }
 }
 
