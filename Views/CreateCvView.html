@@ -95,9 +95,9 @@
         $("#" + action + "_" + section + "_section_form").off("submit");
         $("#" + action + "_" + section + "_section_form").on("submit", function (e) {
           var subsections = document.getElementsByClassName(section);
-          var subsectionsIdNums= [];
+          var subsectionsIdNums= [0];
           for(var i=0;i<subsections.length;i++){
-            subsectionsIdNums[i] = subsections[i].id.split("_")[1];
+            subsectionsIdNums.push(subsections[i].id.split("_")[1]);
           }
 
           var dataString = "&subsecs_in_section=" + Math.max.apply(Math, subsectionsIdNums) + "&action=" + action;
