@@ -53,7 +53,37 @@ class CustomSectionController extends CvSectionController{
 
     // delete a custom section
     public function DeleteData(){
+        // this array will be sent as a response to the client
+        $response_array["action_completed"] = false;
+        $response_array["error"] = "";
         
+        if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["old_custom_section_title"])){
+            try{
+                if($this->sectionModel->auth->isLoggedIn()){
+                    // indicate that the user is logged in
+                    $response_array["logged_in"] = true;
+
+                    // sanitize the user's input
+                    $oldCustomSectionTitle = new Input($_POST["old_custom_section_title"]);
+                    $oldCustomSectionTitle->Sanitize();
+
+                    // get the user id
+                    $userId = $this->sectionModel->auth->getUserId();
+
+                    // delete the custom section
+                    $this->sectionModel->DeleteData(array("user_id" => $userId, "old_title" => $oldCustomSectionTitle->value));
+
+                    // indicate that the action has completed
+                    $response_array["action_completed"] = true;
+                } else{
+                    $response_array["logged_in"] = false;
+                }
+            } catch (Exception $e) {
+                $response_array["error"] = $e->getMessage();
+            }
+        }
+        
+        echo json_encode($response_array);
     }
 
     // add another custom ection
@@ -71,15 +101,15 @@ class CustomSectionController extends CvSectionController{
                 $customSectionNumber->Sanitize();
                 if(preg_match("/^(0|[1-9]+[0-9]*)$/", $customSectionNumber->value)){
                     $response_array["new_subsec_html"] = "
-                    <div class='card-header'>
-                        <a class='btn' data-bs-toggle='collapse' href='#collapsecustom" . strval($customSectionNumber->value + 1) . "'>
+                    <div class='card-header' id='custom_section_" . strval($customSectionNumber->value + 1) . "_header'>
+                        <a class='btn' data-bs-toggle='collapse' href='#custom_section_" . strval($customSectionNumber->value + 1) . "'>
                             <input type='text' placeholder='Custom Section Title' name='custom_section_title' form='save_custom_section_" . strval($customSectionNumber->value + 1) . "_section_form'>
                         </a>
                     </div>
-                    <div id='collapsecustom" . strval($customSectionNumber->value + 1) . "' class='collapse show' data-bs-parent='#accordion'>
+                    <div id='custom_section_" . strval($customSectionNumber->value + 1) . "' class='collapse show' data-bs-parent='#accordion'>
                         <div class='card-body'>
                             <div class='custom' id='customs_" . strval($customSectionNumber->value + 1) . "'>
-                                <div class='row' id='custom_section_" . strval($customSectionNumber->value + 1) . "'>
+                                <div class='row'>
                                     <form id='save_custom_section_" . strval($customSectionNumber->value + 1) . "_section_form'>
                                         <div class='col-sm-12'>
                                             <label for='custom-description-" . strval($customSectionNumber->value + 1) . "' class='form-label'>Description</label>
