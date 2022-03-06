@@ -168,12 +168,27 @@
   <br>
   <div class="container">
     <div class="popup-hide" id="popup">
-      
-        <form action="/action_page.php">
+      <button class="btn btn-primary" onclick="hidepopup('popup')">close</button>
+                  
+          <br><br>
           <label for="img" class="form-label">Select image:</label>
           <input class="form-control" type="file" id="img" name="img" accept="image/*">
-          <input class="btn btn-primary" type="submit">
-        </form>      
+          <br>
+          
+            <div class="row">
+              <div class="col">
+                <div class="d-grid">
+                  <input class="btn btn-primary btn-block" type="submit">
+                </div>
+                 
+              </div>
+              <div class="col">
+                <div class="d-grid">
+                  <button class="btn btn-primary btn-block">supprimer</button>
+                </div>
+                
+              </div>
+            </div>   
       
     </div>   
       <div>
