@@ -58,7 +58,37 @@ class SocialLinkSectionController extends CvSectionController{
 
     // delete a social link
     public function DeleteData(){
+        // this array will be sent as a response to the client
+        $response_array["action_completed"] = false;
+        $response_array["error"] = "";
         
+        if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["old_website_name"])){
+            try{
+                if($this->sectionModel->auth->isLoggedIn()){
+                    // indicate that the user is logged in
+                    $response_array["logged_in"] = true;
+
+                    // sanitize the user's input
+                    $oldWebsiteName = new Input($_POST["old_website_name"]);
+                    $oldWebsiteName->Sanitize();
+
+                    // get the user id
+                    $userId = $this->sectionModel->auth->getUserId();
+
+                    // delete the social link
+                    $this->sectionModel->DeleteData(array("user_id" => $userId, "old_website_name" => $oldWebsiteName->value));
+
+                    // indicate that the action has completed
+                    $response_array["action_completed"] = true;
+                } else{
+                    $response_array["logged_in"] = false;
+                }
+            } catch (Exception $e) {
+                $response_array["error"] = $e->getMessage();
+            }
+        }
+        
+        echo json_encode($response_array);
     }
 
     // add another social link subsection
