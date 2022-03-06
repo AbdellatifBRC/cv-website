@@ -144,8 +144,22 @@
         var popup=document.getElementById(params);       
         //popup.style.display= 'none';
         popup.style.transform = 'translate(-50%, -50%) scale(0)';
-      }
         
+      }
+
+      //clear input script
+      function clearinput() {
+        var btnsupp = document.getElementById("btn-supp");
+        document.getElementById("img").value = '';
+      }
+      
+      /*var popup = document.getElementById("popup");
+      btnsupp.addEventListener("click",function() {
+       
+
+      });*/
+     
+      
     </script>
 </head>
 <body>
@@ -184,7 +198,7 @@
               </div>
               <div class="col">
                 <div class="d-grid">
-                  <button class="btn btn-primary btn-block">supprimer</button>
+                  <button class="btn btn-primary btn-block" id="btn-supp" onclick="clearinput('')">supprimer</button>
                 </div>
                 
               </div>
