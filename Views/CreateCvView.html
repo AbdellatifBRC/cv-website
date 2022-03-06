@@ -31,12 +31,22 @@
     border-radius: 5px;
     z-index: 10;
     background-color: white;
-    width: 800px;
+    width: 600px;
     max-width: 80%;
     /*display: none;*/
     overflow-y: auto;
     overflow-x: hidden;
-    height:400px;}
+    height:300px;}
+
+    .custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+input[type="file"] {
+    display: none;
+}
     </style>
     <script>
       var CvFormsData = {};
@@ -185,8 +195,12 @@
       <button class="btn btn-primary" onclick="hidepopup('popup')">close</button>
                   
           <br><br>
-          <label for="img" class="form-label">Select image:</label>
-          <input class="form-control" type="file" id="img" name="img" accept="image/*">
+          
+          <label for="img" class="form-label custom-file-upload">
+            <h6>Faites glisser et déposez votre image ici ou cliquez pour la télécharger.</h5>
+            <input class="form-control" type="file" id="img" name="img" accept="image/*">
+          </label>
+          
           <br>
           
             <div class="row">
