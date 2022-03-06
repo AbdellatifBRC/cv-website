@@ -48,6 +48,7 @@
 input[type="file"] {
     display: none;
 }
+.img-uploaded {}
     </style>
     <script>
       var CvFormsData = {};
@@ -162,6 +163,7 @@ input[type="file"] {
       function clearinput() {
         var btnsupp = document.getElementById("btn-supp");
         document.getElementById("img").value = '';
+        
       }
       
       /*var popup = document.getElementById("popup");
@@ -172,7 +174,9 @@ input[type="file"] {
      
       var loadFile = function(event) {
         var image = document.getElementById('output');
+        var uploadarea = document.getElementById('upload-area');
         image.src = URL.createObjectURL(event.target.files[0]);
+        uploadarea.style.display ='none' ;
       };
     </script>
 </head>
@@ -201,10 +205,13 @@ input[type="file"] {
           <br><br>
           
           <label for="img" class="centring custom-file-upload">
-            <h6>Faites glisser et déposez votre image ici ou cliquez pour la télécharger.</h5>
+            <div id="upload-area">
+              <h6 class="upload-txt" id="upload-txt">Faites glisser et déposez votre image ici ou cliquez pour la télécharger.</h5>
               <br>
-            <span class="btn btn-primary centring">telecharger</span>
-            <p><img id="output" width="200" /></p>
+              <span class="btn btn-primary centring" id="upload">telecharger</span>
+            </div>
+            
+            <span class="img-uploaded centring"><img class="img-fluid" id="output"/></span>
             <input class="form-control" type="file" id="img" onchange="loadFile(event)" name="img" accept="image/*" >
           </label>
           
