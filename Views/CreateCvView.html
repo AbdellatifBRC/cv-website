@@ -20,7 +20,23 @@
         
         .progress-bar {width: 10%;}
         .perso input {margin-bottom: 2px;}
-
+        .popup-hide { position: fixed;
+    filter: drop-shadow(0 0 500px rgb(0, 0, 0));
+    padding: 10px;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 150ms ease-in-out;
+    border: solid 1px #ededed;
+    border-radius: 5px;
+    z-index: 10;
+    background-color: white;
+    width: 800px;
+    max-width: 80%;
+    /*display: none;*/
+    overflow-y: auto;
+    overflow-x: hidden;
+    height:400px;}
     </style>
     <script>
       var CvFormsData = {};
@@ -112,6 +128,24 @@
           e.preventDefault();
         });
       }
+        //script popup products
+        function showpopup(params) {
+        var popup=document.getElementById(params);
+        //var container=document.getElementById("container");
+        //popup.style.display='block';
+        popup.style.transform = 'translate(-50%, -50%) scale(1)';
+        //popup.style.backdropfilter = 'drop-shadow(4px 4px 10px blue)';
+        //container.style.backgroundcolor=;
+        //document.getElementById("container").style.backgroundColor = "black";
+        //container.style.filter= 'blur(8px)';
+            
+      }
+      function hidepopup(params) {
+        var popup=document.getElementById(params);       
+        //popup.style.display= 'none';
+        popup.style.transform = 'translate(-50%, -50%) scale(0)';
+      }
+        
     </script>
 </head>
 <body>
@@ -132,7 +166,16 @@
     </div>
   </nav>
   <br>
-  <div class="container">       
+  <div class="container">
+    <div class="popup-hide" id="popup">
+      
+        <form action="/action_page.php">
+          <label for="img" class="form-label">Select image:</label>
+          <input class="form-control" type="file" id="img" name="img" accept="image/*">
+          <input class="btn btn-primary" type="submit">
+        </form>      
+      
+    </div>   
       <div>
           <ul class="nav justify-content-center ">
                   <li class="nav-item">
@@ -156,43 +199,6 @@
               <hr>
               
                 <div class="" id="myform">
-                    <!--div class="first-part row">
-                    <div class="col-sm-4">
-                      <button class="btn btn-light" style="width:150px; height:150px"><i class="fas fa-camera"></i></button>
-                    </div>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" placeholder="Nom" value=""  id="progress1" name="myinput"  onchange="addprogress('progress1')" >
-                        <input type="text" class="form-control" placeholder="Prénom" value=""   id="progress2" name="myinput"  onchange="addprogress('progress2')">
-                        <input type="text" class="form-control" placeholder="Adresse Email" value="" id="progress3" name="myinput"  onchange="addprogress('progress3')" >
-                        <input type="text" class="form-control" placeholder="Numero Téléphone"  value="" id="progress4" name="myinput" onchange="addprogress('progress4')" >
-                    </div>                   
-                    </div>
-                    <hr>
-                    <div class="second-part">
-                      <div class="form-group form-inline">
-                        <select class="form-control" id="sel1">
-                          <option selected>01</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                        </select>
-                        <select class="form-control" id="sel1">
-                          <option selected>Janvier</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                        </select>
-                        <select class="form-control" id="sel1">
-                          <option selected>2003</option>
-                          <option>3</option>
-                          <option>4</option>
-                        </select>
-                        
-                      </div>
-                      <input type="text" class="form-control" placeholder="Place de naissance">
-                      <input type="text" class="form-control" placeholder="Adresse">
-                      <input type="text" class="form-control" placeholder="Code postale">
-                    </div-->
                     <hr>
                     <div id="accordion">
 
@@ -210,7 +216,7 @@
                               <hr>
                               <div class="row">
                                 <div class="col-sm-3">
-                                  <button class="btn btn-light" style="width:150px; height:150px"><i class="fas fa-camera"></i></button>
+                                  <button class="btn btn-light" style="width:150px; height:150px" onclick="showpopup('popup')"><i class="fas fa-camera"></i></button>
                                 </div>
                                 <div class="col-sm-9">
                                   <div class="">
