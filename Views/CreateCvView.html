@@ -162,10 +162,14 @@ input[type="file"] {
       //clear input script
       function clearinput() {
         var btnsupp = document.getElementById("btn-supp");
+        var imagelogo = document.getElementById('output-logo');
+        var iconimg = document.getElementById('img-logo');
         document.getElementById("img").value = '';
         document.getElementById("output").src ='';
         var uploadarea = document.getElementById('upload-area');
         uploadarea.style.display ='block' ;
+        imagelogo.src= '';
+        iconimg.style.display ='block' ;
       }
       
       /*var popup = document.getElementById("popup");
@@ -176,9 +180,13 @@ input[type="file"] {
      
       var loadFile = function(event) {
         var image = document.getElementById('output');
+        var imagelogo = document.getElementById('output-logo');
         var uploadarea = document.getElementById('upload-area');
+        var iconimg = document.getElementById('img-logo');
         image.src = URL.createObjectURL(event.target.files[0]);
+        imagelogo.src = URL.createObjectURL(event.target.files[0]);
         uploadarea.style.display ='none' ;
+        iconimg.style.display ='none' ;
       };
     </script>
 </head>
@@ -275,7 +283,7 @@ input[type="file"] {
                               <hr>
                               <div class="row">
                                 <div class="col-sm-3">
-                                  <button class="btn btn-light" style="width:150px; height:150px" onclick="showpopup('popup')"><i class="fas fa-camera"></i></button>
+                                  <button class="btn btn-light" style="width:150px; height:150px" onclick="showpopup('popup')"><img class="img-fluid" id="output-logo"/><i class="fas fa-camera" id="img-logo"></i></button>
                                 </div>
                                 <div class="col-sm-9">
                                   <div class="">
