@@ -54,6 +54,7 @@ input[type="file"] {
 .cv-view {border: solid 1px black;height: 400px;}
 .part-1{display: block;}
 .part-1 p{display: inline;}
+.output-cv {width:150px;}
     </style>
     <script>
       var CvFormsData = {};
@@ -210,7 +211,7 @@ input[type="file"] {
         var prenom = document.getElementById("prenom");
         var nomview = document.getElementById("nom-view");
         var prenomview = document.getElementById("prenom-view");
-        var part1 = document.getElementById("part1")
+        var part1 = document.getElementById("part1");
         nomview.innerHTML = nom.value;
         prenomview.innerHTML = prenom.value;
         part1.style.border="solid 1px";
@@ -219,6 +220,10 @@ input[type="file"] {
         var img = document.getElementById('img');
         var imgcv = document.getElementById("output-cv");
         imgcv.src = URL.createObjectURL(img.files[0]);
+        //email
+        var email = document.getElementById("inputemail");
+        var emailview = document.getElementById("email-view");
+        emailview.innerHTML = email.value ;
       }
     </script>
 </head>
@@ -329,12 +334,12 @@ input[type="file"] {
                               <br>
                               <div class="row g-3">
                                 <div class="col-md-6">
-                                  <label for="inputEmail4" class="form-label">Email</label>
-                                  <input type="email" class="form-control" id="inputEmail4">
+                                  <label for="inputemail" class="form-label">Email</label>
+                                  <input type="email" class="form-control" id="inputemail">
                                 </div>
                                 <div class="col-md-6">
-                                  <label for="numero" class="form-label">Numero</label>
-                                  <input type="text" class="form-control" id="numro">
+                                  <label for="number" class="form-label">Numero</label>
+                                  <input type="text" class="form-control" id="number">
                                 </div>
                                 <div class="col-12">
                                   <label for="inputAddress" class="form-label">Address</label>
@@ -663,7 +668,10 @@ input[type="file"] {
                 <div class="row">
                   <!--part 2-1-->
                   <div class="col-sm-4 part-2-1" id="part-2-1">
-                    <span class="img-cv"><img class="img-fluid output-cv" id="output-cv"/></span>
+                    <img class="img-fluid output-cv" id="output-cv"/>
+                    <br>
+                    <!--email-->
+                    <p id="email-view"></p>
                   </div>
                   <!--part 2-2-->
                   <div class="col-sm-8 part-2-2" id="part-2-2">
