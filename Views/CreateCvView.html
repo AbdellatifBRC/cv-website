@@ -52,6 +52,8 @@ input[type="file"] {
 }
 .img-uploaded img {width: 250px;}
 .cv-view {border: solid 1px black;height: 400px;}
+.part-1{display: block;}
+.part-1 p{display: inline;}
     </style>
     <script>
       var CvFormsData = {};
@@ -197,6 +199,16 @@ input[type="file"] {
         uploadarea.style.display ='none' ;
         iconimg.style.display ='none' ;
       };
+
+      //cv display functions
+      function part1(params) {
+        var nom = document.getElementById("nom");
+        var prenom = document.getElementById("prenom");
+        var nomview = document.getElementById("nom-view");
+        var prenomview = document.getElementById("prenom-view");
+        nomview.innerHTML = nom.value;
+        prenomview.innerHTML = prenom.value;
+      }
     </script>
 </head>
 <body>
@@ -286,7 +298,7 @@ input[type="file"] {
                         </div>
                         <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
                           <div class="card-body">
-                            <div class="perso">
+                            <div class="perso" onmousemove="part1('')">
                       
                       
                               <hr>
@@ -297,9 +309,9 @@ input[type="file"] {
                                 <div class="col-sm-9">
                                   <div class="">
                                     <label for="nom" class="form-label">Nom </label>
-                                    <input type="text" class="form-control" id="nom" placeholder="" name="nom">
+                                    <input type="text" class="form-control" id="nom" placeholder="" name="nom" >
                                     <label for="prenom" class="form-label">Prenom </label>
-                                    <input type="text" class="form-control" id="prenom" placeholder="" name="prenom">
+                                    <input type="text" class="form-control" id="prenom" placeholder="" name="prenom" >
                                   </div>
                                 </div>
                               </div>
@@ -629,14 +641,12 @@ input[type="file"] {
                 
               </div> 
               <br>
+              <!--standard model-->
               <div class="cv-view">
-                <p>epsumkjbbbbbbbbbbbbbbb</p>
-                <div>
-                  hjviuuuuuu
-                  hjkjjjk
-                  br
-                  <br>
-                  gvhjhj
+                <!--1st part-->
+                <div class="part-1">
+                  <p id="nom-view"></p>
+                  <p id="prenom-view"></p>
                 </div>
               </div> 
             </div>           
