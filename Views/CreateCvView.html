@@ -227,6 +227,9 @@ input[type="file"] {
         var number = document.getElementById("number");
         var numberview = document.getElementById("number-view");
         numberview.innerHTML = number.value ;
+        var adress = document.getElementById("adress");
+        var adressview = document.getElementById("adress-view");
+        adressview.innerHTML = adress.value ;
       }
     </script>
 </head>
@@ -345,12 +348,12 @@ input[type="file"] {
                                   <input type="text" class="form-control" id="number">
                                 </div>
                                 <div class="col-12">
-                                  <label for="inputAddress" class="form-label">Address</label>
-                                  <input type="text" class="form-control" id="inputAddress" placeholder="">
+                                  <label for="adress" class="form-label">Address</label>
+                                  <input type="text" class="form-control" id="adress" placeholder="">
                                 </div>
                                 <div class="col-12">
-                                  <label for="inputAddress2" class="form-label">Date de naissance</label>
-                                  <input type="date" class="form-control" id="inputAddress2" placeholder="">
+                                  <label for="birthday" class="form-label">Date de naissance</label>
+                                  <input type="date" class="form-control" id="birthday" placeholder="">
                                 </div>
                                 <div class="col-md-6">
                                   <label for="inputCity" class="form-label">City</label>
@@ -676,6 +679,8 @@ input[type="file"] {
                     <!--email-->
                     <p id="email-view"></p>
                     <p id="number-view"></p>
+                    <p id="adress-view"></p>
+                    <p id="birthday-view"></p>
                   </div>
                   <!--part 2-2-->
                   <div class="col-sm-8 part-2-2" id="part-2-2">
