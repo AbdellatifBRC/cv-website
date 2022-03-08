@@ -206,8 +206,10 @@ input[type="file"] {
         var prenom = document.getElementById("prenom");
         var nomview = document.getElementById("nom-view");
         var prenomview = document.getElementById("prenom-view");
+        var part1 = document.getElementById("part1")
         nomview.innerHTML = nom.value;
         prenomview.innerHTML = prenom.value;
+        part1.style.border="solid 1px";
       }
     </script>
 </head>
@@ -644,10 +646,11 @@ input[type="file"] {
               <!--standard model-->
               <div class="cv-view">
                 <!--1st part-->
-                <div class="part-1">
+                <div class="part-1" id="part1">
                   <p id="nom-view"></p>
-                  <p id="prenom-view"></p>
+                  <p id="prenom-view"></p>                
                 </div>
+                
               </div> 
             </div>           
           </div>
