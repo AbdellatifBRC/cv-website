@@ -202,6 +202,7 @@ input[type="file"] {
 
       //cv display functions
       function part1(params) {
+        //nom prenom
         var nom = document.getElementById("nom");
         var prenom = document.getElementById("prenom");
         var nomview = document.getElementById("nom-view");
@@ -210,6 +211,11 @@ input[type="file"] {
         nomview.innerHTML = nom.value;
         prenomview.innerHTML = prenom.value;
         part1.style.border="solid 1px";
+        //image
+        var image = document.getElementById('output');
+        var img = document.getElementById('img');
+        var imgcv = document.getElementById("output-cv")
+        imgcv.src = URL.createObjectURL(img.files[0]);
       }
     </script>
 </head>
@@ -650,7 +656,17 @@ input[type="file"] {
                   <p id="nom-view"></p>
                   <p id="prenom-view"></p>                
                 </div>
-                
+                <!--2nd part-->
+                <div class="row">
+                  <!--part 2-1-->
+                  <div class="col-sm-4 part-2-1" id="part-2-1">
+                    <span class="img-cv"><img class="img-fluid output-cv" id="output-cv"/></span>
+                  </div>
+                  <!--part 2-2-->
+                  <div class="col-sm-8 part-2-2" id="part-2-2">
+
+                  </div>
+                </div>
               </div> 
             </div>           
           </div>
