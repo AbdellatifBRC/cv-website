@@ -244,6 +244,10 @@ input[type="file"] {
         var state = document.getElementById("state");
         var stateview = document.getElementById("state-view");
         stateview.innerHTML = state.value ;
+        //code postale
+        var codep = document.getElementById("codep");
+        var codepview = document.getElementById("codep-view");
+        codepview.innerHTML = codep.value ;
       }
     </script>
 </head>
@@ -378,8 +382,8 @@ input[type="file"] {
                                   <input type="text" class="form-control" id="state">
                                 </div>
                                 <div class="col-md-2">
-                                  <label for="inputZip" class="form-label">code postale</label>
-                                  <input type="text" class="form-control" id="inputZip">
+                                  <label for="codep" class="form-label">code postale</label>
+                                  <input type="text" class="form-control" id="codep">
                                 </div>
                                 
                               </div>
@@ -697,6 +701,7 @@ input[type="file"] {
                     <p id="birthday-view"></p>
                     <p id="city-view"></p>
                     <p id="state-view"></p>
+                    <p id="codep-view"></p>
                   </div>
                   <!--part 2-2-->
                   <div class="col-sm-8 part-2-2" id="part-2-2">
