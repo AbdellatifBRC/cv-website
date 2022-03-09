@@ -240,6 +240,10 @@ input[type="file"] {
         var city = document.getElementById("city");
         var cityview = document.getElementById("city-view");
         cityview.innerHTML = city.value ;
+        //state
+        var state = document.getElementById("state");
+        var stateview = document.getElementById("state-view");
+        stateview.innerHTML = state.value ;
       }
     </script>
 </head>
@@ -370,8 +374,8 @@ input[type="file"] {
                                   <input type="text" class="form-control" id="city">
                                 </div>
                                 <div class="col-md-4">
-                                  <label for="inputState" class="form-label">State</label>
-                                  <input type="text" class="form-control" id="inputState">
+                                  <label for="state" class="form-label">State</label>
+                                  <input type="text" class="form-control" id="state">
                                 </div>
                                 <div class="col-md-2">
                                   <label for="inputZip" class="form-label">code postale</label>
@@ -692,6 +696,7 @@ input[type="file"] {
                     <p id="adress-view"></p>
                     <p id="birthday-view"></p>
                     <p id="city-view"></p>
+                    <p id="state-view"></p>
                   </div>
                   <!--part 2-2-->
                   <div class="col-sm-8 part-2-2" id="part-2-2">
