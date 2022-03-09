@@ -214,7 +214,7 @@ input[type="file"] {
         var part1 = document.getElementById("part1");
         nomview.innerHTML = nom.value;
         prenomview.innerHTML = prenom.value;
-        part1.style.border="solid 1px";
+        //part1.style.border="solid 1px";
         //image
         var image = document.getElementById('output');
         var img = document.getElementById('img');
@@ -236,6 +236,10 @@ input[type="file"] {
         var birthday = document.getElementById("birthday");
         var birthdayview = document.getElementById("birthday-view");
         birthdayview.innerHTML = birthday.value ;
+        //city
+        var city = document.getElementById("city");
+        var cityview = document.getElementById("city-view");
+        cityview.innerHTML = city.value ;
       }
     </script>
 </head>
@@ -362,8 +366,8 @@ input[type="file"] {
                                   <input type="date" class="form-control" id="birthday" placeholder="">
                                 </div>
                                 <div class="col-md-6">
-                                  <label for="inputCity" class="form-label">City</label>
-                                  <input type="text" class="form-control" id="inputCity">
+                                  <label for="city" class="form-label">City</label>
+                                  <input type="text" class="form-control" id="city">
                                 </div>
                                 <div class="col-md-4">
                                   <label for="inputState" class="form-label">State</label>
@@ -687,6 +691,7 @@ input[type="file"] {
                     <p id="number-view"></p>
                     <p id="adress-view"></p>
                     <p id="birthday-view"></p>
+                    <p id="city-view"></p>
                   </div>
                   <!--part 2-2-->
                   <div class="col-sm-8 part-2-2" id="part-2-2">
