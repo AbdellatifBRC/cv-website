@@ -70,18 +70,26 @@ input[type="file"] {
       function ModifySection(section, action, controller){
         $("#" + action + "_" + section + "_section_form").off("submit");
         $("#" + action + "_" + section + "_section_form").on("submit", function (e) {
-            var dataString = new URLSearchParams(CvFormsData["save_" + section + "_section_form"]).toString();
-            var newFormData = $(this).serialize();
-            var newFormDataArray = $(this).serializeArray();
-            if(newFormData != ""){
-              dataString += "&" + newFormData;
+            var dataString = new FormData(this);
+            var formData = new FormData(this);
+            if(dataString.get("img") !== null){
+              dataString.set("img", $("#img")[0].files[0]);
+              formData.set("img", $("#img")[0].files[0]);
             }
-            dataString += "&action=" + action;
+            
+            if(CvFormsData["save_" + section + "_section_form"] != null){
+              for(const [key, value] of Object.entries(CvFormsData["save_" + section + "_section_form"])){
+                dataString.append(key, value);
+              }
+            }
+            dataString.append("action", action);
             
             $.ajax({
                 type: "POST",
                 url: "../Controllers/" + controller + ".php",
                 data: dataString,
+                contentType: false,
+                processData: false,
                 success: function (data) {
                     data = JSON.parse(data);
                     if(data["action_completed"] === true){
@@ -96,11 +104,11 @@ input[type="file"] {
                           }
                         }
                       } else{
-                        for(var i=0;i<newFormDataArray.length;i++){
+                        for(var pair of formData.entries()){
                           if(CvFormsData["save_" + section + "_section_form"] == null){
                             CvFormsData["save_" + section + "_section_form"] = {};
                           }
-                          CvFormsData["save_" + section + "_section_form"]["old_" + newFormDataArray[i]["name"]] = newFormDataArray[i]["value"];
+                          CvFormsData["save_" + section + "_section_form"]["old_" + pair[0]] = pair[1];
                         }
                       }
                     } else if(data["logged_in"] === false){
