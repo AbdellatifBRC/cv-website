@@ -208,13 +208,19 @@ input[type="file"] {
       function part1(params) {
         //improving code
         var cvinputsclasses = document.getElementsByClassName("cv-input");
+        var cvinputviewclasses = document.getElementsByClassName("cv-input-view");
         var test = document.getElementById("test");
         for (let i = 0; i < cvinputsclasses.length; i++) {
-          cvinputsclasses[i].id = 'inputview' + [i];
+          // creating dynamic id
+          //cvinputsclasses[i].id = 'inputview' + [i];
+
+          //giving cvinputclasses value to cvinputviewclasses innerhtml
+          cvinputviewclasses[i].innerHTML = cvinputsclasses[i].value ;
+          
           
         }
-        test.innerHTML= cvinputsclasses[0].id;
-        
+        //test.innerHTML= cvinputsclasses[0].id;
+        /*
         //nom prenom
         var nom = document.getElementById("nom");
         var prenom = document.getElementById("prenom");
@@ -257,7 +263,7 @@ input[type="file"] {
         var codep = document.getElementById("codep");
         var codepview = document.getElementById("codep-view");
         codepview.innerHTML = codep.value ;
-        
+        */
         
       }
     </script>
