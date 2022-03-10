@@ -88,10 +88,40 @@ class PersonalDetailsSectionController extends CvSectionController{
 
     // delete data from the personal_details_section table
     public function DeleteData(){
+        // this array will be sent as a response to the client
+        $response_array["action_completed"] = false;
+        $response_array["error"] = "";
         
+        if($_SERVER["REQUEST_METHOD"] === "POST"){
+            try{
+                if($this->sectionModel->auth->isLoggedIn()){
+                    // indicate that the user is logged in
+                    $response_array["logged_in"] = true;
+
+                    // get the user id
+                    $userId = $this->sectionModel->auth->getUserId();
+
+                    // delete the user's image
+                    $photo = new ImageModel("", "", "", "");
+                    $photo->deleteUserImg();
+
+                    // delete data from db
+                    $this->sectionModel->DeleteData(array("user_id" => $userId));
+
+                    // indicate that the action has completed
+                    $response_array["action_completed"] = true;
+                } else{
+                    $response_array["logged_in"] = false;
+                }
+            } catch (Exception $e) {
+                $response_array["error"] = $e->getMessage();
+            }
+        }
+
+        echo json_encode($response_array);
     }
 
-    // users can not another personal details section, so just display an error
+    // users can not add another personal details section, so just display an error
     public function AddSubsecToSec(){
         echo json_encode(array("error" => "You can not add another personal details section"));
     }
