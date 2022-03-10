@@ -206,6 +206,15 @@ input[type="file"] {
 
       //cv display functions
       function part1(params) {
+        //improving code
+        var cvinputsclasses = document.getElementsByClassName("cv-input");
+        var test = document.getElementById("test");
+        for (let i = 0; i < cvinputsclasses.length; i++) {
+          cvinputsclasses[i].id = 'inputview' + [i];
+          
+        }
+        test.innerHTML= cvinputsclasses[0].id;
+        
         //nom prenom
         var nom = document.getElementById("nom");
         var prenom = document.getElementById("prenom");
@@ -248,6 +257,8 @@ input[type="file"] {
         var codep = document.getElementById("codep");
         var codepview = document.getElementById("codep-view");
         codepview.innerHTML = codep.value ;
+        
+        
       }
     </script>
 </head>
@@ -685,6 +696,7 @@ input[type="file"] {
               <div class="cv-view">
                 <!--1st part-->
                 <div class="part-1" id="part1">
+                  <p id="test"></p>
                   <p id="nom-view"></p>
                   <p id="prenom-view"></p>                
                 </div>
