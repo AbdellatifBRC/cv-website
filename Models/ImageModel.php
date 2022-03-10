@@ -160,6 +160,16 @@ class ImageModel{
 
         return "";
     }
+
+    // delete the user's image from the filesystem
+    public function DeleteUserImg(){
+        // get the name of the user's image
+        $fileName = $this->getUserImgName($this->auth->getUserId());
+        // delete the image from the filesystem
+        if($fileName["user_img_name"] !== null){
+            unlink($this->filePath($fileName["user_img_name"]));
+        }
+    }
 }
 
 ?>
