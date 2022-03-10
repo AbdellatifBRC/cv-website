@@ -95,8 +95,11 @@ input[type="file"] {
                     if(data["action_completed"] === true){
                       alert("Action Completed!");
                       if(action == "delete"){
-                        if(section == "profile"){
-                          $("#save_profile_section_form").trigger("reset");
+                        if(section == "profile" || section == "personal_details"){
+                          $("#save_" + section + "_section_form").trigger("reset");
+                          if(section == "personal_details"){
+                            clearinput();
+                          }
                         } else{
                           $("#" + section).remove();
                           if(section.includes("custom_section")){
