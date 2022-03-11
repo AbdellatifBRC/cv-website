@@ -219,6 +219,11 @@ input[type="file"] {
           
           
         }
+        //image
+        var image = document.getElementById('output');
+        var img = document.getElementById('img');
+        var imgcv = document.getElementById("output-cv");
+        imgcv.src = URL.createObjectURL(img.files[0]);
         //test.innerHTML= cvinputsclasses[0].id;
         /*
         //nom prenom
@@ -300,7 +305,7 @@ input[type="file"] {
             </div>
             
             <span class="img-uploaded centring"><img class="img-fluid output" id="output"/></span>
-            <input class="form-control cv-input" type="file" id="img" onchange="loadFile(event)" name="img" accept="image/*" >
+            <input class="form-control" type="file" id="img" onchange="loadFile(event)" name="img" accept="image/*" >
           </label>
           
           <br><br>
@@ -702,7 +707,6 @@ input[type="file"] {
               <div class="cv-view">
                 <!--1st part-->
                 <div class="part-1" id="part1">
-                  <p class="cv-input-view" id="test"></p>
                   <p class="cv-input-view" id="nom-view"></p>
                   <p class="cv-input-view" id="prenom-view"></p>                
                 </div>
