@@ -51,10 +51,15 @@ input[type="file"] {
     display: none;
 }
 .img-uploaded img {width: 250px;}
-.cv-view {border: solid 1px black;height: 400px;}
-.part-1{display: block;}
-.part-1 p{display: inline;}
-.output-cv {width:150px;}
+.cv-view {border: solid 1px rgb(165, 125, 125);height: 550px;border-radius: 5px;}
+.part-1{display: block;background-color: #ededed;border-radius: 5px 5px 0px 0px;}
+.part-1 p{display: inline;margin-left: 2px;}
+.output-cv {}
+.part-2-1 {border: solid 1px;border-radius: 0px 0px 0px 5px;padding: 2px;}
+.part-2-1 img{width:60px;}
+.part-2-1 p {font-size: xx-small;margin-bottom: -2px;}
+.part-2-1-adressplus {}
+.part-2-1-adressplus p {display: inline;}
     </style>
     <script>
       var CvFormsData = {};
@@ -391,10 +396,7 @@ input[type="file"] {
                                   <label for="adress" class="form-label">Address</label>
                                   <input type="text" class="form-control cv-input" id="adress" placeholder="">
                                 </div>
-                                <div class="col-12">
-                                  <label for="birthday" class="form-label">Date de naissance</label>
-                                  <input type="date" class="form-control cv-input" id="birthday" placeholder="">
-                                </div>
+                               
                                 <div class="col-md-6">
                                   <label for="city" class="form-label">City</label>
                                   <input type="text" class="form-control cv-input" id="city">
@@ -407,7 +409,10 @@ input[type="file"] {
                                   <label for="codep" class="form-label">code postale</label>
                                   <input type="text" class="form-control cv-input" id="codep">
                                 </div>
-                                
+                                 <div class="col-12">
+                                  <label for="birthday" class="form-label">Date de naissance</label>
+                                  <input type="date" class="form-control cv-input" id="birthday" placeholder="">
+                                </div>
                               </div>
         
                             </div>
@@ -713,20 +718,32 @@ input[type="file"] {
                 <!--2nd part-->
                 <div class="row">
                   <!--part 2-1-->
-                  <div class="col-sm-4 part-2-1" id="part-2-1">
-                    <img class="img-fluid output-cv" id="output-cv"/>
-                    <br>
-                    <!--email-->
-                    <p class="cv-input-view" id="email-view"></p>
-                    <p class="cv-input-view" id="number-view"></p>
-                    <p class="cv-input-view" id="adress-view"></p>
-                    <p class="cv-input-view" id="birthday-view"></p>
-                    <p class="cv-input-view" id="city-view"></p>
-                    <p class="cv-input-view" id="state-view"></p>
-                    <p class="cv-input-view" id="codep-view"></p>
+                  <div class="col-sm-4" id="part-2-1">
+                    <div class="part-2-1">
+                        <img class="img-fluid output-cv" id="output-cv"/>
+                        
+                        
+                        <p class="cv-input-view" id="email-view"></p>
+                        <p class="cv-input-view" id="number-view"></p>
+                        <p class="cv-input-view" id="adress-view"></p>
+
+                        <div class="part-2-1-adressplus">
+                          <p class="cv-input-view" id="city-view"></p>
+                          <p class="cv-input-view" id="state-view"></p>
+                          <p class="cv-input-view" id="codep-view"></p>
+                        </div>
+                        
+
+                        <p class="cv-input-view" id="birthday-view"></p>
+                    </div>
+                    
                   </div>
                   <!--part 2-2-->
-                  <div class="col-sm-8 part-2-2" id="part-2-2">
+                  <div class="col-sm-8" id="part-2-2">
+
+                    <div class="part-2-2">
+
+                    </div>
 
                   </div>
                 </div>
