@@ -131,6 +131,15 @@ input[type="file"] {
         });
       }
 
+      function resetCV(){
+        var formsCollection = document.getElementsByTagName("form");
+        for(var i=0;i<formsCollection.length;i++){
+          if(formsCollection[i].id.startsWith("delete")){
+            formsCollection[i].querySelector('button[type="submit"]').click();
+          }
+        }
+      }
+
       function AddSubsec(parentId, section, action, controller){
         $("#" + action + "_" + section + "_section_form").off("submit");
         $("#" + action + "_" + section + "_section_form").on("submit", function (e) {
