@@ -147,6 +147,111 @@ class EducationSectionController extends CvSectionController{
 
         echo json_encode($response_array);
     }
+
+    // display the education section
+    public function DisplayData(){
+        $educationsAreSaved= false;
+        // assign the session data sent from the curl request
+        session_decode($_POST["session_data"]);
+
+        // the default form to display
+        $educationSectionHtml = "
+        <div class='card-header'>
+            <a class='btn' data-bs-toggle='collapse' href='#collapsefour'>
+            <h5>Formation d'etudes</h5>
+            </a>
+        </div>
+        <div id='collapsefour' class='collapse show' data-bs-parent='#accordion'>
+            <div class='card-body'>
+                <div class='diplome' id='diplome'>";
+
+        // only logged in users can view their saved data
+        if($this->sectionModel->auth->isLoggedIn()){
+            // get the user's saved educations
+            $educationsDetails = $this->sectionModel->RetrieveData();
+
+            // display the saved educations only if they exist
+            if(!empty($educationsDetails)){
+                $educationsAreSaved= true;
+                foreach($educationsDetails as $education){
+                    $educationSectionHtml .= "
+                    <div class='row education' id='education_" . $education["id"] . "'>
+                        <form id='save_education_" . $education["id"] . "_section_form'>
+                            <div class='col-sm-3'>
+                                <label for='degree' class='form-label'>Degree</label>
+                                <input type='text' class='form-control' id='degree' name='degree' value='" . $education["degree"] . "'>
+                                <br>
+                                <label for='field' class='form-label'>Field</label>
+                                <input type='text' class='form-control' id='field' name='field' value='" . $education["field"] . "'>
+                                <br>
+                                <label for='school-name' class='form-label'>School Name</label>
+                                <input type='text' class='form-control' id='school-name' name='school_name' value='" . $education["school_name"] . "'>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for='date-debut-etude' class='form-label'>Date debut d'etude</label>
+                                <input type='date' class='form-control' id='date-debut-etude' name='education_start_date' value='" . $education["start_date"] . "'>
+                                <br>
+                                <label for='date-diplome' class='form-label'>Date obtention diplome</label>
+                                <input type='date' class='form-control' id='date-diplome' name='education_end_date' value='" . $education["end_date"] . "'>
+                                <button onclick=" . '"' . "ModifySection('education_" . $education["id"] . "', 'save', 'EducationSectionController')".'"' . ">Save Education</button>
+                                <br>
+                            </div>
+                        </form>
+                        <form id='delete_education_" . $education["id"] . "_section_form'>
+                            <div class='col-sm-9'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('education_" . $education["id"] . "', 'delete', 'EducationSectionController')".'"' . ">Delete Education</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>";
+                }
+            }
+        }
+
+        // the default form to display
+        if($educationsAreSaved=== false){
+            $educationSectionHtml .= "
+                    <div class='row education' id='education_1'>
+                        <form id='save_education_1_section_form'>
+                            <div class='col-sm-3'>
+                                <label for='degree' class='form-label'>Degree</label>
+                                <input type='text' class='form-control' id='degree' name='degree'>
+                                <br>
+                                <label for='field' class='form-label'>Field</label>
+                                <input type='text' class='form-control' id='field' name='field'>
+                                <br>
+                                <label for='school-name' class='form-label'>School Name</label>
+                                <input type='text' class='form-control' id='school-name' name='school_name'>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for='date-debut-etude' class='form-label'>Date debut d'etude</label>
+                                <input type='date' class='form-control' id='date-debut-etude' name='education_start_date'>
+                                <br>
+                                <label for='date-diplome' class='form-label'>Date obtention diplome</label>
+                                <input type='date' class='form-control' id='date-diplome' name='education_end_date'>
+                                <button onclick=" . '"' . "ModifySection('education_1', 'save', 'EducationSectionController')".'"' . ">Save Education</button>
+                                <br>
+                            </div>
+                        </form>
+                        <form id='delete_education_1_section_form'>
+                            <div class='col-sm-9'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('education_1', 'delete', 'EducationSectionController')".'"' . ">Delete Education</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>";
+        }
+
+        $educationSectionHtml .= "
+                </div>
+                <form id='addsubsec_education_section_form'>
+                    <button class='btn btn-primary ' onclick=" . '"' . "AddSubsec('diplome', 'education', 'addsubsec', 'EducationSectionController')" . '"' . ">ajouter une formation</button>
+                </form>
+            </div>
+        </div>";
+
+        echo $educationSectionHtml;
+    }
 }
 
 // a request has been sent from a view
