@@ -19,8 +19,10 @@ abstract class CvSectionController{
                 break;
             case "addsubsec":
                 $this->AddSubsecToSec();
+                break;
             case "displaycv":
                 $this->DisplayData();
+                break;
             default:
                 break;
         }
