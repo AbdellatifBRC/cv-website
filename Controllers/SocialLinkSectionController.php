@@ -138,6 +138,95 @@ class SocialLinkSectionController extends CvSectionController{
 
         echo json_encode($response_array);
     }
+
+    // display the social links section
+    public function DisplayData(){
+        $socialLinksAreSaved= false;
+        // assign the session data sent from the curl request
+        session_decode($_POST["session_data"]);
+
+        // the default form to display
+        $socialLinkSectionHtml = "
+        <div class='card-header'>
+            <a class='btn' data-bs-toggle='collapse' href='#collapseten'>
+                <h5>Liens des réseaux sociaux</h5>
+            </a>
+        </div>
+        <div id='collapseten' class='collapse show' data-bs-parent='#accordion'>
+            <div class='card-body'>
+                <div class='links' id='links'>";
+
+        // only logged in users can view their saved data
+        if($this->sectionModel->auth->isLoggedIn()){
+            // get the user's saved social_links
+            $socialLinksDetails = $this->sectionModel->RetrieveData();
+
+            // display the saved social_links only if they exist
+            if(!empty($socialLinksDetails)){
+                $socialLinksAreSaved= true;
+                foreach($socialLinksDetails as $socialLink){
+                    $socialLinkSectionHtml .= "
+                    <div class='row social_link' id='social-link_" . $socialLink["id"] . "'>
+                        <form id='save_social_link_" . $socialLink["id"] . "_section_form'>
+                            <div class'col-sm-4'>
+                                <label for='website-name-" . $socialLink["id"] . "' class='form-label'>nom du site</label>
+                                <input type='text' class='form-control' placeholder='' name='website_name' id='website-name-" . $socialLink["id"] . "' value='" . $socialLink["website_name"] . "'>
+                            </div>
+                            <div class'col-sm-4'>
+                                <label for='link-" . $socialLink["id"] . "' class='form-label'>lien</label>
+                                <input type='text' class='form-control' placeholder='' name='website_link' id='link-" . $socialLink["id"] . "' value='" . $socialLink["link"] . "'>
+                            </div>
+                            <div class'col-sm-4'>
+                                <button type='submit' onclick=" . '"'. "ModifySection('social_link_" . $socialLink["id"] . "', 'save', 'SocialLinkSectionController')" . '"'. ">Save Link</button>
+                            </div>
+                        </form>
+                        <form id='delete_social_link_" . $socialLink["id"] . "_section_form'>
+                            <div class='col-sm-9'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('social_link_" . $socialLink["id"] . "', 'delete', 'SocialLinkSectionController')".'"' . ">Delete Link</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>";
+                }
+            }
+        }
+
+        // the default form to display
+        if($socialLinksAreSaved=== false){
+            $socialLinkSectionHtml .= "
+                    <div class='row social_link' id='social-link_1'>
+                        <form id='save_social_link_1_section_form'>
+                            <div class'col-sm-4'>
+                                <label for='website-name-1' class='form-label'>nom du site</label>
+                                <input type='text' class='form-control' placeholder='' name='website_name' id='website-name-1'>
+                            </div>
+                            <div class'col-sm-4'>
+                                <label for='link-1' class='form-label'>lien</label>
+                                <input type='text' class='form-control' placeholder='' name='website_link' id='link-1'>
+                            </div>
+                            <div class'col-sm-4'>
+                                <button type='submit' onclick=" . '"'. "ModifySection('social_link_1', 'save', 'SocialLinkSectionController')" . '"'. ">Save Link</button>
+                            </div>
+                        </form>
+                        <form id='delete_social_link_1_section_form'>
+                            <div class='col-sm-9'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('social_link_1', 'delete', 'SocialLinkSectionController')".'"' . ">Delete Link</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>";
+        }
+
+        $socialLinkSectionHtml .= "
+                </div>
+                <form id='addsubsec_social_link_section_form'>
+                    <button class='btn btn-primary ' onclick=" . '"' . "AddSubsec('links', 'social_link', 'addsubsec', 'SocialLinkSectionController')" . '"' . ">ajouter un lien</button>
+                </form>
+            </div>
+        </div>";
+
+        echo $socialLinkSectionHtml;
+    }
 }
 
 // a request has been sent from a view
