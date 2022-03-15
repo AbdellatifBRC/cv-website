@@ -54,6 +54,17 @@ class ExperienceSectionModel extends CvSectionModel{
         $stmt->bindParam(":old_company_location", $ColumnsValues["old_company_location"]);
         $stmt->execute();
     }
+
+    // retrieve a user's experience data
+    public function RetrieveData(){
+        // get the user id
+        $userId = $this->auth->getUserId();
+        // retrieve the saved courses
+        $stmt = $this->dbconn->prepare("SELECT * FROM experience_section WHERE user_id = :user_id");
+        $stmt->bindParam(":user_id", $userId);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
 
 ?>
