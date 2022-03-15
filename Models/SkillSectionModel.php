@@ -43,6 +43,17 @@ class SkillSectionModel extends CvSectionModel{
         $stmt->bindParam(":skill_level", $ColumnsValues["old_skill_level"]);
         $stmt->execute();
     }
+
+    // retrieve a user's skills data
+    public function RetrieveData(){
+        // get the user id
+        $userId = $this->auth->getUserId();
+        // retrieve the saved courses
+        $stmt = $this->dbconn->prepare("SELECT * FROM skills_section WHERE user_id = :user_id");
+        $stmt->bindParam(":user_id", $userId);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
 
 ?>
