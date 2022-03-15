@@ -83,7 +83,7 @@ class CourseSectionController extends CvSectionController{
         echo json_encode($response_array);
     }
 
-    //
+    // add another course subsection
     public function AddSubsecToSec(){
         // this array will be sent as a response to the client
         $response_array["action_completed"] = false;
@@ -119,6 +119,84 @@ class CourseSectionController extends CvSectionController{
         }
 
         echo json_encode($response_array);
+    }
+
+    // display the courses section
+    public function DisplayData(){
+        $coursesAreSaved = false;
+
+        // assign the session data sent from the curl request
+        session_decode($_POST["session_data"]);
+
+        // the default form to display
+        $coursesSectionHtml = "
+        <div class='card-header'>
+            <a class='btn' data-bs-toggle='collapse' href='#collapsetwo'>
+            <h5>Courses</h5>
+            </a>
+        </div>
+        <div id='collapsetwo' class='collapse show' data-bs-parent='#accordion'>
+            <div class='card-body'>
+                <div class='formations' id='formations'>";
+
+        // only logged in users can view their saved data
+        if($this->sectionModel->auth->isLoggedIn()){
+            // get the user's saved courses
+            $coursesDetails = $this->sectionModel->RetrieveData();
+
+            // display the saved courses only if they exist
+            if(!empty($coursesDetails)){
+                $coursesAreSaved = true;
+                foreach($coursesDetails as $course){
+                    $coursesSectionHtml .= "
+                    <div class='row course' id='course_" . $course["id"] . "'>
+                        <form id='save_course_" . $course["id"] . "_section_form'>
+                            <div class='col-sm-9'>
+                                <label for='formation' class='form-label'>Description</label>
+                                <input type='text' class='form-control' id='formation' placeholder='Ex : Cisco certificat' name='course_name' value='" . $course["course_name"] . "'>
+                                <button onclick=" . '"' . "ModifySection('course_" . $course["id"] . "', 'save', 'CourseSectionController')".'"' . ">Save Course</button>
+                            </div>
+                        </form>
+                        <form id='delete_course_" . $course["id"] . "_section_form'>
+                            <div class='col-sm-9'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('course_" . $course["id"] . "', 'delete', 'CourseSectionController')".'"' . ">Delete Course</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>";
+                }
+            }
+        }
+
+        // the default form to display
+        if($coursesAreSaved === false){
+            $coursesSectionHtml .= "
+                    <div class='row course' id='course_1'>
+                        <form id='save_course_1_section_form'>
+                            <div class='col-sm-9'>
+                                <label for='formation' class='form-label'>Description</label>
+                                <input type='text' class='form-control' id='formation' placeholder='Ex : Cisco certificat' name='course_name'>
+                                <button onclick=" . '"' . "ModifySection('course_1', 'save', 'CourseSectionController')".'"' . ">Save Course</button>
+                            </div>
+                        </form>
+                        <form id='delete_course_1_section_form'>
+                            <div class='col-sm-9'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('course_1', 'delete', 'CourseSectionController')".'"' . ">Delete Course</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>";
+        }
+
+        $coursesSectionHtml .= "
+                </div>
+                <form id='addsubsec_course_section_form'>
+                    <button class='btn btn-primary ' onclick=" . '"' . "AddSubsec('formations', 'course', 'addsubsec', 'CourseSectionController')" . '"' . ">ajouter une formation</button>
+                </form>
+            </div>
+        </div>";
+
+        echo $coursesSectionHtml;
     }
 }
 
