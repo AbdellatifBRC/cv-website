@@ -40,6 +40,17 @@ class SocialLinkSectionModel extends CvSectionModel{
         $stmt->bindParam(":website_name", $ColumnsValues["old_website_name"]);
         $stmt->execute();
     }
+
+    // retrieve a user's saved social links
+    public function RetrieveData(){
+        // get the user id
+        $userId = $this->auth->getUserId();
+        // retrieve the saved courses
+        $stmt = $this->dbconn->prepare("SELECT * FROM social_links_section WHERE user_id = :user_id");
+        $stmt->bindParam(":user_id", $userId);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
 
 ?>
