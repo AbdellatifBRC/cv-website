@@ -36,7 +36,7 @@ class LanguageSectionController extends CvSectionController{
                     }
 
                     // ensure a valid level format
-                    if(preg_match("/^(0|[1-9][0-9]|100)$/", $newLanguageLevel->value) && (preg_match("/^(0|[1-9][0-9]|100)$/", $oldLanguageLevel->value) || $oldLanguageLevel->value == null)){
+                    if(preg_match("/^[0-5]$/", $newLanguageLevel->value) && (preg_match("/^[0-5]$/", $oldLanguageLevel->value) || $oldLanguageLevel->value == null)){
                         // get the user id
                         $userId = $this->sectionModel->auth->getUserId();
 
@@ -78,7 +78,7 @@ class LanguageSectionController extends CvSectionController{
                     $oldLanguageLevel->Sanitize();
 
                     // ensure a valid level format
-                    if(preg_match("/^(0|[1-9][0-9]|100|)$/", $oldLanguageLevel->value)){
+                    if(preg_match("/^[0-5]$/", $oldLanguageLevel->value)){
                         // get the user id
                         $userId = $this->sectionModel->auth->getUserId();
 
@@ -138,6 +138,89 @@ class LanguageSectionController extends CvSectionController{
         }
 
         echo json_encode($response_array);
+    }
+
+    // display the language section
+    public function DisplayData(){
+        $languagesAreSaved= false;
+        // assign the session data sent from the curl request
+        session_decode($_POST["session_data"]);
+
+        // the default form to display
+        $languageSectionHtml = "
+        <div class='card-header'>
+            <a class='btn' data-bs-toggle='collapse' href='#collapseseven'>
+                <h5>Languages</h5>
+            </a>
+        </div>
+        <div id='collapseseven' class='collapse show' data-bs-parent='#accordion'>
+            <div class='card-body'>
+                <div class='languages' id='languages'>";
+
+        // only logged in users can view their saved data
+        if($this->sectionModel->auth->isLoggedIn()){
+            // get the user's saved languages
+            $languagesDetails = $this->sectionModel->RetrieveData();
+
+            // display the saved languages only if they exist
+            if(!empty($languagesDetails)){
+                $languagesAreSaved= true;
+                foreach($languagesDetails as $language){
+                    $languageSectionHtml .= "
+                    <div class='row language' id='language_" . $language["id"] . "'>
+                        <form id='save_language_" . $language["id"] . "_section_form'>
+                            <div class='col-sm-12'>
+                                <label for='language' class='form-label'>Langue</label>
+                                <input type='text' class='form-control' placeholder='' name='language_name' id='language' value='" . $language["language_name"] . "'>
+                                <br>
+                                <label for='range1' class='form-label'>Niveau</label>
+                                <input type='range' class='form-range' step='1' id='range1' name='language_level' min='0' max='5' value='" . $language["language_level"] . "'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('language_" . $language["id"] . "', 'save', 'LanguageSectionController')".'"' . ">Save Language</button>
+                            </div>
+                        </form>
+                        <form id='delete_language_" . $language["id"] . "_section_form'>
+                            <div class='col-sm-9'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('language_" . $language["id"] . "', 'delete', 'LanguageSectionController')".'"' . ">Delete Language</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>";
+                }
+            }
+        }
+
+        // the default form to display
+        if($languagesAreSaved=== false){
+            $languageSectionHtml .= "
+                    <div class='row language' id='language_1'>
+                        <form id='save_language_1_section_form'>
+                            <div class='col-sm-12'>
+                                <label for='language' class='form-label'>Langue</label>
+                                <input type='text' class='form-control' placeholder='' name='language_name' id='language'>
+                                <br>
+                                <label for='range1' class='form-label'>Niveau</label>
+                                <input type='range' class='form-range' step='1' id='range1' name='language_level' min='0' max='5' value='1'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('language_1', 'save', 'LanguageSectionController')".'"' . ">Save Language</button>
+                            </div>
+                        </form>
+                        <form id='delete_language_1_section_form'>
+                            <div class='col-sm-9'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('language_1', 'delete', 'LanguageSectionController')".'"' . ">Delete Language</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>";
+        }
+
+        $languageSectionHtml .= "
+                </div>
+                <form id='addsubsec_language_section_form'>
+                    <button class='btn btn-primary ' onclick=" . '"' . "AddSubsec('languages', 'language', 'addsubsec', 'LanguageSectionController')" . '"' . ">ajouter une langue</button>
+                </form>
+            </div>
+        </div>";
+
+        echo $languageSectionHtml;
     }
 }
 
