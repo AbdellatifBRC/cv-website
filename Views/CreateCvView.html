@@ -163,7 +163,12 @@ input[type="file"] {
           var subsections = document.getElementsByClassName(section);
           var subsectionsIdNums= [0];
           for(var i=0;i<subsections.length;i++){
-            subsectionsIdNums.push(subsections[i].id.split("_")[1]);
+            if(isNaN(parseInt(subsections[i].id.split("_")[1]))){
+              subsecIdNum = subsections[i].id.split("_")[2];
+            } else{
+              subsecIdNum = subsections[i].id.split("_")[1];
+            }
+            subsectionsIdNums.push(subsecIdNum);
           }
 
           var dataString = "&subsecs_in_section=" + Math.max.apply(Math, subsectionsIdNums) + "&action=" + action;
