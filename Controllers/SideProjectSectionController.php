@@ -161,15 +161,15 @@ class SideProjetSectionController extends CvSectionController{
                 $hobbiesAreSaved= true;
                 foreach($hobbiesDetails as $sideProject){
                     $sideProjectSectionHtml .= "
-                    <div class='row side project' id='side project_" . $sideProject["id"] . "'>
+                    <div class='row side_project' id='side_project_" . $sideProject["id"] . "'>
                         <form id='save_side_project_" . $sideProject["id"] . "_section_form'>
                             <div class='col-sm-4'>
-                                <label for='project-title' class='form-label'>titre de projet</label>
-                                <input type='text' class='form-control' placeholder='' name='side_project_title' id='project-title' value='" . $sideProject["title"] . "'>
+                                <label for='project-title-" . $sideProject["id"] . "' class='form-label'>titre de projet</label>
+                                <input type='text' class='form-control' placeholder='' name='side_project_title' id='project-title-" . $sideProject["id"] . "' value='" . $sideProject["title"] . "'>
                             </div>
                             <div class='col-sm-8'>
-                                <label for='project' class='form-label'>projet</label>
-                                <textarea class='form-control' rows='5' id='project' name='side_project_description'>" . $sideProject["description"] . "</textarea>
+                                <label for='project-" . $sideProject["id"] . "' class='form-label'>projet</label>
+                                <textarea class='form-control' rows='5' id='project-" . $sideProject["id"] . "' name='side_project_description'>" . $sideProject["description"] . "</textarea>
                                 <button type='submit' onclick=" . '"' . "ModifySection('side_project_" . $sideProject["id"] . "', 'save', 'SideProjectSectionController')".'"' . ">Save Side Project</button>
                             </div>
                         </form>
@@ -187,15 +187,15 @@ class SideProjetSectionController extends CvSectionController{
         // the default form to display
         if($hobbiesAreSaved=== false){
             $sideProjectSectionHtml .= "
-                    <div class='row side project' id='side project_1'>
+                    <div class='row side_project' id='side_project_1'>
                         <form id='save_side_project_1_section_form'>
                             <div class='col-sm-4'>
-                                <label for='project-title' class='form-label'>titre de projet</label>
-                                <input type='text' class='form-control' placeholder='' name='side_project_title' id='project-title'>
+                                <label for='project-title-1' class='form-label'>titre de projet</label>
+                                <input type='text' class='form-control' placeholder='' name='side_project_title' id='project-title-1'>
                             </div>
                             <div class='col-sm-8'>
-                                <label for='project' class='form-label'>projet</label>
-                                <textarea class='form-control' rows='5' id='project' name='side_project_description'></textarea>
+                                <label for='project-1' class='form-label'>projet</label>
+                                <textarea class='form-control' rows='5' id='project-1' name='side_project_description'></textarea>
                                 <button type='submit' onclick=" . '"' . "ModifySection('side_project_1', 'save', 'SideProjectSectionController')".'"' . ">Save Side Project</button>
                             </div>
                         </form>

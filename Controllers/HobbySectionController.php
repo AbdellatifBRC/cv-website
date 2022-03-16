@@ -150,8 +150,8 @@ class HobbySectionController extends CvSectionController{
                     <div class='row hobby' id='hobby_" . $hobby["id"] . "'>
                         <form id='save_hobby_" . $hobby["id"] . "_section_form'>
                             <div class='col-sm-12'>
-                                <label for='hobbie' class='form-label'>interet</label>
-                                <input type='text' class='form-control' placeholder='' name='hobby_name' id='hobbie' value='" . $hobby["hobby_name"] . "'>
+                                <label for='hobbie-" . $hobby["id"] . "' class='form-label'>interet</label>
+                                <input type='text' class='form-control' placeholder='' name='hobby_name' id='hobbie-" . $hobby["id"] . "' value='" . $hobby["hobby_name"] . "'>
                                 <button type='submit' onclick=" . '"' . "ModifySection('hobby_" . $hobby["id"] . "', 'save', 'HobbySectionController')".'"' . ">Save Hobby</button>
                             </div>
                         </form>
@@ -172,8 +172,8 @@ class HobbySectionController extends CvSectionController{
                     <div class='row hobby' id='hobby_1'>
                         <form id='save_hobby_1_section_form'>
                             <div class='col-sm-12'>
-                                <label for='hobbie' class='form-label'>interet</label>
-                                <input type='text' class='form-control' placeholder='' name='hobby_name' id='hobbie'>
+                                <label for='hobbie-1' class='form-label'>interet</label>
+                                <input type='text' class='form-control' placeholder='' name='hobby_name' id='hobbie-1'>
                                 <button type='submit' onclick=" . '"' . "ModifySection('hobby_1', 'save', 'HobbySectionController')".'"' . ">Save Hobby</button>
                             </div>
                         </form>

@@ -170,11 +170,11 @@ class LanguageSectionController extends CvSectionController{
                     <div class='row language' id='language_" . $language["id"] . "'>
                         <form id='save_language_" . $language["id"] . "_section_form'>
                             <div class='col-sm-12'>
-                                <label for='language' class='form-label'>Langue</label>
-                                <input type='text' class='form-control' placeholder='' name='language_name' id='language' value='" . $language["language_name"] . "'>
+                                <label for='language-" . $language["id"] . "' class='form-label'>Langue</label>
+                                <input type='text' class='form-control' placeholder='' name='language_name' id='language-" . $language["id"] . "' value='" . $language["language_name"] . "'>
                                 <br>
-                                <label for='range1' class='form-label'>Niveau</label>
-                                <input type='range' class='form-range' step='1' id='range1' name='language_level' min='0' max='5' value='" . $language["language_level"] . "'>
+                                <label for='range1-" . $language["id"] . "' class='form-label'>Niveau</label>
+                                <input type='range' class='form-range' step='1' id='range1-" . $language["id"] . "' name='language_level' min='0' max='5' value='" . $language["language_level"] . "'>
                                 <button type='submit' onclick=" . '"' . "ModifySection('language_" . $language["id"] . "', 'save', 'LanguageSectionController')".'"' . ">Save Language</button>
                             </div>
                         </form>
@@ -195,11 +195,11 @@ class LanguageSectionController extends CvSectionController{
                     <div class='row language' id='language_1'>
                         <form id='save_language_1_section_form'>
                             <div class='col-sm-12'>
-                                <label for='language' class='form-label'>Langue</label>
-                                <input type='text' class='form-control' placeholder='' name='language_name' id='language'>
+                                <label for='language-1' class='form-label'>Langue</label>
+                                <input type='text' class='form-control' placeholder='' name='language_name' id='language-1'>
                                 <br>
-                                <label for='range1' class='form-label'>Niveau</label>
-                                <input type='range' class='form-range' step='1' id='range1' name='language_level' min='0' max='5' value='1'>
+                                <label for='range1-1' class='form-label'>Niveau</label>
+                                <input type='range' class='form-range' step='1' id='range1-1' name='language_level' min='0' max='5' value='1'>
                                 <button type='submit' onclick=" . '"' . "ModifySection('language_1', 'save', 'LanguageSectionController')".'"' . ">Save Language</button>
                             </div>
                         </form>

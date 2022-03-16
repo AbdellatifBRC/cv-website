@@ -169,11 +169,11 @@ class SkillSectionController extends CvSectionController{
                     <div class='row skill' id='skill_" . $skill["id"] . "'>
                         <form id='save_skill_" . $skill["id"] . "_section_form'>
                             <div class='col-sm-12'>
-                                <label for='skill' class='form-label'>Compétence</label>
-                                <input type='text' class='form-control' placeholder='' id='skill' name='skill_name' value='" . $skill["skill_name"] . "'>
+                                <label for='skill-" . $skill["id"] . "' class='form-label'>Compétence</label>
+                                <input type='text' class='form-control' placeholder='' id='skill-" . $skill["id"] . "' name='skill_name' value='" . $skill["skill_name"] . "'>
                                 <br>
-                                <label for='range' class='form-label'>Niveau</label>
-                                <input type='range' class='form-range' step='1' id='range' name='skill_level' min='0' max='5' value='" . $skill["skill_level"] . "'>
+                                <label for='range-" . $skill["id"] . "' class='form-label'>Niveau</label>
+                                <input type='range' class='form-range' step='1' id='range-" . $skill["id"] . "' name='skill_level' min='0' max='5' value='" . $skill["skill_level"] . "'>
                                 <button type='submit' onclick=" . '"' . "ModifySection('skill_" . $skill["id"] . "', 'save', 'SkillSectionController')".'"' . ">Save Skill</button>
                             </div>
                         </form>
@@ -194,11 +194,11 @@ class SkillSectionController extends CvSectionController{
                 <div class='row skill' id='skill_1'>
                     <form id='save_skill_1_section_form'>
                         <div class='col-sm-12'>
-                            <label for='skill' class='form-label'>Compétence</label>
-                            <input type='text' class='form-control' placeholder='' id='skill' name='skill_name'>
+                            <label for='skill-1' class='form-label'>Compétence</label>
+                            <input type='text' class='form-control' placeholder='' id='skill-1' name='skill_name'>
                             <br>
-                            <label for='range' class='form-label'>Niveau</label>
-                            <input type='range' class='form-range' step='1' id='range' name='skill_level' min='0' max='5' value='1'>
+                            <label for='range-1' class='form-label'>Niveau</label>
+                            <input type='range' class='form-range' step='1' id='range-1' name='skill_level' min='0' max='5' value='1'>
                             <button type='submit' onclick=" . '"' . "ModifySection('skill_1', 'save', 'SkillSectionController')".'"' . ">Save Skill</button>
                         </div>
                     </form>

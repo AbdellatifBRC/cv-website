@@ -152,8 +152,8 @@ class CourseSectionController extends CvSectionController{
                     <div class='row course' id='course_" . $course["id"] . "'>
                         <form id='save_course_" . $course["id"] . "_section_form'>
                             <div class='col-sm-9'>
-                                <label for='formation' class='form-label'>Description</label>
-                                <input type='text' class='form-control' id='formation' placeholder='Ex : Cisco certificat' name='course_name' value='" . $course["course_name"] . "'>
+                                <label for='formation-" . $course["id"] . "' class='form-label'>Description</label>
+                                <input type='text' class='form-control' id='formation-" . $course["id"] . "' placeholder='Ex : Cisco certificat' name='course_name' value='" . $course["course_name"] . "'>
                                 <button onclick=" . '"' . "ModifySection('course_" . $course["id"] . "', 'save', 'CourseSectionController')".'"' . ">Save Course</button>
                             </div>
                         </form>
@@ -174,8 +174,8 @@ class CourseSectionController extends CvSectionController{
                     <div class='row course' id='course_1'>
                         <form id='save_course_1_section_form'>
                             <div class='col-sm-9'>
-                                <label for='formation' class='form-label'>Description</label>
-                                <input type='text' class='form-control' id='formation' placeholder='Ex : Cisco certificat' name='course_name'>
+                                <label for='formation-1' class='form-label'>Description</label>
+                                <input type='text' class='form-control' id='formation-1' placeholder='Ex : Cisco certificat' name='course_name'>
                                 <button onclick=" . '"' . "ModifySection('course_1', 'save', 'CourseSectionController')".'"' . ">Save Course</button>
                             </div>
                         </form>
