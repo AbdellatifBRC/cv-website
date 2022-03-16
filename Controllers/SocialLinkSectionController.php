@@ -166,7 +166,7 @@ class SocialLinkSectionController extends CvSectionController{
                 $socialLinksAreSaved= true;
                 foreach($socialLinksDetails as $socialLink){
                     $socialLinkSectionHtml .= "
-                    <div class='row social_link' id='social-link_" . $socialLink["id"] . "'>
+                    <div class='row social_link' id='social_link_" . $socialLink["id"] . "'>
                         <form id='save_social_link_" . $socialLink["id"] . "_section_form'>
                             <div class'col-sm-4'>
                                 <label for='website-name-" . $socialLink["id"] . "' class='form-label'>nom du site</label>
@@ -194,7 +194,7 @@ class SocialLinkSectionController extends CvSectionController{
         // the default form to display
         if($socialLinksAreSaved=== false){
             $socialLinkSectionHtml .= "
-                    <div class='row social_link' id='social-link_1'>
+                    <div class='row social_link' id='social_link_1'>
                         <form id='save_social_link_1_section_form'>
                             <div class'col-sm-4'>
                                 <label for='website-name-1' class='form-label'>nom du site</label>
