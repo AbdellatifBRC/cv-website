@@ -125,6 +125,136 @@ class PersonalDetailsSectionController extends CvSectionController{
     public function AddSubsecToSec(){
         echo json_encode(array("error" => "You can not add another personal details section"));
     }
+
+    // display the personal details section
+    public function DisplayData(){
+        $PersonalDetailsAreSaved = false;
+        // assign the session data sent from the curl request
+        session_decode($_POST["session_data"]);
+
+        // the default form to display
+        $personalDetailsSectionHtml = "
+        <div class='card-header'>
+            <a class='btn' data-bs-toggle='collapse' href='#collapseOne'>
+                <h5>Details personels</h5>
+            </a>
+        </div>
+        <div id='collapseOne' class='collapse show' data-bs-parent='#accordion'>
+            <div class='card-body'>
+                <div class='perso'>";
+
+        // only logged in users can view their saved data
+        if($this->sectionModel->auth->isLoggedIn()){
+            // get the user's saved personal details
+            $personalDetails = $this->sectionModel->RetrieveData();
+
+            // display the saved personal details only if they exist
+            if(!empty($personalDetails)){
+                $PersonalDetailsAreSaved= true;
+
+                // create an image model for the user's saved image
+                $photo = new ImageModel($personalDetails[0]["photo"], "", "", "");
+
+                $personalDetailsSectionHtml .= "
+                <div class='row'>
+                    <div class='col-sm-3'>
+                        <button class='btn btn-light' style='width:150px; height:150px' onclick=" . '"' . "showpopup('popup')" . '"' . "><img class='img-fluid' id='output-logo' src='" . $photo->filePath($personalDetails[0]["photo"]) . "'/><i class='fas fa-camera' id='img-logo' style='display:none'></i></button>
+                    </div>
+                    <div class='col-sm-9'>
+                        <div class=''>
+                            <form id='save_personal_details_section_form' enctype='multipart/form-data'>
+                                <label for='nom' class='form-label'>Nom </label>
+                                <input type='text' class='form-control' id='nom' placeholder='' name='last_name' value='" . $personalDetails[0]["last_name"] . "'>
+                                <label for='prenom' class='form-label'>Prenom </label>
+                                <input type='text' class='form-control' id='prenom' placeholder='' name='first_name' value='" . $personalDetails[0]["first_name"] . "'>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class='row g-3'>
+                    <div class='col-md-6'>
+                        <label for='inputEmail4' class='form-label'>Email</label>
+                        <input type='email' class='form-control' id='inputEmail4' name='email' value='" . $personalDetails[0]["email"] . "' form='save_personal_details_section_form'>
+                    </div>
+                    <div class='col-md-6'>
+                        <label for='numero' class='form-label'>Numero</label>
+                        <input type='text' class='form-control' id='numro' name='phone'  value='" . $personalDetails[0]["phone"] . "' form='save_personal_details_section_form'>
+                    </div>
+                    <div class='col-12'>
+                        <label for='inputAddress' class='form-label'>Address</label>
+                        <input type='text' class='form-control' id='inputAddress' placeholder='' name='address'  value='" . $personalDetails[0]["address"] . "' form='save_personal_details_section_form'>
+                    </div>
+                    <div class='col-12'>
+                        <label for='inputAddress2' class='form-label'>Date de naissance</label>
+                        <input type='date' class='form-control' id='inputAddress2' placeholder='' name='birthdate'  value='" . $personalDetails[0]["birthdate"] . "' form='save_personal_details_section_form'>
+                    </div>
+                    <div class='col-md-6'>
+                        <label for='inputJobTitle' class='form-label'>Job Title</label>
+                        <input type='text' class='form-control' id='inputJobTitle' name='job_title'  value='" . $personalDetails[0]["job_title"] . "' form='save_personal_details_section_form'>
+                    </div> 
+                </div>
+                <button type='submit' form='save_personal_details_section_form' onclick=" . '"' . "ModifySection('personal_details', 'save', 'PersonalDetailsSectionController')" . '"' . ">Save Personal Details</button>
+                <form id='delete_personal_details_section_form'>
+                    <button type='submit' onclick=" . '"' . "ModifySection('personal_details', 'delete', 'PersonalDetailsSectionController')" . '"' . ">Delete Personal Details</button>
+                </form>";
+            }
+        }
+
+        // the default form to display
+        if($PersonalDetailsAreSaved === false){
+            $personalDetailsSectionHtml .= "
+                <div class='row'>
+                    <div class='col-sm-3'>
+                        <button class='btn btn-light' style='width:150px; height:150px' onclick=" . '"' . "showpopup('popup')" . '"' . "><img class='img-fluid' id='output-logo'/><i class='fas fa-camera' id='img-logo'></i></button>
+                    </div>
+                    <div class='col-sm-9'>
+                        <div class=''>
+                            <form id='save_personal_details_section_form' enctype='multipart/form-data'>
+                                <label for='nom' class='form-label'>Nom </label>
+                                <input type='text' class='form-control' id='nom' placeholder='' name='last_name'>
+                                <label for='prenom' class='form-label'>Prenom </label>
+                                <input type='text' class='form-control' id='prenom' placeholder='' name='first_name'>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class='row g-3'>
+                    <div class='col-md-6'>
+                        <label for='inputEmail4' class='form-label'>Email</label>
+                        <input type='email' class='form-control' id='inputEmail4' name='email' form='save_personal_details_section_form'>
+                    </div>
+                    <div class='col-md-6'>
+                        <label for='numero' class='form-label'>Numero</label>
+                        <input type='text' class='form-control' id='numro' name='phone' form='save_personal_details_section_form'>
+                    </div>
+                    <div class='col-12'>
+                        <label for='inputAddress' class='form-label'>Address</label>
+                        <input type='text' class='form-control' id='inputAddress' placeholder='' name='address' form='save_personal_details_section_form'>
+                    </div>
+                    <div class='col-12'>
+                        <label for='inputAddress2' class='form-label'>Date de naissance</label>
+                        <input type='date' class='form-control' id='inputAddress2' placeholder='' name='birthdate' form='save_personal_details_section_form'>
+                    </div>
+                    <div class='col-md-6'>
+                        <label for='inputJobTitle' class='form-label'>Job Title</label>
+                        <input type='text' class='form-control' id='inputJobTitle' name='job_title' form='save_personal_details_section_form'>
+                    </div> 
+                </div>
+                <button type='submit' form='save_personal_details_section_form' onclick=" . '"' . "ModifySection('personal_details', 'save', 'PersonalDetailsSectionController')" . '"' . ">Save Personal Details</button>
+                <form id='delete_personal_details_section_form'>
+                    <button type='submit' onclick=" . '"' . "ModifySection('personal_details', 'delete', 'PersonalDetailsSectionController')" . '"' . ">Delete Personal Details</button>
+                </form>";
+        }
+
+        $personalDetailsSectionHtml .= "
+                </div>
+            </div>
+        </div>";
+
+        echo $personalDetailsSectionHtml;
+    }
 }
 
 // a request has been sent from a view
