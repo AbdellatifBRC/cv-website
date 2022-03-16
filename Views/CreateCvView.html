@@ -51,6 +51,15 @@ input[type="file"] {
     display: none;
 }
 .img-uploaded img {width: 250px;}
+.cv-view {border: solid 1px rgb(165, 125, 125);height: 550px;border-radius: 5px;}
+.part-1{display: block;background-color: #ededed;border-radius: 5px 5px 0px 0px;}
+.part-1 p{display: inline;margin-left: 2px;}
+.output-cv {}
+.part-2-1 {border: solid 1px;border-radius: 0px 0px 0px 5px;padding: 2px;}
+.part-2-1 img{width:60px;}
+.part-2-1 p {font-size: xx-small;margin-bottom: -2px;}
+.part-2-1-adressplus {}
+.part-2-1-adressplus p {display: inline;}
     </style>
     <script>
       function sleep(ms) {
@@ -220,6 +229,9 @@ input[type="file"] {
         uploadarea.style.display ='block' ;
         imagelogo.src= '';
         iconimg.style.display ='block' ;
+        //
+        var imgcv = document.getElementById("output-cv");
+        imgcv.src= '';
       }
       
       /*var popup = document.getElementById("popup");
@@ -238,6 +250,74 @@ input[type="file"] {
         uploadarea.style.display ='none' ;
         iconimg.style.display ='none' ;
       };
+
+      //cv display functions
+      function part1(params) {
+        //improving code
+        var cvinputsclasses = document.getElementsByClassName("cv-input");
+        var cvinputviewclasses = document.getElementsByClassName("cv-input-view");
+        var test = document.getElementById("test");
+        for (let i = 0; i < cvinputsclasses.length; i++) {
+          // creating dynamic id
+          //cvinputsclasses[i].id = 'inputview' + [i];
+
+          //giving cvinputclasses value to cvinputviewclasses innerhtml
+          cvinputviewclasses[i].innerHTML = cvinputsclasses[i].value ;
+          
+          
+        }
+        //image
+        var image = document.getElementById('output');
+        var img = document.getElementById('img');
+        var imgcv = document.getElementById("output-cv");
+        imgcv.src = URL.createObjectURL(img.files[0]);
+        //test.innerHTML= cvinputsclasses[0].id;
+        /*
+        //nom prenom
+        var nom = document.getElementById("nom");
+        var prenom = document.getElementById("prenom");
+        var nomview = document.getElementById("nom-view");
+        var prenomview = document.getElementById("prenom-view");
+        var part1 = document.getElementById("part1");
+        nomview.innerHTML = nom.value;
+        prenomview.innerHTML = prenom.value;
+        //part1.style.border="solid 1px";
+        //image
+        var image = document.getElementById('output');
+        var img = document.getElementById('img');
+        var imgcv = document.getElementById("output-cv");
+        imgcv.src = URL.createObjectURL(img.files[0]);
+        //email
+        var email = document.getElementById("inputemail");
+        var emailview = document.getElementById("email-view");
+        emailview.innerHTML = email.value ;
+        //number
+        var number = document.getElementById("number");
+        var numberview = document.getElementById("number-view");
+        numberview.innerHTML = number.value ;
+        //adress
+        var adress = document.getElementById("adress");
+        var adressview = document.getElementById("adress-view");
+        adressview.innerHTML = adress.value ;
+        //birthday
+        var birthday = document.getElementById("birthday");
+        var birthdayview = document.getElementById("birthday-view");
+        birthdayview.innerHTML = birthday.value ;
+        //city
+        var city = document.getElementById("city");
+        var cityview = document.getElementById("city-view");
+        cityview.innerHTML = city.value ;
+        //state
+        var state = document.getElementById("state");
+        var stateview = document.getElementById("state-view");
+        stateview.innerHTML = state.value ;
+        //code postale
+        var codep = document.getElementById("codep");
+        var codepview = document.getElementById("codep-view");
+        codepview.innerHTML = codep.value ;
+        */
+        
+      }
     </script>
 </head>
 <body>
@@ -347,18 +427,69 @@ input[type="file"] {
           </div>
           <!--side-->
           <div class="col-sm-4">
-            <br>
-            <div class="d-grid">
-              <button type="button" class="btn btn-primary btn-block">Save Progress</button>
+              
+            <div class="show sticky-top">
+              
+              <br>
+              <!--standard model-->
+              <div class="cv-view">
+                <!--1st part-->
+                <div class="part-1" id="part1">
+                  <p class="cv-input-view" id="nom-view"></p>
+                  <p class="cv-input-view" id="prenom-view"></p>                
+                </div>
+                <!--2nd part-->
+                <div class="row">
+                  <!--part 2-1-->
+                  <div class="col-sm-4" id="part-2-1">
+                    <div class="part-2-1">
+                        <img class="img-fluid output-cv" id="output-cv"/>
+                        
+                        
+                        <p class="cv-input-view" id="email-view"></p>
+                        <p class="cv-input-view" id="number-view"></p>
+                        <p class="cv-input-view" id="adress-view"></p>
+
+                        <div class="part-2-1-adressplus">
+                          <p class="cv-input-view" id="city-view"></p>
+                          <p class="cv-input-view" id="state-view"></p>
+                          <p class="cv-input-view" id="codep-view"></p>
+                        </div>
+                        
+
+                        <p class="cv-input-view" id="birthday-view"></p>
+                    </div>
+                    
+                  </div>
+                  <!--part 2-2-->
+                  <div class="col-sm-8" id="part-2-2">
+
+                    <div class="part-2-2">
+
+                    </div>
+
+                  </div>
+                </div>
+              </div> 
+              <!--choose a cv model-->
               <br>
               <button type="button" class="btn btn-primary btn-block" onclick="resetCV()">Reset Form</button>
             </div>
             <br><hr>  
             <div class="show">
               <div class="d-grid">
-                <button type="button" class="btn btn-primary btn-block">Show CV</button>
-                
-              </div>  
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-warning">reset</button>
+                  <button type="button" class="btn btn-sm btn-light">telecharger</button>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown">choisire un cv model</button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">Tablet</a>
+                      <a class="dropdown-item" href="#">Smartphone</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>           
           </div>
           
