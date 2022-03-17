@@ -52,6 +52,17 @@ class EducationSectionModel extends CvSectionModel{
         $stmt->bindParam(":old_school_name", $ColumnsValues["old_school_name"]);
         $stmt->execute();
     }
+
+    // retrieve a user's experience data
+    public function RetrieveData(){
+        // get the user id
+        $userId = $this->auth->getUserId();
+        // retrieve the saved courses
+        $stmt = $this->dbconn->prepare("SELECT * FROM education_section WHERE user_id = :user_id");
+        $stmt->bindParam(":user_id", $userId);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
 
 ?>

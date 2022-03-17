@@ -150,6 +150,119 @@ class ExperienceSectionController extends CvSectionController{
 
         echo json_encode($response_array);
     }
+
+    // display the experience section
+    public function DisplayData(){
+        $experiencesAreSaved = false;
+        // assign the session data sent from the curl request
+        session_decode($_POST["session_data"]);
+
+        // the default form to display
+        $experienceSectionHtml = "
+        <div class='card-header'>
+            <a class='btn' data-bs-toggle='collapse' href='#collapsethree'>
+                <h5>Experiences professionelles</h5>
+            </a>
+        </div>
+        <div id='collapsethree' class='collapse show' data-bs-parent='#accordion'>
+            <div class='card-body'>
+                <div class='exp-pro' id='exp-pro'>";
+
+        // only logged in users can view their saved data
+        if($this->sectionModel->auth->isLoggedIn()){
+            // get the user's saved experiences
+            $experiencesDetails = $this->sectionModel->RetrieveData();
+
+            // display the saved experiences only if they exist
+            if(!empty($experiencesDetails)){
+                $experiencesAreSaved = true;
+                foreach($experiencesDetails as $experience){
+                    $experienceSectionHtml .= "
+                    <div class='row experience' id='experience_" . $experience["id"] . "'>
+                        <form id='save_experience_" . $experience["id"] . "_section_form'>
+                            <div class='col-sm-3'>
+                                <label for='position-" . $experience["id"] . "' class='form-label'>Position</label>
+                                <input type='text' class='form-control' id='position-" . $experience["id"] . "' name='position' value='" . $experience["position"] . "'>
+                                <br>
+                                <label for='company-name-" . $experience["id"] . "' class='form-label'>Company Name</label>
+                                <input type='text' class='form-control' id='company-name-" . $experience["id"] . "' name='company_name' value='" . $experience["company_name"] . "'>
+                                <br>
+                                <label for='company-location-" . $experience["id"] . "' class='form-label'>Company Location</label>
+                                <input type='text' class='form-control' id='company-location-" . $experience["id"] . "' name='company_location' value='" . $experience["company_location"] . "'>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for='exp-date-debut-" . $experience["id"] . "' class='form-label'>Date début l'experience</label>
+                                <input type='date' class='form-control' id='exp-date-debut-" . $experience["id"] . "' name='position_start_date' value='" . $experience["start_date"] . "'>
+                                <br>
+                                <label for='exp-date-fin-" . $experience["id"] . "' class='form-label'>Date fin l'experience</label>
+                                <input type='date' class='form-control' id='exp-date-fin-" . $experience["id"] . "' name='position_end_date' value='" . $experience["end_date"] . "'>
+                            </div>
+                            <div class='col-sm-8'>
+                                <label for='exp-" . $experience["id"] . "' class='form-label'>Description</label>
+                                <textarea class='form-control' rows='3' id='exp-" . $experience["id"] . "' name='experience_description' placeholder='Ex : ingénieur en systemes embarquées' name='text' >" . $experience["description"] . "</textarea>
+                                <button onclick=" . '"' . "ModifySection('experience_" . $experience["id"] . "', 'save', 'ExperienceSectionController')".'"' . ">Save Experience</button>
+                                <br>
+                            </div>
+                        </form>
+                        <form id='delete_experience_" . $experience["id"] . "_section_form'>
+                            <div class='col-sm-9'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('experience_" . $experience["id"] . "', 'delete', 'ExperienceSectionController')".'"' . ">Delete Experience</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>";
+                }
+            }
+        }
+
+        // the default form to display
+        if($experiencesAreSaved === false){
+            $experienceSectionHtml .= "
+                    <div class='row experience' id='experience_1'>
+                        <form id='save_experience_1_section_form'>
+                            <div class='col-sm-3'>
+                                <label for='position-1' class='form-label'>Position</label>
+                                <input type='text' class='form-control' id='position-1' name='position'>
+                                <br>
+                                <label for='company-name-1' class='form-label'>Company Name</label>
+                                <input type='text' class='form-control' id='company-name-1' name='company_name'>
+                                <br>
+                                <label for='company-location-1' class='form-label'>Company Location</label>
+                                <input type='text' class='form-control' id='company-location-1' name='company_location'>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for='exp-date-debut-1' class='form-label'>Date début l'experience</label>
+                                <input type='date' class='form-control' id='exp-date-debut-1' name='position_start_date'>
+                                <br>
+                                <label for='exp-date-fin-1' class='form-label'>Date fin l'experience</label>
+                                <input type='date' class='form-control' id='exp-date-fin-1' name='position_end_date'>
+                            </div>
+                            <div class='col-sm-8'>
+                                <label for='exp-1' class='form-label'>Description</label>
+                                <textarea class='form-control' rows='3' id='exp-1' name='experience_description' placeholder='Ex : ingénieur en systemes embarquées' name='text' ></textarea>
+                                <button onclick=" . '"' . "ModifySection('experience_1', 'save', 'ExperienceSectionController')".'"' . ">Save Experience</button>
+                                <br>
+                            </div>
+                        </form>
+                        <form id='delete_experience_1_section_form'>
+                            <div class='col-sm-9'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('experience_1', 'delete', 'ExperienceSectionController')".'"' . ">Delete Experience</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>";
+        }
+
+        $experienceSectionHtml .= "
+                </div>
+                <form id='addsubsec_experience_section_form'>
+                    <button class='btn btn-primary ' onclick=" . '"' . "AddSubsec('exp-pro', 'experience', 'addsubsec', 'ExperienceSectionController')" . '"' . ">ajouter une formation</button>
+                </form>
+            </div>
+        </div>";
+
+        echo $experienceSectionHtml;
+    }
 }
 
 // a request has been sent from a view

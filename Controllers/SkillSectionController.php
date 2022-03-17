@@ -36,7 +36,7 @@ class SkillSectionController extends CvSectionController{
                     }
 
                     // ensure a valid level format
-                    if(preg_match("/^(0|[1-9][0-9]|100)$/", $newSkillLevel->value) && (preg_match("/^(0|[1-9][0-9]|100)$/", $oldSkillLevel->value) || $oldSkillLevel->value == null)){
+                    if(preg_match("/^[0-5]$/", $newSkillLevel->value) && (preg_match("/^[0-5]$/", $oldSkillLevel->value) || $oldSkillLevel->value == null)){
                         // get the user id
                         $userId = $this->sectionModel->auth->getUserId();
 
@@ -78,7 +78,7 @@ class SkillSectionController extends CvSectionController{
                     $oldSkillLevel->Sanitize();
 
                     // ensure a valid level format
-                    if(preg_match("/^(0|[1-9][0-9]|100|)$/", $oldSkillLevel->value)){
+                    if(preg_match("/^[0-5]$/", $oldSkillLevel->value)){
                         // get the user id
                         $userId = $this->sectionModel->auth->getUserId();
 
@@ -137,6 +137,89 @@ class SkillSectionController extends CvSectionController{
         }
 
         echo json_encode($response_array);
+    }
+
+    // display the skill section
+    public function DisplayData(){
+        $skillsAreSaved= false;
+        // assign the session data sent from the curl request
+        session_decode($_POST["session_data"]);
+
+        // the default form to display
+        $skillSectionHtml = "
+        <div class='card-header'>
+            <a class='btn' data-bs-toggle='collapse' href='#collapsefive'>
+                <h5>Compétences</h5>
+            </a>
+        </div>
+        <div id='collapsefive' class='collapse show' data-bs-parent='#accordion'>
+            <div class='card-body'>
+                <div class='skills' id='skills'>";
+
+        // only logged in users can view their saved data
+        if($this->sectionModel->auth->isLoggedIn()){
+            // get the user's saved skills
+            $skillsDetails = $this->sectionModel->RetrieveData();
+
+            // display the saved skills only if they exist
+            if(!empty($skillsDetails)){
+                $skillsAreSaved= true;
+                foreach($skillsDetails as $skill){
+                    $skillSectionHtml .= "
+                    <div class='row skill' id='skill_" . $skill["id"] . "'>
+                        <form id='save_skill_" . $skill["id"] . "_section_form'>
+                            <div class='col-sm-12'>
+                                <label for='skill-" . $skill["id"] . "' class='form-label'>Compétence</label>
+                                <input type='text' class='form-control' placeholder='' id='skill-" . $skill["id"] . "' name='skill_name' value='" . $skill["skill_name"] . "'>
+                                <br>
+                                <label for='range-" . $skill["id"] . "' class='form-label'>Niveau</label>
+                                <input type='range' class='form-range' step='1' id='range-" . $skill["id"] . "' name='skill_level' min='0' max='5' value='" . $skill["skill_level"] . "'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('skill_" . $skill["id"] . "', 'save', 'SkillSectionController')".'"' . ">Save Skill</button>
+                            </div>
+                        </form>
+                        <form id='delete_skill_" . $skill["id"] . "_section_form'>
+                            <div class='col-sm-9'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('skill_" . $skill["id"] . "', 'delete', 'SkillSectionController')".'"' . ">Delete Skill</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>";
+                }
+            }
+        }
+
+        // the default form to display
+        if($skillsAreSaved=== false){
+            $skillSectionHtml .= "
+                <div class='row skill' id='skill_1'>
+                    <form id='save_skill_1_section_form'>
+                        <div class='col-sm-12'>
+                            <label for='skill-1' class='form-label'>Compétence</label>
+                            <input type='text' class='form-control' placeholder='' id='skill-1' name='skill_name'>
+                            <br>
+                            <label for='range-1' class='form-label'>Niveau</label>
+                            <input type='range' class='form-range' step='1' id='range-1' name='skill_level' min='0' max='5' value='1'>
+                            <button type='submit' onclick=" . '"' . "ModifySection('skill_1', 'save', 'SkillSectionController')".'"' . ">Save Skill</button>
+                        </div>
+                    </form>
+                    <form id='delete_skill_1_section_form'>
+                        <div class='col-sm-9'>
+                            <button type='submit' onclick=" . '"' . "ModifySection('skill_1', 'delete', 'SkillSectionController')".'"' . ">Delete Skill</button>
+                        </div>
+                    </form>
+                </div>
+                <br>";
+        }
+
+        $skillSectionHtml .= "
+                </div>
+                <form id='addsubsec_skill_section_form'>
+                    <button class='btn btn-primary ' onclick=" . '"' . "AddSubsec('skills', 'skill', 'addsubsec', 'SkillSectionController')" . '"' . ">ajouter une formation</button>
+                </form>
+            </div>
+        </div>";
+
+        echo $skillSectionHtml;
     }
 }
 

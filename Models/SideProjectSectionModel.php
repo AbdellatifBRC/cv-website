@@ -40,6 +40,17 @@ class SideProjectSectionModel extends CvSectionModel{
         $stmt->bindParam(":title", $ColumnsValues["old_title"]);
         $stmt->execute();
     }
+
+    // retrieve a user's saved side projects
+    public function RetrieveData(){
+        // get the user id
+        $userId = $this->auth->getUserId();
+        // retrieve the saved courses
+        $stmt = $this->dbconn->prepare("SELECT * FROM side_projects_section WHERE user_id = :user_id");
+        $stmt->bindParam(":user_id", $userId);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
 
 ?>

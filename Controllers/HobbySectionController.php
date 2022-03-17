@@ -118,7 +118,84 @@ class HobbySectionController extends CvSectionController{
         }
 
         echo json_encode($response_array);
-    }    
+    }
+    
+    // display the hobby section
+    public function DisplayData(){
+        $hobbiesAreSaved= false;
+        // assign the session data sent from the curl request
+        session_decode($_POST["session_data"]);
+
+        // the default form to display
+        $hobbySectionHtml = "
+        <div class='card-header'>
+            <a class='btn' data-bs-toggle='collapse' href='#collapseeight'>
+                <h5>Centre d'interets</h5>
+            </a>
+        </div>
+        <div id='collapseeight' class='collapse show' data-bs-parent='#accordion'>
+            <div class='card-body'>
+                <div class='hobbies' id='hobbies'>";
+
+        // only logged in users can view their saved data
+        if($this->sectionModel->auth->isLoggedIn()){
+            // get the user's saved hobbies
+            $hobbiesDetails = $this->sectionModel->RetrieveData();
+
+            // display the saved hobbies only if they exist
+            if(!empty($hobbiesDetails)){
+                $hobbiesAreSaved= true;
+                foreach($hobbiesDetails as $hobby){
+                    $hobbySectionHtml .= "
+                    <div class='row hobby' id='hobby_" . $hobby["id"] . "'>
+                        <form id='save_hobby_" . $hobby["id"] . "_section_form'>
+                            <div class='col-sm-12'>
+                                <label for='hobbie-" . $hobby["id"] . "' class='form-label'>interet</label>
+                                <input type='text' class='form-control' placeholder='' name='hobby_name' id='hobbie-" . $hobby["id"] . "' value='" . $hobby["hobby_name"] . "'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('hobby_" . $hobby["id"] . "', 'save', 'HobbySectionController')".'"' . ">Save Hobby</button>
+                            </div>
+                        </form>
+                        <form id='delete_hobby_" . $hobby["id"] . "_section_form'>
+                            <div class='col-sm-9'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('hobby_" . $hobby["id"] . "', 'delete', 'HobbySectionController')".'"' . ">Delete Hobby</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>";
+                }
+            }
+        }
+
+        // the default form to display
+        if($hobbiesAreSaved=== false){
+            $hobbySectionHtml .= "
+                    <div class='row hobby' id='hobby_1'>
+                        <form id='save_hobby_1_section_form'>
+                            <div class='col-sm-12'>
+                                <label for='hobbie-1' class='form-label'>interet</label>
+                                <input type='text' class='form-control' placeholder='' name='hobby_name' id='hobbie-1'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('hobby_1', 'save', 'HobbySectionController')".'"' . ">Save Hobby</button>
+                            </div>
+                        </form>
+                        <form id='delete_hobby_1_section_form'>
+                            <div class='col-sm-9'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('hobby_1', 'delete', 'HobbySectionController')".'"' . ">Delete Hobby</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>";
+        }
+
+        $hobbySectionHtml .= "
+                </div>
+                <form id='addsubsec_hobby_section_form'>
+                    <button class='btn btn-primary ' onclick=" . '"' . "AddSubsec('hobbies', 'hobby', 'addsubsec', 'HobbySectionController')" . '"' . ">ajouter un interet</button>
+                </form>
+            </div>
+        </div>";
+
+        echo $hobbySectionHtml;
+    }
 }
 
 // a request has been sent from a view

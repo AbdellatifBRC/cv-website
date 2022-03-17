@@ -133,6 +133,91 @@ class SideProjetSectionController extends CvSectionController{
 
         echo json_encode($response_array);
     }
+
+    // display the side project section
+    public function DisplayData(){
+        $hobbiesAreSaved= false;
+        // assign the session data sent from the curl request
+        session_decode($_POST["session_data"]);
+
+        // the default form to display
+        $sideProjectSectionHtml = "
+        <div class='card-header'>
+            <a class='btn' data-bs-toggle='collapse' href='#collapsenine'>
+                <h5>Projets</h5>
+            </a>
+        </div>
+        <div id='collapsenine' class='collapse show' data-bs-parent='#accordion'>
+            <div class='card-body'>
+                <div class='projects' id='projects'>";
+
+        // only logged in users can view their saved data
+        if($this->sectionModel->auth->isLoggedIn()){
+            // get the user's saved hobbies
+            $hobbiesDetails = $this->sectionModel->RetrieveData();
+
+            // display the saved hobbies only if they exist
+            if(!empty($hobbiesDetails)){
+                $hobbiesAreSaved= true;
+                foreach($hobbiesDetails as $sideProject){
+                    $sideProjectSectionHtml .= "
+                    <div class='row side_project' id='side_project_" . $sideProject["id"] . "'>
+                        <form id='save_side_project_" . $sideProject["id"] . "_section_form'>
+                            <div class='col-sm-4'>
+                                <label for='project-title-" . $sideProject["id"] . "' class='form-label'>titre de projet</label>
+                                <input type='text' class='form-control' placeholder='' name='side_project_title' id='project-title-" . $sideProject["id"] . "' value='" . $sideProject["title"] . "'>
+                            </div>
+                            <div class='col-sm-8'>
+                                <label for='project-" . $sideProject["id"] . "' class='form-label'>projet</label>
+                                <textarea class='form-control' rows='5' id='project-" . $sideProject["id"] . "' name='side_project_description'>" . $sideProject["description"] . "</textarea>
+                                <button type='submit' onclick=" . '"' . "ModifySection('side_project_" . $sideProject["id"] . "', 'save', 'SideProjectSectionController')".'"' . ">Save Side Project</button>
+                            </div>
+                        </form>
+                        <form id='delete_side_project_" . $sideProject["id"] . "_section_form'>
+                            <div class='col-sm-9'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('side_project_" . $sideProject["id"] . "', 'delete', 'SideProjectSectionController')".'"' . ">Delete Side Project</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>";
+                }
+            }
+        }
+
+        // the default form to display
+        if($hobbiesAreSaved=== false){
+            $sideProjectSectionHtml .= "
+                    <div class='row side_project' id='side_project_1'>
+                        <form id='save_side_project_1_section_form'>
+                            <div class='col-sm-4'>
+                                <label for='project-title-1' class='form-label'>titre de projet</label>
+                                <input type='text' class='form-control' placeholder='' name='side_project_title' id='project-title-1'>
+                            </div>
+                            <div class='col-sm-8'>
+                                <label for='project-1' class='form-label'>projet</label>
+                                <textarea class='form-control' rows='5' id='project-1' name='side_project_description'></textarea>
+                                <button type='submit' onclick=" . '"' . "ModifySection('side_project_1', 'save', 'SideProjectSectionController')".'"' . ">Save Side Project</button>
+                            </div>
+                        </form>
+                        <form id='delete_side_project_1_section_form'>
+                            <div class='col-sm-9'>
+                                <button type='submit' onclick=" . '"' . "ModifySection('side_project_1', 'delete', 'SideProjectSectionController')".'"' . ">Delete Side Project</button>
+                            </div>
+                        </form>
+                    </div>
+                    <br>";
+        }
+
+        $sideProjectSectionHtml .= "
+                </div>
+                <form id='addsubsec_side_project_section_form'>
+                    <button class='btn btn-primary ' onclick=" . '"' . "AddSubsec('projects', 'side_project', 'addsubsec', 'SideProjectSectionController')" . '"' . ">ajouter un projet</button>
+                </form>
+            </div>
+        </div>";
+
+        echo $sideProjectSectionHtml;
+    }
 }
 
 // a request has been sent from a view

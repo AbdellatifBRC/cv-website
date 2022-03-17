@@ -18,6 +18,7 @@ abstract class CvSectionModel{
     abstract public function InsertData($ColumnsValues);
     abstract public function UpdateData($ColumnsValues);
     abstract public function DeleteData($ColumnsValues);
+    abstract public function RetrieveData();
 }
 
 ?>

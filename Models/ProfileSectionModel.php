@@ -35,6 +35,17 @@ class ProfileSectionModel extends CvSectionModel{
         $stmt->bindParam(":user_id", $ColumnsValues["user_id"]);
         $stmt->execute();
     }
+
+    // retrieve a user's profile section data
+    public function RetrieveData(){
+        // get the user id
+        $userId = $this->auth->getUserId();
+        // retrieve the saved courses
+        $stmt = $this->dbconn->prepare("SELECT * FROM profile_section WHERE user_id = :user_id");
+        $stmt->bindParam(":user_id", $userId);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
 
 ?>

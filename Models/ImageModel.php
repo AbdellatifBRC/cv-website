@@ -105,7 +105,7 @@ class ImageModel{
     }
 
     // assign a path to a file
-    private function filePath($fileName){
+    public function filePath($fileName){
         // assign the extension
         $extension = pathinfo($fileName, PATHINFO_EXTENSION);
         // hash the name of the file

@@ -140,6 +140,57 @@ class CustomSectionController extends CvSectionController{
 
         echo json_encode($response_array);
     }
+
+    // display the side project section
+    public function DisplayData(){
+        // assign the session data sent from the curl request
+        session_decode($_POST["session_data"]);
+
+        // the default form to display
+        $customSectionsHtml = "";
+
+        // only logged in users can view their saved data
+        if($this->sectionModel->auth->isLoggedIn()){
+            // get the user's saved custom sections
+            $customSectionsDetails = $this->sectionModel->RetrieveData();
+
+            // display the saved custom sections only if they exist
+            if(!empty($customSectionsDetails)){
+                foreach($customSectionsDetails as $customSection){
+                    $customSectionsHtml .= "
+                <div class='card-header' id='custom_section_" . $customSection["id" ] . "_header'>
+                    <a class='btn' data-bs-toggle='collapse' href='#custom_section_" . $customSection["id" ] . "'>
+                        <h5>" . $customSection["title"] . "</h5>
+                    </a>
+                </div>
+                <div id='custom_section_" . $customSection["id" ] . "' class='collapse show' data-bs-parent='#accordion'>
+                    <div class='card-body'>
+                        <div class='custom' id='customs_" . $customSection["id" ] . "'>
+                            <div class='row'>
+                                <form id='save_custom_section_" . $customSection["id" ] . "_section_form'>
+                                    <div class='col-sm-12'>
+                                        <label for='custom-description-" . $customSection["id" ] . "' class='form-label'>Description</label>
+                                        <input type='hidden' name='custom_section_title' value='" . $customSection["title"] . "'>
+                                        <textarea class='form-control' rows='3' placeholder='' name='custom_section_description' id='custom-description-" . $customSection["id" ] . "'>" . $customSection["description"] . "</textarea>
+                                    </div>
+                                    <div class='col-sm-8'>
+                                        <button type='submit' onclick=" . '"' . "ModifySection('custom_section_" . $customSection["id" ] . "', 'save', 'CustomSectionController')" . '"' . ">Save Section</button>
+                                    </div>
+                                </form>
+                                <form id='delete_custom_section_" . $customSection["id" ] . "_section_form'>
+                                    <button type='submit' onclick=" . '"' . "ModifySection('custom_section_" . $customSection["id" ] . "', 'delete', 'CustomSectionController')" . '"' . ">Delete Section</button>
+                                </form>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>";
+                }
+            }
+        }
+
+        echo $customSectionsHtml;
+    }
 }
 
 // a request has been sent from a view

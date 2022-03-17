@@ -62,8 +62,25 @@ input[type="file"] {
 .part-2-1-adressplus p {display: inline;}
     </style>
     <script>
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
       var CvFormsData = {};
-      window.onload = function(){
+      window.onload = async function(){
+        $.ajax({
+            type: "POST",
+            url: "../Controllers/AutofillCvController.php",
+            data: "&action=displaycv",
+            success: function (data) {
+              data = JSON.parse(data);
+              for(section in data){
+                document.getElementById("card").insertAdjacentHTML("beforeend", data[section])
+              }
+            }
+          });
+
+        await sleep(1000);
         var formsCollection = document.getElementsByTagName("form");
         for(var i=0;i<formsCollection.length;i++){
           if(formsCollection[i].id.startsWith("save")){
@@ -155,7 +172,12 @@ input[type="file"] {
           var subsections = document.getElementsByClassName(section);
           var subsectionsIdNums= [0];
           for(var i=0;i<subsections.length;i++){
-            subsectionsIdNums.push(subsections[i].id.split("_")[1]);
+            if(isNaN(parseInt(subsections[i].id.split("_")[1]))){
+              subsecIdNum = subsections[i].id.split("_")[2];
+            } else{
+              subsecIdNum = subsections[i].id.split("_")[1];
+            }
+            subsectionsIdNums.push(subsecIdNum);
           }
 
           var dataString = "&subsecs_in_section=" + Math.max.apply(Math, subsectionsIdNums) + "&action=" + action;
@@ -330,18 +352,13 @@ input[type="file"] {
             </div>
             
             <span class="img-uploaded centring"><img class="img-fluid output" id="output"/></span>
-            <input class="form-control" type="file" id="img" onchange="loadFile(event)" name="img" accept="image/*" >
+            <input type="hidden" name="MAX_FILE_SIZE" value="2000000" form="save_personal_details_section_form"/>
+            <input class="form-control" type="file" id="img" onchange="loadFile(event)" name="img" accept="image/*" form="save_personal_details_section_form" value="../Images/a9f0e0b3d83d6a1fa6ce89f950383fdd.jpg">
           </label>
           
           <br><br>
           
             <div class="row">
-              <div class="col">
-                <div class="d-grid">
-                  <input class="btn btn-primary btn-block" type="submit">
-                </div>
-                 
-              </div>
               <div class="col">
                 <div class="d-grid">
                   <button class="btn btn-primary btn-block" id="btn-supp" onclick="clearinput('')">supprimer</button>
@@ -377,314 +394,7 @@ input[type="file"] {
                     <hr>
                     <div id="accordion">
 
-                      <div class="card">
-                        <div class="card-header">
-                          <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
-                            <h5>Details personels</h5>
-                          </a>
-                        </div>
-                        <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
-                          <div class="card-body">
-                            <div class="perso" onmousemove="part1('')">
-                      
-                      
-                              <hr>
-                              <div class="row">
-                                <div class="col-sm-3">
-                                  <button class="btn btn-light" style="width:150px; height:150px" onclick="showpopup('popup')"><img class="img-fluid" id="output-logo"/><i class="fas fa-camera" id="img-logo"></i></button>
-                                </div>
-                                <div class="col-sm-9">
-                                  <div class="">
-                                    <label for="nom" class="form-label">Nom </label>
-                                    <input type="text" class="form-control cv-input" id="nom" placeholder="" name="nom" >
-                                    <label for="prenom" class="form-label">Prenom </label>
-                                    <input type="text" class="form-control cv-input" id="prenom" placeholder="" name="prenom" >
-                                  </div>
-                                </div>
-                              </div>
-                              <br>
-                              <div class="row g-3">
-                                <div class="col-md-6">
-                                  <label for="inputemail" class="form-label">Email</label>
-                                  <input type="email" class="form-control cv-input" id="inputemail">
-                                </div>
-                                <div class="col-md-6">
-                                  <label for="number" class="form-label">Numero</label>
-                                  <input type="text" class="form-control cv-input" id="number">
-                                </div>
-                                <div class="col-12">
-                                  <label for="adress" class="form-label">Address</label>
-                                  <input type="text" class="form-control cv-input" id="adress" placeholder="">
-                                </div>
-                               
-                                <div class="col-md-6">
-                                  <label for="city" class="form-label">City</label>
-                                  <input type="text" class="form-control cv-input" id="city">
-                                </div>
-                                <div class="col-md-4">
-                                  <label for="state" class="form-label">State</label>
-                                  <input type="text" class="form-control cv-input" id="state">
-                                </div>
-                                <div class="col-md-2">
-                                  <label for="codep" class="form-label">code postale</label>
-                                  <input type="text" class="form-control cv-input" id="codep">
-                                </div>
-                                 <div class="col-12">
-                                  <label for="birthday" class="form-label">Date de naissance</label>
-                                  <input type="date" class="form-control cv-input" id="birthday" placeholder="">
-                                </div>
-                              </div>
-        
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <!--2nd-->
-                        <div class="card-header">
-                          <a class="btn" data-bs-toggle="collapse" href="#collapsetwo">
-                            <h5>Formations</h5>
-                          </a>
-                        </div>
-                        <div id="collapsetwo" class="collapse show" data-bs-parent="#accordion">
-                          <div class="card-body">
-                            <div class="formations">
-                              <div class="row">
-                                <div class="col-sm-3">
-                                  <label for="formation-date" class="form-label">Date de la formation</label>
-                                  <input type="date" class="form-control" id="formation-date">
-                                </div>
-                                <div class="col-sm-9">
-                                  <label for="formation" class="form-label">Description</label>
-                                  <input type="text" class="form-control" id="formation" placeholder="Ex : Cisco certificat">
-                                </div>
-                              </div>
-                              <br>
-                              <button class="btn btn-primary ">ajouter une formation</button>
-                            </div>
-                          </div>
-                        </div>
-
-                        <!--3rd-->
-                        <div class="card-header">
-                          <a class="btn" data-bs-toggle="collapse" href="#collapsethree">
-                            <h5>Experiences professionelles</h5>
-                          </a>
-                        </div>
-                        <div id="collapsethree" class="collapse show" data-bs-parent="#accordion">
-                          <div class="card-body">
-                            <div class="exp-pro">
-                              <div class="row">
-                                <div class="col-sm-3">
-                                  <label for="exp-date-debut" class="form-label">Date début l'experience</label>
-                                  <input type="date" class="form-control" id="exp-date-debut">
-                                  <br>
-                                  <label for="exp-date-fin" class="form-label">Date fin l'experience</label>
-                                  <input type="date" class="form-control" id="exp-date-fin">
-                                </div>
-                                
-                                <div class="col-sm-8">
-                                  <label for="exp" class="form-label">Description</label>
-                                  
-                                  <textarea class="form-control" rows="3" id="exp" placeholder="Ex : ingénieur en systemes embarquées" name="text" ></textarea>
-                                  <br>
-                                  <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
-                                    <label class="form-check-label">Experience En Cours</label>
-                                  </div>
-                                </div>
-                              </div>
-                              <br>
-                              <button class="btn btn-primary ">ajouter une experience</button>
-                            </div>
-                          </div>
-                        </div>
-
-                        <!--4th-->
-                        <div class="card-header">
-                          <a class="btn" data-bs-toggle="collapse" href="#collapsefour">
-                            <h5>Formation d'etudes</h5>
-                          </a>
-                        </div>
-                        <div id="collapsefour" class="collapse show" data-bs-parent="#accordion">
-                          <div class="card-body">
-                            <div class="diplome">
-                              <div class="row">
-                                <div class="col-sm-3">
-                                  <label for="date-debut-etude" class="form-label">Date debut d'etude</label>
-                                  <input type="date" class="form-control" id="date-debut-etude">
-                                  <br>
-                                  <label for="date-diplome" class="form-label">Date obtention diplome</label>
-                                  <input type="date" class="form-control" id="date-diplome">
-                                  
-                                  
-                                  
-                                </div>
-                                
-                                <div class="col-sm-8">
-                                  <label for="exp" class="form-label">Description</label>
-                                  
-                                  <textarea class="form-control" rows="3" id="exp" placeholder="Ex : master 2 en systemes embarquées" name="text" ></textarea>
-                                  <br>
-                                  <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
-                                    <label class="form-check-label">Formation d'etude En Cours</label>
-                                  </div>
-                                </div>
-                              </div>
-                              <br>
-                              <button class="btn btn-primary ">ajouter un diplome</button>
-                            </div>
-                          </div>
-                        </div>
-
-                        <!--5th-->
-                        <div class="card-header">
-                          <a class="btn" data-bs-toggle="collapse" href="#collapsefive">
-                            <h5>Compétences</h5>
-                          </a>
-                        </div>
-                        <div id="collapsefive" class="collapse show" data-bs-parent="#accordion">
-                          <div class="card-body">
-                            <div class="skills">
-                              <div class="row">
-                                
-                                
-                                <div class="col-sm-12">
-                                  <label for="skill" class="form-label">Compétence</label>
-                                  <input type="text" class="form-control" placeholder="" name="skill" id="skill">
-                                  <br>
-                                  <label for="range" class="form-label">Niveau</label>
-                                  <input type="range" class="form-range" step="1" id="range" min="0" max="5" value="1">
-
-                                </div>
-                              </div>
-                              <br>
-                              <button class="btn btn-primary ">ajouter une compétence</button>
-                            </div>
-                          </div>
-                        </div>
-                        <!--6th-->
-                        <div class="card-header">
-                          <a class="btn" data-bs-toggle="collapse" href="#collapsesix">
-                            <h5>Profile</h5>
-                          </a>
-                        </div>
-                        <div id="collapsesix" class="collapse show" data-bs-parent="#accordion">
-                          <div class="card-body">
-                            <div class="profile">
-                              <div class="row">
-                                                               
-                                <div class="col-sm-12">
-                                  <label for="profile" class="form-label">Descripton de profile</label>
-                                  <textarea class="form-control" rows="5" id="profile" name="text"></textarea>
-                                </div>
-                              </div>
-                              <br>
-                              
-                            </div>
-                          </div>
-                        </div>
-                        <!--7th-->
-                        <div class="card-header">
-                          <a class="btn" data-bs-toggle="collapse" href="#collapseseven">
-                            <h5>Languages</h5>
-                          </a>
-                        </div>
-                        <div id="collapseseven" class="collapse show" data-bs-parent="#accordion">
-                          <div class="card-body">
-                            <div class="languages">
-                              <div class="row">
-                                
-                                
-                                <div class="col-sm-12">
-                                  <label for="language" class="form-label">Langue</label>
-                                  <input type="text" class="form-control" placeholder="" name="language" id="language">
-                                  <br>
-                                  <label for="range1" class="form-label">Niveau</label>
-                                  <input type="range" class="form-range" step="1" id="range1" min="0" max="5" value="1">
-
-                                </div>
-                              </div>
-                              <br>
-                              <button class="btn btn-primary ">ajouter une langue</button>
-                            </div>
-                          </div>
-                        </div>
-                        <!--8th-->
-                        <div class="card-header">
-                          <a class="btn" data-bs-toggle="collapse" href="#collapseeight">
-                            <h5>Centre d'interets</h5>
-                          </a>
-                        </div>
-                        <div id="collapseeight" class="collapse show" data-bs-parent="#accordion">
-                          <div class="card-body">
-                            <div class="hobbies">
-                              <div class="row">
-                                
-                                
-                                <div class="col-sm-12">
-                                  <label for="hobbie" class="form-label">interet</label>
-                                  <input type="text" class="form-control" placeholder="" name="hobbie" id="hobbie">
-                                  
-                                </div>
-                              </div>
-                              <br>
-                              <button class="btn btn-primary ">ajouter un interet</button>
-                            </div>
-                          </div>
-                        </div>
-                        <!--9th-->
-                        <div class="card-header">
-                          <a class="btn" data-bs-toggle="collapse" href="#collapsenine">
-                            <h5>Projets</h5>
-                          </a>
-                        </div>
-                        <div id="collapsenine" class="collapse show" data-bs-parent="#accordion">
-                          <div class="card-body">
-                            <div class="projects">
-                              <div class="row">
-                                <div class="col-sm-4">
-                                  <label for="project-title" class="form-label">titre de projet</label>
-                                  <input type="text" class="form-control" placeholder="" name="project-title" id="project-title">
-                                  
-                                </div>
-                                
-                                <div class="col-sm-8">
-                                  <label for="project" class="form-label">projet</label>
-                                  <input type="text" class="form-control" placeholder="" name="project" id="project">
-                                  
-                                </div>
-                              </div>
-                              <br>
-                              <button class="btn btn-primary ">ajouter un projet</button>
-                            </div>
-                          </div>
-                          
-                        </div>
-                        <!--10th-->
-                        <div class="card-header">
-                          <a class="btn" data-bs-toggle="collapse" href="#collapseten">
-                            <h5>Liens des réseaux sociaux</h5>
-                          </a>
-                        </div>
-                        <div id="collapseten" class="collapse show" data-bs-parent="#accordion">
-                          <div class="card-body">
-                            <div class="links">
-                              <div class="row">
-                                
-                                
-                                <div class="col-sm-12">
-                                  <label for="link" class="form-label">lien</label>
-                                  <input type="text" class="form-control" placeholder="" name="link" id="link">
-                                  
-                                </div>
-                              </div>
-                              <br>
-                              <button class="btn btn-primary ">ajouter un lien</button>
-                            </div>
-                          </div>
-                        </div>
-                        
+                      <div class="card" id="card">
                       </div>
                       </div>
                       <br>
@@ -696,9 +406,11 @@ input[type="file"] {
                 
                   <div class="row">
                     <div class="col">
-                      <div class="d-grid">
-                        <button type="button" class="btn btn-primary btn-block">Ajouter une section personalisée</button>
-                      </div>
+                      <form id="addsubsec_custom_section_form">
+                        <div class="d-grid">
+                          <button type="submit" class="btn btn-primary btn-block" onclick="AddSubsec('card', 'custom', 'addsubsec', 'CustomSectionController')">Ajouter une section personalisée</button>
+                        </div>
+                      </form>
                     </div>
                     <div class="col">
                       <div class="d-grid">
@@ -761,6 +473,10 @@ input[type="file"] {
               </div> 
               <!--choose a cv model-->
               <br>
+              <button type="button" class="btn btn-primary btn-block" onclick="resetCV()">Reset Form</button>
+            </div>
+            <br><hr>  
+            <div class="show">
               <div class="d-grid">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-warning">reset</button>
