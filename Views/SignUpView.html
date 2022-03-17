@@ -14,7 +14,7 @@
         <title>Create Account</title>
         <style>
             
-
+            .centring {margin: auto; display: flex;justify-content: center; align-items: center;}
             /* Full-width input fields 
             input[type=text], input[type=password] {
             width: 100%;
@@ -75,6 +75,7 @@
                     width: 100%;
                 }
             }*/
+            .createacc {border-right: solid 2px;}
         </style>
         <script>
             function signUp(){
@@ -145,73 +146,45 @@
         </nav>
         <form id="sign_up_form" action="../Controllers/AccountController.php?action=signup" method="post">
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h3>Sign Up</h3>
-                        <p>Please fill in this form to create an account.</p>
-                        <p>Or if you have an account <a onclick="SignInLink()">Click here to sign In</a></p>
-                        <hr>
+                <div class="">
+                    <div class="centring">
+                        <div class="createacc">
+                            <br>
+                            <h3>Sign Up</h3>
+                            <p>Please fill in this form to create an account.</p>
+                            <p>Or if you have an account <a onclick="SignInLink()">Click here to sign In</a></p>
+                            <hr>
 
-                        <div class="form-floating mb-3 mt-3">
-                            
-                            <input type="text" class="form-control" placeholder="Enter Email" name="email">
-                            <label for="email">Email</label>
-                        </div>
-                        <span class="help-block" id="email_error"></span>
-
-                        <div class="form-floating mb-3 mt-3">
-                            
-                            <input type="password" class="form-control" placeholder="Enter Password" name="psw">
-                            <label for="psw">Password</label>
-                        </div>
-                        <span class="help-block" id="password_error"></span>
-
-                        <div class="form-floating mb-3 mt-3">
-                           <input type="password" class="form-control" placeholder="Repeat Password" name="psw-repeat">
-                            <label for="psw-repeat">Repeat Password</label> 
-                            
-                        </div>
-                        
-                        
-                        <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
-                        <span class="help-block" id="requests_error"></span>
-
-                        <div class="clearfix">
-                            <button type="submit" class="btn btn-primary" onclick="signUp()">Sign Up</button>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div id="demo" class="carousel slide" data-bs-ride="carousel">
-
-                            <!-- Indicators/dots -->
-                            <div class="carousel-indicators">
-                              <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-                              <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                              <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                            <div class="form-floating mb-3 mt-3">
+                                
+                                <input type="text" class="form-control" placeholder="Enter Email" name="email">
+                                <label for="email">Email</label>
                             </div>
-                          
-                            <!-- The slideshow/carousel -->
-                            <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                <img src="../ex.png" alt="Los Angeles" class="img-flluid d-block w-50">
-                              </div>
-                              <div class="carousel-item">
-                                <img src="../ex1.png" alt="Chicago" class="img-flluid d-block w-50">
-                              </div>
-                              <div class="carousel-item">
-                                <img src="../ex.png" alt="New York" class="img-flluid d-block w-50">
-                              </div>
+                            <span class="help-block" id="email_error"></span>
+
+                            <div class="form-floating mb-3 mt-3">
+                                
+                                <input type="password" class="form-control" placeholder="Enter Password" name="psw">
+                                <label for="psw">Password</label>
                             </div>
-                          
-                            <!-- Left and right controls/icons -->
-                            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                              <span class="carousel-control-prev-icon"></span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                              <span class="carousel-control-next-icon"></span>
-                            </button>
-                        </div>
+                            <span class="help-block" id="password_error"></span>
+
+                            <div class="form-floating mb-3 mt-3">
+                            <input type="password" class="form-control" placeholder="Repeat Password" name="psw-repeat">
+                                <label for="psw-repeat">Repeat Password</label> 
+                                
+                            </div>
+                            
+                            
+                            <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+                            <span class="help-block" id="requests_error"></span>
+
+                            <div class="clearfix">
+                                <button type="submit" class="btn btn-primary" onclick="signUp()">Sign Up</button>
+                            </div>
+                        </div>                       
                     </div>
+                   
                 </div>
                 
             </div>
