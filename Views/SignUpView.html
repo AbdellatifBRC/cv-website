@@ -75,7 +75,9 @@
                     width: 100%;
                 }
             }*/
-            .createacc {border-right: solid 2px;}
+            body {background-color: #F7E2E2;;}
+            .createacc {color: black;border: solid 2px #ededed;padding: 25px;border-radius: 5px;background-color: white;}
+            .createacc label {color: black;}
         </style>
         <script>
             function signUp(){
@@ -144,9 +146,10 @@
                 </ul>
             </div>
         </nav>
+        <br>
         <form id="sign_up_form" action="../Controllers/AccountController.php?action=signup" method="post">
             <div class="container">
-                <div class="">
+                
                     <div class="centring">
                         <div class="createacc">
                             <br>
@@ -185,7 +188,7 @@
                         </div>                       
                     </div>
                    
-                </div>
+                
                 
             </div>
         </form>
