@@ -18,7 +18,7 @@
             
             .centring {margin: auto; display: flex;justify-content: center; align-items: center;}
             body {background-color: #F7E2E2;;}
-            .connect {color: black;border: solid 2px #ededed;padding: 25px;border-radius: 5px;background-color: white;}
+            .connect {color: black;border: solid 2px #ededed;padding: 25px;border-radius: 5px;background-color: white;width: 500px;}
             .connect label {color: black;}
         </style>
         <script>
@@ -82,11 +82,11 @@
         </nav>
         <form id="sign_in_form" method="post" >
             <div class="container">
-                <br><br>
-                <div class="row">
-                    <div class="col-sm-6">
+                <br>
+                <div class="centring">
+                    <div class="connect">
                         <h3>Sign In</h3>
-                        
+                        <p> connect to your account</p>
                         
                         
                         <div class="form-floating mb-3 mt-3">
@@ -106,7 +106,7 @@
                         <span class="help-block" id="error"></span>
 
                         <label class="form-check-label">
-                           Remember me <input class="form-check-input" type="checkbox" name="remember_me">
+                            <input class="form-check-input" type="checkbox" name="remember_me"> Remember me
                         </label>
                         <br><br>
                         <div class="clearfix">
