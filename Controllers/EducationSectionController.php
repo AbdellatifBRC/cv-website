@@ -179,13 +179,13 @@ class EducationSectionController extends CvSectionController{
                         <form id='save_education_" . $education["id"] . "_section_form'>
                             <div class='col-sm-3'>
                                 <label for='degree-" . $education["id"] . "' class='form-label'>Degree</label>
-                                <input type='text' class='form-control' id='degree-" . $education["id"] . "' name='degree' value='" . $education["degree"] . "'>
+                                <input type='text' class='form-control' id='degree-" . $education["id"] . "' name='degree' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $education["degree"])) . "'>
                                 <br>
                                 <label for='field-" . $education["id"] . "' class='form-label'>Field</label>
-                                <input type='text' class='form-control' id='field-" . $education["id"] . "' name='field' value='" . $education["field"] . "'>
+                                <input type='text' class='form-control' id='field-" . $education["id"] . "' name='field' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $education["field"])) . "'>
                                 <br>
                                 <label for='school-name-" . $education["id"] . "' class='form-label'>School Name</label>
-                                <input type='text' class='form-control' id='school-name-" . $education["id"] . "' name='school_name' value='" . $education["school_name"] . "'>
+                                <input type='text' class='form-control' id='school-name-" . $education["id"] . "' name='school_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $education["school_name"])) . "'>
                             </div>
                             <div class='col-sm-3'>
                                 <label for='date-debut-etude-" . $education["id"] . "' class='form-label'>Date debut d'etude</label>

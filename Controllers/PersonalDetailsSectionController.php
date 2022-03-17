@@ -189,9 +189,9 @@ class PersonalDetailsSectionController extends CvSectionController{
                         <div class=''>
                             <form id='save_personal_details_section_form' enctype='multipart/form-data'>
                                 <label for='nom' class='form-label'>Nom </label>
-                                <input type='text' class='form-control' id='nom' placeholder='' name='last_name' value='" . $personalDetails[0]["last_name"] . "'>
+                                <input type='text' class='form-control' id='nom' placeholder='' name='last_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["last_name"])) . "'>
                                 <label for='prenom' class='form-label'>Prenom </label>
-                                <input type='text' class='form-control' id='prenom' placeholder='' name='first_name' value='" . $personalDetails[0]["first_name"] . "'>
+                                <input type='text' class='form-control' id='prenom' placeholder='' name='first_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["first_name"])) . "'>
                             </form>
                         </div>
                     </div>
@@ -204,11 +204,11 @@ class PersonalDetailsSectionController extends CvSectionController{
                     </div>
                     <div class='col-md-6'>
                         <label for='numero' class='form-label'>Numero</label>
-                        <input type='text' class='form-control' id='numro' name='phone'  value='" . $personalDetails[0]["phone"] . "' form='save_personal_details_section_form'>
+                        <input type='text' class='form-control' id='numro' name='phone'  value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["phone"])) . "' form='save_personal_details_section_form'>
                     </div>
                     <div class='col-12'>
                         <label for='inputAddress' class='form-label'>Address</label>
-                        <input type='text' class='form-control' id='inputAddress' placeholder='' name='address'  value='" . $personalDetails[0]["address"] . "' form='save_personal_details_section_form'>
+                        <input type='text' class='form-control' id='inputAddress' placeholder='' name='address'  value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["address"])) . "' form='save_personal_details_section_form'>
                     </div>
                     <div class='col-12'>
                         <label for='inputAddress2' class='form-label'>Date de naissance</label>
@@ -216,7 +216,7 @@ class PersonalDetailsSectionController extends CvSectionController{
                     </div>
                     <div class='col-md-6'>
                         <label for='inputJobTitle' class='form-label'>Job Title</label>
-                        <input type='text' class='form-control' id='inputJobTitle' name='job_title'  value='" . $personalDetails[0]["job_title"] . "' form='save_personal_details_section_form'>
+                        <input type='text' class='form-control' id='inputJobTitle' name='job_title'  value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["job_title"])) . "' form='save_personal_details_section_form'>
                     </div> 
                 </div>
                 <button type='submit' form='save_personal_details_section_form' onclick=" . '"' . "ModifySection('personal_details', 'save', 'PersonalDetailsSectionController')" . '"' . ">Save Personal Details</button>

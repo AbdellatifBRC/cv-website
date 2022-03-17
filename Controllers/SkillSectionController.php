@@ -170,7 +170,7 @@ class SkillSectionController extends CvSectionController{
                         <form id='save_skill_" . $skill["id"] . "_section_form'>
                             <div class='col-sm-12'>
                                 <label for='skill-" . $skill["id"] . "' class='form-label'>Compétence</label>
-                                <input type='text' class='form-control' placeholder='' id='skill-" . $skill["id"] . "' name='skill_name' value='" . $skill["skill_name"] . "'>
+                                <input type='text' class='form-control' placeholder='' id='skill-" . $skill["id"] . "' name='skill_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $skill["skill_name"])) . "'>
                                 <br>
                                 <label for='range-" . $skill["id"] . "' class='form-label'>Niveau</label>
                                 <input type='range' class='form-range' step='1' id='range-" . $skill["id"] . "' name='skill_level' min='0' max='5' value='" . $skill["skill_level"] . "'>

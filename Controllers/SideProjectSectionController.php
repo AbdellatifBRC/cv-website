@@ -165,7 +165,7 @@ class SideProjetSectionController extends CvSectionController{
                         <form id='save_side_project_" . $sideProject["id"] . "_section_form'>
                             <div class='col-sm-4'>
                                 <label for='project-title-" . $sideProject["id"] . "' class='form-label'>titre de projet</label>
-                                <input type='text' class='form-control' placeholder='' name='side_project_title' id='project-title-" . $sideProject["id"] . "' value='" . $sideProject["title"] . "'>
+                                <input type='text' class='form-control' placeholder='' name='side_project_title' id='project-title-" . $sideProject["id"] . "' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $sideProject["title"])) . "'>
                             </div>
                             <div class='col-sm-8'>
                                 <label for='project-" . $sideProject["id"] . "' class='form-label'>projet</label>

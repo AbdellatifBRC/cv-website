@@ -153,7 +153,7 @@ class CourseSectionController extends CvSectionController{
                         <form id='save_course_" . $course["id"] . "_section_form'>
                             <div class='col-sm-9'>
                                 <label for='formation-" . $course["id"] . "' class='form-label'>Description</label>
-                                <input type='text' class='form-control' id='formation-" . $course["id"] . "' placeholder='Ex : Cisco certificat' name='course_name' value='" . $course["course_name"] . "'>
+                                <input type='text' class='form-control' id='formation-" . $course["id"] . "' placeholder='Ex : Cisco certificat' name='course_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $course["course_name"])) . "'>
                                 <button onclick=" . '"' . "ModifySection('course_" . $course["id"] . "', 'save', 'CourseSectionController')".'"' . ">Save Course</button>
                             </div>
                         </form>

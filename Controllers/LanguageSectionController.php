@@ -171,7 +171,7 @@ class LanguageSectionController extends CvSectionController{
                         <form id='save_language_" . $language["id"] . "_section_form'>
                             <div class='col-sm-12'>
                                 <label for='language-" . $language["id"] . "' class='form-label'>Langue</label>
-                                <input type='text' class='form-control' placeholder='' name='language_name' id='language-" . $language["id"] . "' value='" . $language["language_name"] . "'>
+                                <input type='text' class='form-control' placeholder='' name='language_name' id='language-" . $language["id"] . "' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $language["language_name"])) . "'>
                                 <br>
                                 <label for='range1-" . $language["id"] . "' class='form-label'>Niveau</label>
                                 <input type='range' class='form-range' step='1' id='range1-" . $language["id"] . "' name='language_level' min='0' max='5' value='" . $language["language_level"] . "'>

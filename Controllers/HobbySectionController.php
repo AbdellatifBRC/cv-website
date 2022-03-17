@@ -151,7 +151,7 @@ class HobbySectionController extends CvSectionController{
                         <form id='save_hobby_" . $hobby["id"] . "_section_form'>
                             <div class='col-sm-12'>
                                 <label for='hobbie-" . $hobby["id"] . "' class='form-label'>interet</label>
-                                <input type='text' class='form-control' placeholder='' name='hobby_name' id='hobbie-" . $hobby["id"] . "' value='" . $hobby["hobby_name"] . "'>
+                                <input type='text' class='form-control' placeholder='' name='hobby_name' id='hobbie-" . $hobby["id"] . "' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $hobby["hobby_name"])) . "'>
                                 <button type='submit' onclick=" . '"' . "ModifySection('hobby_" . $hobby["id"] . "', 'save', 'HobbySectionController')".'"' . ">Save Hobby</button>
                             </div>
                         </form>

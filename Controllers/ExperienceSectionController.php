@@ -182,13 +182,13 @@ class ExperienceSectionController extends CvSectionController{
                         <form id='save_experience_" . $experience["id"] . "_section_form'>
                             <div class='col-sm-3'>
                                 <label for='position-" . $experience["id"] . "' class='form-label'>Position</label>
-                                <input type='text' class='form-control' id='position-" . $experience["id"] . "' name='position' value='" . $experience["position"] . "'>
+                                <input type='text' class='form-control' id='position-" . $experience["id"] . "' name='position' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $experience["position"])) . "'>
                                 <br>
                                 <label for='company-name-" . $experience["id"] . "' class='form-label'>Company Name</label>
-                                <input type='text' class='form-control' id='company-name-" . $experience["id"] . "' name='company_name' value='" . $experience["company_name"] . "'>
+                                <input type='text' class='form-control' id='company-name-" . $experience["id"] . "' name='company_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $experience["company_name"])) . "'>
                                 <br>
                                 <label for='company-location-" . $experience["id"] . "' class='form-label'>Company Location</label>
-                                <input type='text' class='form-control' id='company-location-" . $experience["id"] . "' name='company_location' value='" . $experience["company_location"] . "'>
+                                <input type='text' class='form-control' id='company-location-" . $experience["id"] . "' name='company_location' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $experience["company_location"])) . "'>
                             </div>
                             <div class='col-sm-3'>
                                 <label for='exp-date-debut-" . $experience["id"] . "' class='form-label'>Date début l'experience</label>
