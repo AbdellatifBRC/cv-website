@@ -12,6 +12,7 @@
   crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
    integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+   
    <script src="../scripts.js"></script>
    
     <title>Create CV</title>
@@ -382,7 +383,7 @@ input[type="file"] {
           </ul>
       </div>
 
-      <div class="row">
+      <div class="row" onmousemove="part1()">
           <div class="col-sm-8">
               <br>
               <div class="progress sticky-top">
@@ -404,7 +405,7 @@ input[type="file"] {
                 <br>
                 <!---->
                 
-                  <div class="row">
+                  <div class="row" >
                     <div class="col">
                       <form id="addsubsec_custom_section_form">
                         <div class="d-grid">
@@ -452,10 +453,10 @@ input[type="file"] {
 
                         <div class="part-2-1-adressplus">
                           <p class="cv-input-view" id="city-view"></p>
-                          <p class="cv-input-view" id="state-view"></p>
-                          <p class="cv-input-view" id="codep-view"></p>
+                          
                         </div>
                         
+                          <p class="cv-input-view" id="codep-view"></p>
 
                         <p class="cv-input-view" id="birthday-view"></p>
                     </div>
