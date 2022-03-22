@@ -15,7 +15,7 @@ class AutofillCv{
         // send a post request to each cv section controller and print the data returned
         foreach($this->cvControllers as $controller){
             // controller url
-            $url = "http://localhost/cv-website/Controllers/" . $controller . "SectionController.php";
+            $url = "http://localhost:3200/cv-website/Controllers/" . $controller . "SectionController.php";
             // url-ify the data for the POST (also send the data of the current session as they would be lost after a curl request)
             $dataString = http_build_query(array("action" => $action, "session_data" => session_encode()));
             // open curl connection
