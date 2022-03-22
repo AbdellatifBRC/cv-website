@@ -221,10 +221,14 @@ class PersonalDetailsSectionController extends CvSectionController{
                         <input type='text' class='form-control' id='inputJobTitle' name='job_title'  value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["job_title"])) . "' form='save_personal_details_section_form'>
                     </div> 
                 </div>
-                <button type='submit' form='save_personal_details_section_form' onclick=" . '"' . "ModifySection('personal_details', 'save', 'PersonalDetailsSectionController')" . '"' . ">Save Personal Details</button>
-                <form id='delete_personal_details_section_form'>
-                    <button type='submit' onclick=" . '"' . "ModifySection('personal_details', 'delete', 'PersonalDetailsSectionController')" . '"' . ">Delete Personal Details</button>
-                </form>";
+                <div class='btn-group'>
+                    <button class='btn btn-primary rounded' type='submit' form='save_personal_details_section_form' onclick=" . '"' . "ModifySection('personal_details', 'save', 'PersonalDetailsSectionController')" . '"' . "><i class='fas fa-save'></i> enregistrer les informations</button>
+                    <form id='delete_personal_details_section_form'>
+                        <button class='btn btn-warning' type='submit' onclick=" . '"' . "ModifySection('personal_details', 'delete', 'PersonalDetailsSectionController')" . '"' . "><i class='far fa-trash-alt'></i> supprimer la section</button>
+                    </form> 
+                </div>";
+                
+               
             }
         }
 
@@ -269,13 +273,21 @@ class PersonalDetailsSectionController extends CvSectionController{
                         <input type='text' class='form-control' id='inputJobTitle' name='job_title' form='save_personal_details_section_form'>
                     </div> 
                 </div>
-                <button type='submit' form='save_personal_details_section_form' onclick=" . '"' . "ModifySection('personal_details', 'save', 'PersonalDetailsSectionController')" . '"' . ">Save Personal Details</button>
-                <form id='delete_personal_details_section_form'>
-                    <button type='submit' onclick=" . '"' . "ModifySection('personal_details', 'delete', 'PersonalDetailsSectionController')" . '"' . ">Delete Personal Details</button>
-                </form>";
+                <hr>
+                    <div class='btn-group'>
+                        
+                        <form id='delete_personal_details_section_form'>
+                            <button class='btn btn-warning me-1' type='submit' onclick=" . '"' . "ModifySection('personal_details', 'delete', 'PersonalDetailsSectionController')" . '"' . "><i class='far fa-trash-alt'></i> supprimer la section</button>
+                        </form>
+
+                        <button class='btn btn-primary rounded float-end' type='submit' form='save_personal_details_section_form' onclick=" . '"' . "ModifySection('personal_details', 'save', 'PersonalDetailsSectionController')" . '"' . "><i class='fas fa-save'></i> enregistrer les informations</button>
+                    </div>";
+                
+                
         }
 
         $personalDetailsSectionHtml .= "
+                    
                 </div>
             </div>
         </div>";
