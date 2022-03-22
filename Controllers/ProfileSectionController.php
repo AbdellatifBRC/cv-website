@@ -79,7 +79,9 @@ class ProfileSectionController extends CvSectionController{
     public function DisplayData(){
         $profileIsSaved= false;
         // assign the session data sent from the curl request
-        session_decode($_POST["session_data"]);
+        if($_POST["session_data"]){
+            session_decode($_POST["session_data"]);
+        }
 
         // the default form to display
         $profileSectionHtml = "
