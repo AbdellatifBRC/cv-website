@@ -123,11 +123,11 @@ class EducationSectionController extends CvSectionController{
                     $response_array["new_subsec_html"] = "
                     <div class='education' id='education_" . strval($educationsNumber->value + 1) . "'>
                         <form id='save_education_" . strval($educationsNumber->value + 1) . "_section_form'>
-                            <input type='text' name='degree' placeholder='Degree'>
-                            <input type='text' name='field' placeholder='Field'>
-                            <input type='text' name='school_name' placeholder='School Name'>
-                            <input type='date' class='form-control' name='education_start_date' placeholder=''>
-                            <input type='date' class='form-control' name='education_end_date' placeholder=''>
+                            <input class='cv-input' type='text' name='degree' placeholder='Degree'>
+                            <input class='cv-input' type='text' name='field' placeholder='Field'>
+                            <input class='cv-input' type='text' name='school_name' placeholder='School Name'>
+                            <input class='cv-input' type='date' class='form-control' name='education_start_date' placeholder=''>
+                            <input class='cv-input' type='date' class='form-control' name='education_end_date' placeholder=''>
                             <button type='submit' onclick=" . '"'. "ModifySection('education_" . strval($educationsNumber->value + 1) . "', 'save', 'EducationSectionController')" . '"'. ">Save Education</button>
                         </form>
                         <form id='delete_education_" . strval($educationsNumber->value + 1) . "_section_form'>
@@ -181,20 +181,20 @@ class EducationSectionController extends CvSectionController{
                         <form id='save_education_" . $education["id"] . "_section_form'>
                             <div class='col-sm-3'>
                                 <label for='degree-" . $education["id"] . "' class='form-label'>Degree</label>
-                                <input type='text' class='form-control' id='degree-" . $education["id"] . "' name='degree' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $education["degree"])) . "'>
+                                <input type='text' class='form-control cv-input' id='degree-" . $education["id"] . "' name='degree' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $education["degree"])) . "'>
                                 <br>
                                 <label for='field-" . $education["id"] . "' class='form-label'>Field</label>
-                                <input type='text' class='form-control' id='field-" . $education["id"] . "' name='field' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $education["field"])) . "'>
+                                <input type='text' class='form-control cv-input' id='field-" . $education["id"] . "' name='field' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $education["field"])) . "'>
                                 <br>
                                 <label for='school-name-" . $education["id"] . "' class='form-label'>School Name</label>
-                                <input type='text' class='form-control' id='school-name-" . $education["id"] . "' name='school_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $education["school_name"])) . "'>
+                                <input type='text' class='form-control cv-input' id='school-name-" . $education["id"] . "' name='school_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $education["school_name"])) . "'>
                             </div>
                             <div class='col-sm-3'>
                                 <label for='date-debut-etude-" . $education["id"] . "' class='form-label'>Date debut d'etude</label>
-                                <input type='date' class='form-control' id='date-debut-etude-" . $education["id"] . "' name='education_start_date' value='" . $education["start_date"] . "'>
+                                <input type='date' class='form-control cv-input' id='date-debut-etude-" . $education["id"] . "' name='education_start_date' value='" . $education["start_date"] . "'>
                                 <br>
                                 <label for='date-diplome-" . $education["id"] . "' class='form-label'>Date obtention diplome</label>
-                                <input type='date' class='form-control' id='date-diplome-" . $education["id"] . "' name='education_end_date' value='" . $education["end_date"] . "'>
+                                <input type='date' class='form-control cv-input' id='date-diplome-" . $education["id"] . "' name='education_end_date' value='" . $education["end_date"] . "'>
                                 <button onclick=" . '"' . "ModifySection('education_" . $education["id"] . "', 'save', 'EducationSectionController')".'"' . ">Save Education</button>
                                 <br>
                             </div>
@@ -217,20 +217,20 @@ class EducationSectionController extends CvSectionController{
                         <form id='save_education_1_section_form'>
                             <div class='col-sm-3'>
                                 <label for='degree-1' class='form-label'>Degree</label>
-                                <input type='text' class='form-control' id='degree-1' name='degree'>
+                                <input type='text' class='form-control cv-input' id='degree-1' name='degree'>
                                 <br>
                                 <label for='field-1' class='form-label'>Field</label>
-                                <input type='text' class='form-control' id='field-1' name='field'>
+                                <input type='text' class='form-control cv-input' id='field-1' name='field'>
                                 <br>
                                 <label for='school-name-1' class='form-label'>School Name</label>
-                                <input type='text' class='form-control' id='school-name-1' name='school_name'>
+                                <input type='text' class='form-control cv-input' id='school-name-1' name='school_name'>
                             </div>
                             <div class='col-sm-3'>
                                 <label for='date-debut-etude-1' class='form-label'>Date debut d'etude</label>
-                                <input type='date' class='form-control' id='date-debut-etude-1' name='education_start_date'>
+                                <input type='date' class='form-control cv-input' id='date-debut-etude-1' name='education_start_date'>
                                 <br>
                                 <label for='date-diplome-1' class='form-label'>Date obtention diplome</label>
-                                <input type='date' class='form-control' id='date-diplome-1' name='education_end_date'>
+                                <input type='date' class='form-control cv-input' id='date-diplome-1' name='education_end_date'>
                                 <button onclick=" . '"' . "ModifySection('education_1', 'save', 'EducationSectionController')".'"' . ">Save Education</button>
                                 <br>
                             </div>
