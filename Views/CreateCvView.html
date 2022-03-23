@@ -268,10 +268,9 @@ input[type="file"] {
           
         }
         //image
-        var image = document.getElementById('output');
-        var img = document.getElementById('img');
+        var img = document.getElementById('output-logo');
         var imgcv = document.getElementById("output-cv");
-        imgcv.src = URL.createObjectURL(img.files[0]);
+        imgcv.src = img.src;
         //test.innerHTML= cvinputsclasses[0].id;
         /*
         //nom prenom
