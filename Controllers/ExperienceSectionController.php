@@ -125,11 +125,11 @@ class ExperienceSectionController extends CvSectionController{
                     $response_array["new_subsec_html"] = "
                     <div class='experience' id='experience_" . strval($experiencesNumber->value + 1) . "'>
                         <form id='save_experience_" . strval($experiencesNumber->value + 1) . "_section_form'>
-                        <input type='text' name='position' placeholder='Position'>
-                        <input type='text' name='company_name' placeholder='Company Name'>
-                        <input type='text' name='company_location' placeholder='Company Location'>
-                        <input type='date' class='form-control' name='position_start_date' placeholder=''>
-                        <input type='date' class='form-control' name='position_end_date' placeholder=''>
+                        <input type='text' class='cv-input' name='position' placeholder='Position'>
+                        <input type='text' class='cv-input' name='company_name' placeholder='Company Name'>
+                        <input type='text' class='cv-input' name='company_location' placeholder='Company Location'>
+                        <input type='date' class='cv-input' class='form-control' name='position_start_date' placeholder=''>
+                        <input type='date' class='cv-input' class='form-control' name='position_end_date' placeholder=''>
                         <textarea name='experience_description' class='form-control' cols='30' rows='5' ></textarea>
                             <button type='submit' onclick=" . '"'. "ModifySection('experience_" . strval($experiencesNumber->value + 1) . "', 'save', 'ExperienceSectionController')" . '"'. ">Save Experience</button>
                         </form>
@@ -184,24 +184,24 @@ class ExperienceSectionController extends CvSectionController{
                         <form id='save_experience_" . $experience["id"] . "_section_form'>
                             <div class='col-sm-3'>
                                 <label for='position-" . $experience["id"] . "' class='form-label'>Position</label>
-                                <input type='text' class='form-control' id='position-" . $experience["id"] . "' name='position' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $experience["position"])) . "'>
+                                <input type='text' class='form-control cv-input' id='position-" . $experience["id"] . "' name='position' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $experience["position"])) . "'>
                                 <br>
                                 <label for='company-name-" . $experience["id"] . "' class='form-label'>Company Name</label>
-                                <input type='text' class='form-control' id='company-name-" . $experience["id"] . "' name='company_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $experience["company_name"])) . "'>
+                                <input type='text' class='form-control cv-input' id='company-name-" . $experience["id"] . "' name='company_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $experience["company_name"])) . "'>
                                 <br>
                                 <label for='company-location-" . $experience["id"] . "' class='form-label'>Company Location</label>
-                                <input type='text' class='form-control' id='company-location-" . $experience["id"] . "' name='company_location' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $experience["company_location"])) . "'>
+                                <input type='text' class='form-control cv-input' id='company-location-" . $experience["id"] . "' name='company_location' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $experience["company_location"])) . "'>
                             </div>
                             <div class='col-sm-3'>
                                 <label for='exp-date-debut-" . $experience["id"] . "' class='form-label'>Date début l'experience</label>
-                                <input type='date' class='form-control' id='exp-date-debut-" . $experience["id"] . "' name='position_start_date' value='" . $experience["start_date"] . "'>
+                                <input type='date' class='form-control cv-input' id='exp-date-debut-" . $experience["id"] . "' name='position_start_date' value='" . $experience["start_date"] . "'>
                                 <br>
                                 <label for='exp-date-fin-" . $experience["id"] . "' class='form-label'>Date fin l'experience</label>
-                                <input type='date' class='form-control' id='exp-date-fin-" . $experience["id"] . "' name='position_end_date' value='" . $experience["end_date"] . "'>
+                                <input type='date' class='form-control cv-input' id='exp-date-fin-" . $experience["id"] . "' name='position_end_date' value='" . $experience["end_date"] . "'>
                             </div>
                             <div class='col-sm-8'>
                                 <label for='exp-" . $experience["id"] . "' class='form-label'>Description</label>
-                                <textarea class='form-control' rows='3' id='exp-" . $experience["id"] . "' name='experience_description' placeholder='Ex : ingénieur en systemes embarquées' name='text' >" . $experience["description"] . "</textarea>
+                                <textarea class='form-control cv-input' rows='3' id='exp-" . $experience["id"] . "' name='experience_description' placeholder='Ex : ingénieur en systemes embarquées' name='text' >" . $experience["description"] . "</textarea>
                                 <button onclick=" . '"' . "ModifySection('experience_" . $experience["id"] . "', 'save', 'ExperienceSectionController')".'"' . ">Save Experience</button>
                                 <br>
                             </div>
@@ -224,24 +224,24 @@ class ExperienceSectionController extends CvSectionController{
                         <form id='save_experience_1_section_form'>
                             <div class='col-sm-3'>
                                 <label for='position-1' class='form-label'>Position</label>
-                                <input type='text' class='form-control' id='position-1' name='position'>
+                                <input type='text' class='form-control cv-input' id='position-1' name='position'>
                                 <br>
                                 <label for='company-name-1' class='form-label'>Company Name</label>
-                                <input type='text' class='form-control' id='company-name-1' name='company_name'>
+                                <input type='text' class='form-control cv-input' id='company-name-1' name='company_name'>
                                 <br>
                                 <label for='company-location-1' class='form-label'>Company Location</label>
-                                <input type='text' class='form-control' id='company-location-1' name='company_location'>
+                                <input type='text' class='form-control cv-input' id='company-location-1' name='company_location'>
                             </div>
                             <div class='col-sm-3'>
                                 <label for='exp-date-debut-1' class='form-label'>Date début l'experience</label>
-                                <input type='date' class='form-control' id='exp-date-debut-1' name='position_start_date'>
+                                <input type='date' class='form-control cv-input' id='exp-date-debut-1' name='position_start_date'>
                                 <br>
                                 <label for='exp-date-fin-1' class='form-label'>Date fin l'experience</label>
-                                <input type='date' class='form-control' id='exp-date-fin-1' name='position_end_date'>
+                                <input type='date' class='form-control cv-input' id='exp-date-fin-1' name='position_end_date'>
                             </div>
                             <div class='col-sm-8'>
                                 <label for='exp-1' class='form-label'>Description</label>
-                                <textarea class='form-control' rows='3' id='exp-1' name='experience_description' placeholder='Ex : ingénieur en systemes embarquées' name='text' ></textarea>
+                                <textarea class='form-control cv-input' rows='3' id='exp-1' name='experience_description' placeholder='Ex : ingénieur en systemes embarquées' name='text' ></textarea>
                                 <button onclick=" . '"' . "ModifySection('experience_1', 'save', 'ExperienceSectionController')".'"' . ">Save Experience</button>
                                 <br>
                             </div>
