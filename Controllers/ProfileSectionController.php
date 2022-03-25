@@ -97,7 +97,7 @@ class ProfileSectionController extends CvSectionController{
                         <form id='save_profile_section_form'>        
                             <div class='col-sm-12'>
                                 <label for='profile' class='form-label'>Descripton de profile</label>
-                                <textarea class='form-control' rows='5' id='profile' name='profile_description'>";
+                                <textarea class='form-control cv-input' rows='5' id='profile' name='profile_description'>";
 
         // only logged in users can view their saved data
         if($this->sectionModel->auth->isLoggedIn()){
