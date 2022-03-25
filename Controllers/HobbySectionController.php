@@ -99,7 +99,7 @@ class HobbySectionController extends CvSectionController{
                     $response_array["new_subsec_html"] = "
                     <div class='hobby' id='hobby_" . strval($hobbiesNumber->value + 1) . "'>
                         <form id='save_hobby_" . strval($hobbiesNumber->value + 1) . "_section_form'>
-                            <input type='text' name='hobby_name' placeholder='Hobby'>
+                            <input class='cv-input' type='text' name='hobby_name' placeholder='Hobby'>
                             <button type='submit' onclick=" . '"'. "ModifySection('hobby_" . strval($hobbiesNumber->value + 1) . "', 'save', 'HobbySectionController')" . '"'. ">Save Hobby</button>
                         </form>
                         <form id='delete_hobby_" . strval($hobbiesNumber->value + 1) . "_section_form'>
@@ -153,7 +153,7 @@ class HobbySectionController extends CvSectionController{
                         <form id='save_hobby_" . $hobby["id"] . "_section_form'>
                             <div class='col-sm-12'>
                                 <label for='hobbie-" . $hobby["id"] . "' class='form-label'>interet</label>
-                                <input type='text' class='form-control' placeholder='' name='hobby_name' id='hobbie-" . $hobby["id"] . "' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $hobby["hobby_name"])) . "'>
+                                <input type='text' class='form-control cv-input' placeholder='' name='hobby_name' id='hobbie-" . $hobby["id"] . "' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $hobby["hobby_name"])) . "'>
                                 <button type='submit' onclick=" . '"' . "ModifySection('hobby_" . $hobby["id"] . "', 'save', 'HobbySectionController')".'"' . ">Save Hobby</button>
                             </div>
                         </form>
@@ -175,7 +175,7 @@ class HobbySectionController extends CvSectionController{
                         <form id='save_hobby_1_section_form'>
                             <div class='col-sm-12'>
                                 <label for='hobbie-1' class='form-label'>interet</label>
-                                <input type='text' class='form-control' placeholder='' name='hobby_name' id='hobbie-1'>
+                                <input type='text' class='form-control cv-input' placeholder='' name='hobby_name' id='hobbie-1'>
                                 <button type='submit' onclick=" . '"' . "ModifySection('hobby_1', 'save', 'HobbySectionController')".'"' . ">Save Hobby</button>
                             </div>
                         </form>
