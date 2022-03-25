@@ -105,11 +105,11 @@ class SideProjetSectionController extends CvSectionController{
                         <form id='save_project_" . strval($sideProjectsNumber->value + 1) . "_section_form'>
                             <div class'col-sm-4'>
                                 <label for='project-title-" . strval($sideProjectsNumber->value + 1) . "' class='form-label'>titre de projet</label>
-                                <input type='text' class='form-control' placeholder='' name='side_project_title' id='project-title-" . strval($sideProjectsNumber->value + 1) . "'>
+                                <input type='text' class='form-control cv-input' placeholder='' name='side_project_title' id='project-title-" . strval($sideProjectsNumber->value + 1) . "'>
                             </div>
                             <div class'col-sm-4'>
                                 <label for='project-" . strval($sideProjectsNumber->value + 1) . "' class='form-label'>description</label>
-                                <textarea class='form-control' rows='3' id='project-" . strval($sideProjectsNumber->value + 1) . "' placeholder='' name='side_project_description'></textarea>
+                                <textarea class='form-control cv-input' rows='3' id='project-" . strval($sideProjectsNumber->value + 1) . "' placeholder='' name='side_project_description'></textarea>
                             </div>
                             <div class'col-sm-4'>
                                 <button type='submit' onclick=" . '"'. "ModifySection('project_" . strval($sideProjectsNumber->value + 1) . "', 'save', 'SideProjectSectionController')" . '"'. ">Save Project</button>
@@ -167,11 +167,11 @@ class SideProjetSectionController extends CvSectionController{
                         <form id='save_side_project_" . $sideProject["id"] . "_section_form'>
                             <div class='col-sm-4'>
                                 <label for='project-title-" . $sideProject["id"] . "' class='form-label'>titre de projet</label>
-                                <input type='text' class='form-control' placeholder='' name='side_project_title' id='project-title-" . $sideProject["id"] . "' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $sideProject["title"])) . "'>
+                                <input type='text' class='form-control cv-input' placeholder='' name='side_project_title' id='project-title-" . $sideProject["id"] . "' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $sideProject["title"])) . "'>
                             </div>
                             <div class='col-sm-8'>
                                 <label for='project-" . $sideProject["id"] . "' class='form-label'>projet</label>
-                                <textarea class='form-control' rows='5' id='project-" . $sideProject["id"] . "' name='side_project_description'>" . $sideProject["description"] . "</textarea>
+                                <textarea class='form-control cv-input' rows='5' id='project-" . $sideProject["id"] . "' name='side_project_description'>" . $sideProject["description"] . "</textarea>
                                 <button type='submit' onclick=" . '"' . "ModifySection('side_project_" . $sideProject["id"] . "', 'save', 'SideProjectSectionController')".'"' . ">Save Side Project</button>
                             </div>
                         </form>
@@ -193,11 +193,11 @@ class SideProjetSectionController extends CvSectionController{
                         <form id='save_side_project_1_section_form'>
                             <div class='col-sm-4'>
                                 <label for='project-title-1' class='form-label'>titre de projet</label>
-                                <input type='text' class='form-control' placeholder='' name='side_project_title' id='project-title-1'>
+                                <input type='text' class='form-control cv-input' placeholder='' name='side_project_title' id='project-title-1'>
                             </div>
                             <div class='col-sm-8'>
                                 <label for='project-1' class='form-label'>projet</label>
-                                <textarea class='form-control' rows='5' id='project-1' name='side_project_description'></textarea>
+                                <textarea class='form-control cv-input' rows='5' id='project-1' name='side_project_description'></textarea>
                                 <button type='submit' onclick=" . '"' . "ModifySection('side_project_1', 'save', 'SideProjectSectionController')".'"' . ">Save Side Project</button>
                             </div>
                         </form>
