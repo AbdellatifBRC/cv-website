@@ -110,11 +110,11 @@ class SocialLinkSectionController extends CvSectionController{
                         <form id='save_link_" . strval($socialLinksNumber->value + 1) . "_section_form'>
                             <div class'col-sm-4'>
                                 <label for='website-name-" . strval($socialLinksNumber->value + 1) . "' class='form-label'>nom du site</label>
-                                <input type='text' class='form-control' placeholder='' name='website_name' id='website-name-" . strval($socialLinksNumber->value + 1) . "'>
+                                <input type='text' class='form-control cv-input' placeholder='' name='website_name' id='website-name-" . strval($socialLinksNumber->value + 1) . "'>
                             </div>
                             <div class'col-sm-4'>
                                 <label for='link-" . strval($socialLinksNumber->value + 1) . "' class='form-label'>lien</label>
-                                <input type='text' class='form-control' placeholder='' name='website_link' id='link-" . strval($socialLinksNumber->value + 1) . "'>
+                                <input type='text' class='form-control cv-input' placeholder='' name='website_link' id='link-" . strval($socialLinksNumber->value + 1) . "'>
                             </div>
                             <div class'col-sm-4'>
                                 <button type='submit' onclick=" . '"'. "ModifySection('link_" . strval($socialLinksNumber->value + 1) . "', 'save', 'SocialLinkSectionController')" . '"'. ">Save Link</button>
@@ -172,11 +172,11 @@ class SocialLinkSectionController extends CvSectionController{
                         <form id='save_social_link_" . $socialLink["id"] . "_section_form'>
                             <div class'col-sm-4'>
                                 <label for='website-name-" . $socialLink["id"] . "' class='form-label'>nom du site</label>
-                                <input type='text' class='form-control' placeholder='' name='website_name' id='website-name-" . $socialLink["id"] . "' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $socialLink["website_name"])) . "'>
+                                <input type='text' class='form-control cv-input' placeholder='' name='website_name' id='website-name-" . $socialLink["id"] . "' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $socialLink["website_name"])) . "'>
                             </div>
                             <div class'col-sm-4'>
                                 <label for='link-" . $socialLink["id"] . "' class='form-label'>lien</label>
-                                <input type='text' class='form-control' placeholder='' name='website_link' id='link-" . $socialLink["id"] . "' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $socialLink["link"])) . "'>
+                                <input type='text' class='form-control cv-input' placeholder='' name='website_link' id='link-" . $socialLink["id"] . "' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $socialLink["link"])) . "'>
                             </div>
                             <div class'col-sm-4'>
                                 <button type='submit' onclick=" . '"'. "ModifySection('social_link_" . $socialLink["id"] . "', 'save', 'SocialLinkSectionController')" . '"'. ">Save Link</button>
@@ -200,11 +200,11 @@ class SocialLinkSectionController extends CvSectionController{
                         <form id='save_social_link_1_section_form'>
                             <div class'col-sm-4'>
                                 <label for='website-name-1' class='form-label'>nom du site</label>
-                                <input type='text' class='form-control' placeholder='' name='website_name' id='website-name-1'>
+                                <input type='text' class='form-control cv-input' placeholder='' name='website_name' id='website-name-1'>
                             </div>
                             <div class'col-sm-4'>
                                 <label for='link-1' class='form-label'>lien</label>
-                                <input type='text' class='form-control' placeholder='' name='website_link' id='link-1'>
+                                <input type='text' class='form-control cv-input' placeholder='' name='website_link' id='link-1'>
                             </div>
                             <div class'col-sm-4'>
                                 <button type='submit' onclick=" . '"'. "ModifySection('social_link_1', 'save', 'SocialLinkSectionController')" . '"'. ">Save Link</button>
