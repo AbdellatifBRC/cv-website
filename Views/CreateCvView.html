@@ -56,11 +56,13 @@ input[type="file"] {
 .part-1{display: block;background-color: #ededed;border-radius: 5px 5px 0px 0px;}
 .part-1 p{display: inline;margin-left: 2px;}
 .output-cv {}
-.part-2-1 {border: solid 1px;border-radius: 0px 0px 0px 5px;padding: 2px;}
+.part-2-1 {border-radius: 0px 0px 0px 5px;padding: 2px;}
 .part-2-1 img{width:60px;}
 .part-2-1 p {font-size: xx-small;margin-bottom: -2px;}
 .part-2-1-adressplus {}
 .part-2-1-adressplus p {display: inline;}
+
+.part-2-2 p {font-size: xx-small;margin-bottom: -2px;}
     </style>
     <script>
       function sleep(ms) {
@@ -240,7 +242,7 @@ input[type="file"] {
        
 
       });*/
-     
+      
       var loadFile = function(event) {
         var image = document.getElementById('output');
         var imagelogo = document.getElementById('output-logo');
@@ -461,6 +463,10 @@ input[type="file"] {
 
                         <div class="hobby">
                           <p class="cv-input-view" id="hobby"></p>
+                        </div>
+                        <div class="langages">
+                          <p class="cv-input-view" id="lunguage"></p>
+                          <p class="cv-input-view" id="level"></p>
                         </div>
                     </div>
                     
