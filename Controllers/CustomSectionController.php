@@ -103,17 +103,19 @@ class CustomSectionController extends CvSectionController{
                     $response_array["new_subsec_html"] = "
                     <div class='card-header' id='custom_section_" . strval($customSectionNumber->value + 1) . "_header'>
                         <a class='btn' data-bs-toggle='collapse' href='#custom_section_" . strval($customSectionNumber->value + 1) . "'>
-                            <input type='text' placeholder='Custom Section Title' name='custom_section_title' form='save_custom_section_" . strval($customSectionNumber->value + 1) . "_section_form'>
+                           
                         </a>
                     </div>
                     <div id='custom_section_" . strval($customSectionNumber->value + 1) . "' class='collapse show' data-bs-parent='#accordion'>
                         <div class='card-body'>
+                        <input class='cv-input' type='text' placeholder='Custom Section Title' name='custom_section_title' form='save_custom_section_" . strval($customSectionNumber->value + 1) . "_section_form'>
+                        <hr>
                             <div class='custom' id='customs_" . strval($customSectionNumber->value + 1) . "'>
                                 <div class='row'>
                                     <form id='save_custom_section_" . strval($customSectionNumber->value + 1) . "_section_form'>
                                         <div class='col-sm-12'>
                                             <label for='custom-description-" . strval($customSectionNumber->value + 1) . "' class='form-label'>Description</label>
-                                            <textarea class='form-control' rows='3' placeholder='' name='custom_section_description' id='custom-description-" . strval($customSectionNumber->value + 1) . "'></textarea>
+                                            <textarea class='form-control cv-input' rows='3' placeholder='' name='custom_section_description' id='custom-description-" . strval($customSectionNumber->value + 1) . "'></textarea>
                                         </div>
                                         <div class='col-sm-8'>
                                             <button type='submit' onclick=" . '"' . "ModifySection('custom_section_" . strval($customSectionNumber->value + 1) . "', 'save', 'CustomSectionController')" . '"' . ">Save Section</button>
@@ -173,7 +175,7 @@ class CustomSectionController extends CvSectionController{
                                     <div class='col-sm-12'>
                                         <label for='custom-description-" . $customSection["id" ] . "' class='form-label'>Description</label>
                                         <input type='hidden' name='custom_section_title' value='" . $customSection["title"] . "'>
-                                        <textarea class='form-control' rows='3' placeholder='' name='custom_section_description' id='custom-description-" . $customSection["id" ] . "'>" . $customSection["description"] . "</textarea>
+                                        <textarea class='form-control cv-input' rows='3' placeholder='' name='custom_section_description' id='custom-description-" . $customSection["id" ] . "'>" . $customSection["description"] . "</textarea>
                                     </div>
                                     <div class='col-sm-8'>
                                         <button type='submit' onclick=" . '"' . "ModifySection('custom_section_" . $customSection["id" ] . "', 'save', 'CustomSectionController')" . '"' . ">Save Section</button>
