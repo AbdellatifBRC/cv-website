@@ -340,7 +340,7 @@ input[type="file"] {
     </div>
   </nav>
   <br>
-  <div class="container">
+  <div class="container-fluid">
     <div class="popup-hide" id="popup">
       <button class="btn btn-primary" onclick="hidepopup('popup')">close</button>
                   
@@ -445,32 +445,27 @@ input[type="file"] {
                   <!--part 2-1-->
                   <div class="col-sm-4" id="part-2-1">
                     <div class="part-2-1">
-                        <img class="img-fluid output-cv" id="output-cv"/>
-                        
-                        
-                        <p class="cv-input-view" id="email-view"></p>
-                        <p class="cv-input-view" id="number-view"></p>
-                        <p class="cv-input-view" id="adress-view"></p>
-
-                        <div class="part-2-1-adressplus">
-                          <p class="cv-input-view" id="city-view"></p>
-                          
+                        <div class="perso-details">
+                          <img class="img-fluid output-cv" id="output-cv"/>                         
+                          <p class="cv-input-view" id="email-view"></p>
+                          <p class="cv-input-view" id="number-view"></p>
+                          <p class="cv-input-view" id="adress-view"></p>
+                          <p class="cv-input-view" id="birthday-view"></p>
                         </div>
-                        
-                          
-
-                        <p class="cv-input-view" id="birthday-view"></p>
-
-                        <div class="hobby">
+                        <div class="hobbies">
                           <p class="cv-input-view" id="hobby"></p>
                         </div>
                         <div class="langages">
-                          <p class="cv-input-view" id="lunguage"></p>
-                          <p class="cv-input-view" id="level"></p>
+                          <p class="cv-input-view" id="language"></p>
+                          <p class="cv-input-view" id="language-level"></p>
                         </div>
                         <div class="skills">
                           <p class="cv-input-view" id="skill"></p>
-                          <p class="cv-input-view" id="skilllevel"></p>
+                          <p class="cv-input-view" id="skill-level"></p>
+                        </div>
+                        <div class="socialm">
+                          <p class="cv-input-view" id="socialm-name"></p>
+                          <p class="cv-input-view" id="socialm-link"></p>
                         </div>
                     </div>
                     
@@ -479,14 +474,14 @@ input[type="file"] {
                   <div class="col-sm-8" id="part-2-2">
 
                     <div class="part-2-2">
-                      <div class="formation">
-                        <p class="cv-input-view" id="course"></p>
+                      <div class="formations">
+                        <p class="cv-input-view" id="formations"></p>
                       </div>
-                      
+
                       <div class="education">
-                        <p class="cv-input-view" id="education-d"></p>
-                        <p class="cv-input-view" id="education-s"></p>
-                        <p class="cv-input-view" id="education-f"></p>
+                        <p class="cv-input-view" id="education-description"></p>
+                        <p class="cv-input-view" id="education-feild"></p>
+                        <p class="cv-input-view" id="education-school"></p>
                         <p class="cv-input-view" id="education-debut"></p>
                         <p class="cv-input-view" id="education-fin"></p>
 
@@ -497,34 +492,28 @@ input[type="file"] {
                         <p class="cv-input-view" id="company-location"></p>
                         <p class="cv-input-view" id="exp-debut"></p>
                         <p class="cv-input-view" id="exp-fin"></p>
-                        <p class="cv-input-view" id="description"></p>
+                        <p class="cv-input-view" id="exp-description"></p>
 
                       </div>
                       <div class="profile">
                         <p class="cv-input-view" id="profile"></p>
                       </div>
-                      <div class="projet">
+                      <div class="projets">
                         <p class="cv-input-view" id="projet"></p>
                         <p class="cv-input-view" id="projet-d"></p>
                       </div>
-                      <div class="socialm">
-                        <p class="cv-input-view" id="socialm"></p>
-                        <p class="cv-input-view" id="socialm2"></p>
-                      </div>
+                     
                       <div class="customSection">
-                        <p class="cv-input-view" id="Title"></p>
-                        <p class="cv-input-view" id="Description"></p>
-                      </div>
-                      
-
-                      
+                        <p class="cv-input-view" id="customSection-title"></p>
+                        <p class="cv-input-view" id="customSection-description"></p>
+                      </div>                                        
                       
                     </div>
 
                   </div>
                 </div>
               </div> 
-              <!--choose a cv model-->
+              <!--choose a cv model + reset + download -->
               <br>
               
               <div class="show">
