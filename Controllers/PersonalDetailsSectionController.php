@@ -266,7 +266,7 @@ class PersonalDetailsSectionController extends CvSectionController{
                     </div>
                     <div class='col-12'>
                         <label for='inputAddress2' class='form-label'>Date de naissance</label>
-                        <input type='date' class='form-control cv-input' id='inputAddress2' placeholder='' name='birthdate' form='save_personal_details_section_form'>
+                        <input onchange='icons()' type='date' class='form-control cv-input' id='inputAddress2' placeholder='' name='birthdate' form='save_personal_details_section_form'>
                     </div>
                     <div class='col-md-6'>
                         <label for='inputJobTitle' class='form-label'>Job Title</label>

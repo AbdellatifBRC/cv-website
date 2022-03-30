@@ -67,6 +67,8 @@ input[type="file"] {
 .email-v i{font-size: 10px;}
 .number-v svg{width: 10px;}
 .adress-v i{font-size: 10px;}
+
+.sub-title {color: gray;}
     </style>
     <script>
       function sleep(ms) {
@@ -263,9 +265,11 @@ input[type="file"] {
         var email=document.getElementById("inputEmail4").value;
         var number=document.getElementById("numro").value;
         var adress=document.getElementById("inputAddress").value;
+        var birthday=document.getElementById("inputAddress2").value;
         var emailIcon=document.getElementById("emailIcon");
         var numberIcon=document.getElementById("numberIcon");
         var adressIcon=document.getElementById("adressIcon");
+        var birthdayTitle=document.getElementById("birthday-title");
         //emailIcon.style.visibility = 'visible';
         if (email.length ==0) {
           emailIcon.style.visibility = 'hidden';
@@ -281,6 +285,11 @@ input[type="file"] {
           adressIcon.style.visibility = 'hidden';
         } else {
           adressIcon.style.visibility = 'visible';
+        }
+        if (birthday.length ==0) {
+          birthdayTitle.style.visibility = 'hidden';
+        } else {
+          birthdayTitle.style.visibility = 'visible';
         }
       }
       //cv display functions
@@ -501,8 +510,11 @@ input[type="file"] {
                             <p class="cv-input-view d-inline" id="adress-view"></p>
                           </span>
                           
+                          <span class="birthday">
+                            <p class="sub-title d-block" id="birthday-title" style="visibility: hidden;">Date de naissance</p>
+                            <p class="cv-input-view d-block" id="birthday-view"></p> 
+                          </span>
                           
-                          <p class="cv-input-view" id="birthday-view"></p>
                           <p class="cv-input-view" id="job"></p>
                         </div>
                         <div class="hobbies">
