@@ -270,7 +270,7 @@ class PersonalDetailsSectionController extends CvSectionController{
                     </div>
                     <div class='col-md-6'>
                         <label for='inputJobTitle' class='form-label'>Job Title</label>
-                        <input type='text' class='form-control cv-input' id='inputJobTitle' name='job_title' form='save_personal_details_section_form'>
+                        <input onchange='icons()' type='text' class='form-control cv-input' id='inputJobTitle' name='job_title' form='save_personal_details_section_form'>
                     </div> 
                 </div>
                 <hr>

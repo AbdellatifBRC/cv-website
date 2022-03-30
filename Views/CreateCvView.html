@@ -53,7 +53,7 @@ input[type="file"] {
 }
 .img-uploaded img {width: 250px;}
 .cv-view {border: solid 1px rgb(165, 125, 125);height: 550px;border-radius: 5px;}
-.part-1{display: block;background-color: #ededed;border-radius: 5px 5px 0px 0px;}
+.part-1{display: block;border-radius: 5px 5px 0px 0px;}
 .part-1 p{display: inline;margin-left: 2px;}
 .output-cv {}
 .part-2-1 {border-radius: 0px 0px 0px 5px;padding: 2px;}
@@ -266,10 +266,12 @@ input[type="file"] {
         var number=document.getElementById("numro").value;
         var adress=document.getElementById("inputAddress").value;
         var birthday=document.getElementById("inputAddress2").value;
+        var job=document.getElementById("inputJobTitle").value;
         var emailIcon=document.getElementById("emailIcon");
         var numberIcon=document.getElementById("numberIcon");
         var adressIcon=document.getElementById("adressIcon");
         var birthdayTitle=document.getElementById("birthday-title");
+        var jobTitle=document.getElementById("job-title");
         //emailIcon.style.visibility = 'visible';
         if (email.length ==0) {
           emailIcon.style.visibility = 'hidden';
@@ -290,6 +292,11 @@ input[type="file"] {
           birthdayTitle.style.visibility = 'hidden';
         } else {
           birthdayTitle.style.visibility = 'visible';
+        }
+        if (job.length ==0) {
+          jobTitle.style.visibility = 'hidden';
+        } else {
+          jobTitle.style.visibility = 'visible';
         }
       }
       //cv display functions
@@ -514,8 +521,11 @@ input[type="file"] {
                             <p class="sub-title d-block" id="birthday-title" style="visibility: hidden;">Date de naissance</p>
                             <p class="cv-input-view d-block" id="birthday-view"></p> 
                           </span>
-                          
-                          <p class="cv-input-view" id="job"></p>
+                          <span class="job">
+                            <p class="sub-title d-block" id="job-title" style="visibility: hidden;">Profession</p>
+                            <p class="cv-input-view" id="job-view"></p>
+                          </span>                         
+                         
                         </div>
                         <div class="hobbies">
                           <p class="cv-input-view" id="hobby"></p>
