@@ -254,15 +254,15 @@ class PersonalDetailsSectionController extends CvSectionController{
                 <div class='row g-3'>
                     <div class='col-md-6'>
                         <label for='inputEmail4' class='form-label'>Email</label>
-                        <input type='email' class='form-control cv-input' id='inputEmail4' name='email' form='save_personal_details_section_form'>
+                        <input onchange='icons()' type='email' class='form-control cv-input' id='inputEmail4' name='email' form='save_personal_details_section_form'>
                     </div>
                     <div class='col-md-6'>
                         <label for='numero' class='form-label'>Numero</label>
-                        <input type='text' class='form-control cv-input' id='numro' name='phone' form='save_personal_details_section_form'>
+                        <input onchange='icons()' type='text' class='form-control cv-input' id='numro' name='phone' form='save_personal_details_section_form'>
                     </div>
                     <div class='col-12'>
                         <label for='inputAddress' class='form-label'>Address</label>
-                        <input type='text' class='form-control cv-input' id='inputAddress' placeholder='' name='address' form='save_personal_details_section_form'>
+                        <input onchange='icons()' type='text' class='form-control cv-input' id='inputAddress' placeholder='' name='address' form='save_personal_details_section_form'>
                     </div>
                     <div class='col-12'>
                         <label for='inputAddress2' class='form-label'>Date de naissance</label>
