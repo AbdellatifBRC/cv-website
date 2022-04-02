@@ -117,8 +117,8 @@ class SkillSectionController extends CvSectionController{
                     $response_array["new_subsec_html"] = "
                     <div class='skill' id='skill_" . strval($skillsNumber->value + 1) . "'>
                         <form id='save_skill_" . strval($skillsNumber->value + 1) . "_section_form'>
-                            <input type='text' name='skill_name' placeholder='Skill'>
-                            <input type='text' name='skill_level' placeholder='Skill Level'>
+                            <input type='text' class='cv-input-1' name='skill_name' placeholder='Skill'>
+                            <input type='text' class='cv-input-1' name='skill_level' placeholder='Skill Level'>
                             <button type='submit' onclick=" . '"'. "ModifySection('skill_" . strval($skillsNumber->value + 1) . "', 'save', 'SkillSectionController')" . '"'. ">Save Skill</button>
                         </form>
                         <form id='delete_skill_" . strval($skillsNumber->value + 1) . "_section_form'>
@@ -172,10 +172,10 @@ class SkillSectionController extends CvSectionController{
                         <form id='save_skill_" . $skill["id"] . "_section_form'>
                             <div class='col-sm-12'>
                                 <label for='skill-" . $skill["id"] . "' class='form-label'>Compétence</label>
-                                <input type='text' class='form-control cv-input' placeholder='' id='skill-" . $skill["id"] . "' name='skill_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $skill["skill_name"])) . "'>
+                                <input type='text' class='form-control cv-input-1' placeholder='' id='skill-" . $skill["id"] . "' name='skill_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $skill["skill_name"])) . "'>
                                 <br>
                                 <label for='range-" . $skill["id"] . "' class='form-label'>Niveau</label>
-                                <input type='range' class='form-range cv-input' step='1' id='range-" . $skill["id"] . "' name='skill_level' min='0' max='5' value='" . $skill["skill_level"] . "'>
+                                <input type='range' class='form-range cv-input-1' step='1' id='range-" . $skill["id"] . "' name='skill_level' min='0' max='5' value='" . $skill["skill_level"] . "'>
                                 <button type='submit' onclick=" . '"' . "ModifySection('skill_" . $skill["id"] . "', 'save', 'SkillSectionController')".'"' . ">Save Skill</button>
                             </div>
                         </form>
@@ -197,10 +197,10 @@ class SkillSectionController extends CvSectionController{
                     <form id='save_skill_1_section_form'>
                         <div class='col-sm-12'>
                             <label for='skill-1' class='form-label'>Compétence</label>
-                            <input type='text' class='form-control cv-input' placeholder='' id='skill-1' name='skill_name'>
+                            <input type='text' class='form-control cv-input-1' placeholder='' id='skill-1' name='skill_name'>
                             <br>
                             <label for='range-1' class='form-label'>Niveau</label>
-                            <input type='range' class='form-range cv-input' step='1' id='range-1' name='skill_level' min='0' max='5' value='1'>
+                            <input type='range' class='form-range cv-input-1' step='1' id='range-1' name='skill_level' min='0' max='5' value='1'>
                             <button type='submit' onclick=" . '"' . "ModifySection('skill_1', 'save', 'SkillSectionController')".'"' . ">Save Skill</button>
                         </div>
                     </form>
