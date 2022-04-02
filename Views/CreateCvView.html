@@ -299,6 +299,12 @@ input[type="file"] {
           jobTitle.style.visibility = 'visible';
         }
       }
+      function image(params) {
+        //image
+        var img = document.getElementById('output-logo');
+        var imgcv = document.getElementById("output-cv");
+        imgcv.src = img.src;
+      }
       //cv display functions
       function part1(params) {
         //part1+part2-1 cv-input-1
@@ -314,24 +320,10 @@ input[type="file"] {
           
           
         }
-        //part2-2 cv-input-2
-        var cvinputsclasses = document.getElementsByClassName("cv-input");
-        var cvinputviewclasses = document.getElementsByClassName("cv-input-view");
         
-        for (let i = 0; i < cvinputsclasses.length; i++) {
-          // creating dynamic id
-          //cvinputsclasses[i].id = 'inputview' + [i];
-
-          //giving cvinputclasses value to cvinputviewclasses innerhtml
-          cvinputviewclasses[i].innerHTML = cvinputsclasses[i].value ;
-          
-          
-        }
         
-        //image
-        var img = document.getElementById('output-logo');
-        var imgcv = document.getElementById("output-cv");
-        imgcv.src = img.src;
+        
+        
         
         //test.innerHTML= cvinputsclasses[0].id;
         /*
@@ -380,7 +372,21 @@ input[type="file"] {
         */
         
       }
+      function part2(params) {
+        //part2-2 cv-input-2
+        var cvinputsclasses = document.getElementsByClassName("cv-input");
+        var cvinputviewclasses = document.getElementsByClassName("cv-input-view");
+        
+        for (let i = 0; i < cvinputsclasses.length; i++) {
+          // creating dynamic id
+          //cvinputsclasses[i].id = 'inputview' + [i];
 
+          //giving cvinputclasses value to cvinputviewclasses innerhtml
+          cvinputviewclasses[i].innerHTML = cvinputsclasses[i].value ;
+          
+          
+        }
+      }
       //script to add "p" in cv-view when we add a customised section
       //beacause each input has its "p" when we add a new input or more we add "p"
       //this script is basic for just a simple input 
@@ -452,7 +458,7 @@ input[type="file"] {
       </div>
 
       <div class="row" onmousemove="part1()">
-          <div class="col-sm-8">
+          <div class="col-sm-8" onmousemove="part2(),image()">
               <br>
               <div class="progress sticky-top">
                   <div id="progressbar" class="progress-bar" style="width: 10%;" >10%</div>
@@ -556,6 +562,10 @@ input[type="file"] {
                           <p class="cv-input-view-1" id="socialm-name"></p>
                           <p class="cv-input-view-1" id="socialm-link"></p>
                         </div>
+                        <div class="projets">
+                          <p class="cv-input-view-1" id="projet"></p>
+                          <p class="cv-input-view-1" id="projet-d"></p>
+                        </div>
                     </div>
                     
                   </div>
@@ -587,10 +597,7 @@ input[type="file"] {
                       <div class="profile">
                         <p class="cv-input-view" id="profile"></p>
                       </div>
-                      <div class="projets">
-                        <p class="cv-input-view" id="projet"></p>
-                        <p class="cv-input-view" id="projet-d"></p>
-                      </div>
+                      
                      
                       <div class="customSection">
                         <p class="cv-input-view" id="customSection-title"></p>
