@@ -301,10 +301,23 @@ input[type="file"] {
       }
       //cv display functions
       function part1(params) {
-        //improving code
+        //part1+part2-1 cv-input-1
+        var cvinputsclasses1 = document.getElementsByClassName("cv-input-1");
+        var cvinputviewclasses1 = document.getElementsByClassName("cv-input-view-1");
+        
+        for (let i = 0; i < cvinputsclasses1.length; i++) {
+          // creating dynamic id
+          //cvinputsclasses[i].id = 'inputview' + [i];
+
+          //giving cvinputclasses value to cvinputviewclasses innerhtml
+          cvinputviewclasses1[i].innerHTML = cvinputsclasses1[i].value ;
+          
+          
+        }
+        //part2-2 cv-input-2
         var cvinputsclasses = document.getElementsByClassName("cv-input");
         var cvinputviewclasses = document.getElementsByClassName("cv-input-view");
-        var test = document.getElementById("test");
+        
         for (let i = 0; i < cvinputsclasses.length; i++) {
           // creating dynamic id
           //cvinputsclasses[i].id = 'inputview' + [i];
@@ -314,6 +327,7 @@ input[type="file"] {
           
           
         }
+        
         //image
         var img = document.getElementById('output-logo');
         var imgcv = document.getElementById("output-cv");
