@@ -175,7 +175,7 @@ class HobbySectionController extends CvSectionController{
                         <form id='save_hobby_1_section_form'>
                             <div class='col-sm-12'>
                                 <label for='hobbie-1' class='form-label'>interet</label>
-                                <input type='text' class='form-control cv-input-1' placeholder='' name='hobby_name' id='hobbie-1'>
+                                <input onchange='icons()' type='text' class='form-control cv-input-1' placeholder='' name='hobby_name' id='hobbie-1'>
                                 <button type='submit' onclick=" . '"' . "ModifySection('hobby_1', 'save', 'HobbySectionController')".'"' . ">Save Hobby</button>
                             </div>
                         </form>
