@@ -191,9 +191,9 @@ class PersonalDetailsSectionController extends CvSectionController{
                         <div class=''>
                             <form id='save_personal_details_section_form' enctype='multipart/form-data'>
                                 <label for='nom' class='form-label'>Nom </label>
-                                <input type='text' class='form-control cv-input' id='nom' placeholder='' name='last_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["last_name"])) . "'>
+                                <input type='text' class='form-control cv-input-1' id='nom' placeholder='' name='last_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["last_name"])) . "'>
                                 <label for='prenom' class='form-label'>Prenom </label>
-                                <input type='text' class='form-control cv-input' id='prenom' placeholder='' name='first_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["first_name"])) . "'>
+                                <input type='text' class='form-control cv-input-1' id='prenom' placeholder='' name='first_name' value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["first_name"])) . "'>
                             </form>
                         </div>
                     </div>
@@ -202,23 +202,23 @@ class PersonalDetailsSectionController extends CvSectionController{
                 <div class='row g-3'>
                     <div class='col-md-6'>
                         <label for='inputEmail4' class='form-label'>Email</label>
-                        <input type='email' class='form-control cv-input' id='inputEmail4' name='email' value='" . $personalDetails[0]["email"] . "' form='save_personal_details_section_form'>
+                        <input type='email' class='form-control cv-input-1' id='inputEmail4' name='email' value='" . $personalDetails[0]["email"] . "' form='save_personal_details_section_form'>
                     </div>
                     <div class='col-md-6'>
                         <label for='numero' class='form-label'>Numero</label>
-                        <input type='text' class='form-control cv-input' id='numro' name='phone'  value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["phone"])) . "' form='save_personal_details_section_form'>
+                        <input type='text' class='form-control cv-input-1' id='numro' name='phone'  value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["phone"])) . "' form='save_personal_details_section_form'>
                     </div>
                     <div class='col-12'>
                         <label for='inputAddress' class='form-label'>Address</label>
-                        <input type='text' class='form-control cv-input' id='inputAddress' placeholder='' name='address'  value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["address"])) . "' form='save_personal_details_section_form'>
+                        <input type='text' class='form-control cv-input-1' id='inputAddress' placeholder='' name='address'  value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["address"])) . "' form='save_personal_details_section_form'>
                     </div>
                     <div class='col-12'>
                         <label for='inputAddress2' class='form-label'>Date de naissance</label>
-                        <input type='date' class='form-control cv-input' id='inputAddress2' placeholder='' name='birthdate'  value='" . $personalDetails[0]["birthdate"] . "' form='save_personal_details_section_form'>
+                        <input type='date' class='form-control cv-input-1' id='inputAddress2' placeholder='' name='birthdate'  value='" . $personalDetails[0]["birthdate"] . "' form='save_personal_details_section_form'>
                     </div>
                     <div class='col-md-6'>
                         <label for='inputJobTitle' class='form-label'>Job Title</label>
-                        <input type='text' class='form-control cv-input' id='inputJobTitle' name='job_title'  value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["job_title"])) . "' form='save_personal_details_section_form'>
+                        <input type='text' class='form-control cv-input-1' id='inputJobTitle' name='job_title'  value='" . str_replace("'", "&apos;", str_replace('"', "&quot;", $personalDetails[0]["job_title"])) . "' form='save_personal_details_section_form'>
                     </div> 
                 </div>
                 <div class='btn-group'>
@@ -243,9 +243,9 @@ class PersonalDetailsSectionController extends CvSectionController{
                         <div class=''>
                             <form id='save_personal_details_section_form' enctype='multipart/form-data'>
                                 <label for='nom' class='form-label'>Nom </label>
-                                <input type='text' class='form-control cv-input' id='nom' placeholder='' name='last_name'>
+                                <input type='text' class='form-control cv-input-1' id='nom' placeholder='' name='last_name'>
                                 <label for='prenom' class='form-label'>Prenom </label>
-                                <input type='text' class='form-control cv-input' id='prenom' placeholder='' name='first_name'>
+                                <input type='text' class='form-control cv-input-1' id='prenom' placeholder='' name='first_name'>
                             </form>
                         </div>
                     </div>
@@ -254,23 +254,23 @@ class PersonalDetailsSectionController extends CvSectionController{
                 <div class='row g-3'>
                     <div class='col-md-6'>
                         <label for='inputEmail4' class='form-label'>Email</label>
-                        <input onchange='icons()' type='email' class='form-control cv-input' id='inputEmail4' name='email' form='save_personal_details_section_form'>
+                        <input onchange='icons()' type='email' class='form-control cv-input-1' id='inputEmail4' name='email' form='save_personal_details_section_form'>
                     </div>
                     <div class='col-md-6'>
                         <label for='numero' class='form-label'>Numero</label>
-                        <input onchange='icons()' type='text' class='form-control cv-input' id='numro' name='phone' form='save_personal_details_section_form'>
+                        <input onchange='icons()' type='text' class='form-control cv-input-1' id='numro' name='phone' form='save_personal_details_section_form'>
                     </div>
                     <div class='col-12'>
                         <label for='inputAddress' class='form-label'>Address</label>
-                        <input onchange='icons()' type='text' class='form-control cv-input' id='inputAddress' placeholder='' name='address' form='save_personal_details_section_form'>
+                        <input onchange='icons()' type='text' class='form-control cv-input-1' id='inputAddress' placeholder='' name='address' form='save_personal_details_section_form'>
                     </div>
                     <div class='col-12'>
                         <label for='inputAddress2' class='form-label'>Date de naissance</label>
-                        <input onchange='icons()' type='date' class='form-control cv-input' id='inputAddress2' placeholder='' name='birthdate' form='save_personal_details_section_form'>
+                        <input onchange='icons()' type='date' class='form-control cv-input-1' id='inputAddress2' placeholder='' name='birthdate' form='save_personal_details_section_form'>
                     </div>
                     <div class='col-md-6'>
                         <label for='inputJobTitle' class='form-label'>Job Title</label>
-                        <input onchange='icons()' type='text' class='form-control cv-input' id='inputJobTitle' name='job_title' form='save_personal_details_section_form'>
+                        <input onchange='icons()' type='text' class='form-control cv-input-1' id='inputJobTitle' name='job_title' form='save_personal_details_section_form'>
                     </div> 
                 </div>
                 <hr>
