@@ -193,7 +193,7 @@ class SideProjetSectionController extends CvSectionController{
                         <form id='save_side_project_1_section_form'>
                             <div class='col-sm-4'>
                                 <label for='project-title-1' class='form-label'>titre de projet</label>
-                                <input type='text' class='form-control cv-input-1' placeholder='' name='side_project_title' id='project-title-1'>
+                                <input onchange='icons()' type='text' class='form-control cv-input-1' placeholder='' name='side_project_title' id='project-title-1'>
                             </div>
                             <div class='col-sm-8'>
                                 <label for='project-1' class='form-label'>projet</label>

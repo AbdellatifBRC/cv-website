@@ -270,6 +270,7 @@ input[type="file"] {
         var langageslevel=document.getElementById("language-level").value;
         var skill=document.getElementById("skill-1").value;
         var socialm=document.getElementById("website-name-1").value;
+        var projet=document.getElementById("project-title-1").value;
         var emailIcon=document.getElementById("emailIcon");
         var numberIcon=document.getElementById("numberIcon");
         var adressIcon=document.getElementById("adressIcon");
@@ -279,7 +280,7 @@ input[type="file"] {
         var langagesTitle=document.getElementById("langages-title");
         var skillTitle=document.getElementById("skills-title");
         var socialmTitle=document.getElementById("socialm-title");
-        
+        var projetTitle=document.getElementById("projets-title");
         //emailIcon.style.visibility = 'visible';
         //subtitles
         if (email.length ==0) {
@@ -327,6 +328,11 @@ input[type="file"] {
           socialmTitle.style.visibility = 'hidden';
         } else {
          socialmTitle.style.visibility = 'visible';
+        }
+        if (projet.length ==0) {
+          projetTitle.style.visibility = 'hidden';
+        } else {
+         projetTitle.style.visibility = 'visible';
         }
       }
       function image(params) {
