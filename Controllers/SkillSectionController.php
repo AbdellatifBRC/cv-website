@@ -197,7 +197,7 @@ class SkillSectionController extends CvSectionController{
                     <form id='save_skill_1_section_form'>
                         <div class='col-sm-12'>
                             <label for='skill-1' class='form-label'>Compétence</label>
-                            <input type='text' class='form-control cv-input-1' placeholder='' id='skill-1' name='skill_name'>
+                            <input onchange='icons()' type='text' class='form-control cv-input-1' placeholder='' id='skill-1' name='skill_name'>
                             <br>
                             <label for='range-1' class='form-label'>Niveau</label>
                             <input type='range' class='form-range cv-input-1' step='1' id='range-1' name='skill_level' min='0' max='5' value='1'>

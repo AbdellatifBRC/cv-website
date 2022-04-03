@@ -268,6 +268,7 @@ input[type="file"] {
         var hobby=document.getElementById("hobbie-1").value;
         var langages=document.getElementById("language-1").value;
         var langageslevel=document.getElementById("language-level").value;
+        var skill=document.getElementById("skill-1").value;
         var emailIcon=document.getElementById("emailIcon");
         var numberIcon=document.getElementById("numberIcon");
         var adressIcon=document.getElementById("adressIcon");
@@ -275,6 +276,7 @@ input[type="file"] {
         var jobTitle=document.getElementById("job-title");
         var hobbiesTitle=document.getElementById("hobbies-title");
         var langagesTitle=document.getElementById("langages-title");
+        var skillTitle=document.getElementById("skills-title");
         //emailIcon.style.visibility = 'visible';
         //subtitles
         if (email.length ==0) {
@@ -312,6 +314,11 @@ input[type="file"] {
           langagesTitle.style.visibility = 'hidden';
         } else {
          langagesTitle.style.visibility = 'visible';
+        }
+        if (skill.length ==0) {
+          skillTitle.style.visibility = 'hidden';
+        } else {
+         skillTitle.style.visibility = 'visible';
         }
       }
       function image(params) {
