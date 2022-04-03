@@ -269,6 +269,7 @@ input[type="file"] {
         var langages=document.getElementById("language-1").value;
         var langageslevel=document.getElementById("language-level").value;
         var skill=document.getElementById("skill-1").value;
+        var socialm=document.getElementById("website-name-1").value;
         var emailIcon=document.getElementById("emailIcon");
         var numberIcon=document.getElementById("numberIcon");
         var adressIcon=document.getElementById("adressIcon");
@@ -277,6 +278,8 @@ input[type="file"] {
         var hobbiesTitle=document.getElementById("hobbies-title");
         var langagesTitle=document.getElementById("langages-title");
         var skillTitle=document.getElementById("skills-title");
+        var socialmTitle=document.getElementById("socialm-title");
+        
         //emailIcon.style.visibility = 'visible';
         //subtitles
         if (email.length ==0) {
@@ -319,6 +322,11 @@ input[type="file"] {
           skillTitle.style.visibility = 'hidden';
         } else {
          skillTitle.style.visibility = 'visible';
+        }
+        if (socialm.length ==0) {
+          socialmTitle.style.visibility = 'hidden';
+        } else {
+         socialmTitle.style.visibility = 'visible';
         }
       }
       function image(params) {
@@ -584,16 +592,17 @@ input[type="file"] {
                           <p class="title d-block" id="hobbies-title" style="visibility: hidden;">Centre d'interes</p>
                           <p class="cv-input-view-1" id="hobby"></p>
                         </div>
-                        <div class="socialm">
-                          <p class="title d-block" id="socialm-title" style="visibility: hidden;">Reseaux sociaux</p>
-                          <p class="cv-input-view-1" id="socialm-name"></p>
-                          <p class="cv-input-view-1" id="socialm-link"></p>
-                        </div>
                         <div class="projets">
                           <p class="title d-block" id="projets-title" style="visibility: hidden;">Projets réalisés</p>
                           <p class="cv-input-view-1" id="projet"></p>
                           <p class="cv-input-view-1" id="projet-d"></p>
                         </div>
+                        <div class="socialm">
+                          <p class="title d-block" id="socialm-title" style="visibility: hidden;">Reseaux sociaux</p>
+                          <p class="cv-input-view-1" id="socialm-name"></p>
+                          <p class="cv-input-view-1" id="socialm-link"></p>
+                        </div>
+                        
                     </div>
                     
                   </div>

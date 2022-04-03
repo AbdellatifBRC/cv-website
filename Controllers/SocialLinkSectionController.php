@@ -200,7 +200,7 @@ class SocialLinkSectionController extends CvSectionController{
                         <form id='save_social_link_1_section_form'>
                             <div class'col-sm-4'>
                                 <label for='website-name-1' class='form-label'>nom du site</label>
-                                <input type='text' class='form-control cv-input-1' placeholder='' name='website_name' id='website-name-1'>
+                                <input onchange='icons()' type='text' class='form-control cv-input-1' placeholder='' name='website_name' id='website-name-1'>
                             </div>
                             <div class'col-sm-4'>
                                 <label for='link-1' class='form-label'>lien</label>
