@@ -59,8 +59,6 @@ input[type="file"] {
 .part-2-1 {border-radius: 0px 0px 0px 5px;padding: 2px;}
 .part-2-1 img{width:60px;}
 .part-2-1 p {font-size: xx-small;margin-bottom: -2px;}
-.part-2-1-adressplus {}
-.part-2-1-adressplus p {display: inline;}
 
 .part-2-2 p {font-size: xx-small;margin-bottom: -2px;}
 
@@ -268,12 +266,15 @@ input[type="file"] {
         var birthday=document.getElementById("inputAddress2").value;
         var job=document.getElementById("inputJobTitle").value;
         var hobby=document.getElementById("hobbie-1").value;
+        var langages=document.getElementById("language-1").value;
+        var langageslevel=document.getElementById("language-level").value;
         var emailIcon=document.getElementById("emailIcon");
         var numberIcon=document.getElementById("numberIcon");
         var adressIcon=document.getElementById("adressIcon");
         var birthdayTitle=document.getElementById("birthday-title");
         var jobTitle=document.getElementById("job-title");
         var hobbiesTitle=document.getElementById("hobbies-title");
+        var langagesTitle=document.getElementById("langages-title");
         //emailIcon.style.visibility = 'visible';
         //subtitles
         if (email.length ==0) {
@@ -306,6 +307,11 @@ input[type="file"] {
           hobbiesTitle.style.visibility = 'hidden';
         } else {
           hobbiesTitle.style.visibility = 'visible';
+        }
+        if (langages.length ==0) {
+          langagesTitle.style.visibility = 'hidden';
+        } else {
+         langagesTitle.style.visibility = 'visible';
         }
       }
       function image(params) {
@@ -556,17 +562,17 @@ input[type="file"] {
                           </span>                         
                          
                         </div>
-                        
-                        <div class="langages">
-                          <p class="title d-block" id="langages-title" style="visibility: hidden;">Langues</p>
-                          <p class="cv-input-view-1" id="language"></p>
-                          <p class="cv-input-view-1" id="language-level"></p>
-                        </div>
                         <div class="skills">
                           <p class="title d-block" id="skills-title" style="visibility: hidden;">Compétences</p>
                           <p class="cv-input-view-1" id="skill"></p>
                           <p class="cv-input-view-1" id="skill-level"></p>
                         </div>
+                        <div class="langages">
+                          <p class="title d-block" id="langages-title" style="visibility: hidden;">Langues</p>
+                          <p class="cv-input-view-1" id="language"></p>
+                          <p class="cv-input-view-1" id="language-level"></p>
+                        </div>
+                        
                         <div class="hobbies">
                           <p class="title d-block" id="hobbies-title" style="visibility: hidden;">Centre d'interes</p>
                           <p class="cv-input-view-1" id="hobby"></p>

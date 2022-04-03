@@ -198,7 +198,7 @@ class LanguageSectionController extends CvSectionController{
                         <form id='save_language_1_section_form'>
                             <div class='col-sm-12'>
                                 <label for='language-1' class='form-label'>Langue</label>
-                                <input type='text' class='form-control cv-input-1' placeholder='' name='language_name' id='language-1'>
+                                <input onchange='icons()' type='text' class='form-control cv-input-1' placeholder='' name='language_name' id='language-1'>
                                 <br>
                                 <label for='range1-1' class='form-label'>Niveau</label>
                                 <input type='range' class='form-range cv-input-1' step='1' id='range1-1' name='language_level' min='0' max='5' value='1'>
