@@ -177,7 +177,7 @@ class CourseSectionController extends CvSectionController{
                         <form id='save_course_1_section_form'>
                             <div class='col-sm-9'>
                                 <label for='formation-1' class='form-label'>Description</label>
-                                <input type='text' class='form-control cv-input' id='formation-1' placeholder='Ex : Cisco certificat' name='course_name'>
+                                <input onchange='icons()' type='text' class='form-control cv-input' id='formation-1' placeholder='Ex : Cisco certificat' name='course_name'>
                                 <button onclick=" . '"' . "ModifySection('course_1', 'save', 'CourseSectionController')".'"' . ">Save Course</button>
                             </div>
                         </form>

@@ -210,8 +210,13 @@ input[type="file"] {
       //autofill inputs
       function autofill(params) {
         var cvinputsclasses1 = document.getElementsByClassName("cv-input-1");
+        var cvinputsclasses = document.getElementsByClassName("cv-input");
         for (let i = 0; i < cvinputsclasses1.length; i++) {
            cvinputsclasses1[i].value = "Lorem ipsum dolor sit ." ;
+           
+        }
+        for (let i = 0; i < cvinputsclasses.length; i++) {
+          cvinputsclasses[i].value = "Lorem ipsum dolor sit ." ;
           
         }
       }
@@ -269,6 +274,7 @@ input[type="file"] {
       //icons
       function icons(params) {
         //icons
+        //part1 part2-1
         var email=document.getElementById("inputEmail4").value;
         var number=document.getElementById("numro").value;
         var adress=document.getElementById("inputAddress").value;
@@ -290,6 +296,9 @@ input[type="file"] {
         var skillTitle=document.getElementById("skills-title");
         var socialmTitle=document.getElementById("socialm-title");
         var projetTitle=document.getElementById("projets-title");
+        //part2 
+        var course=document.getElementById("formation-1").value;
+        var courseTitle=document.getElementById("course-title");
         //emailIcon.style.visibility = 'visible';
         //subtitles
         if (email.length ==0) {
@@ -342,6 +351,12 @@ input[type="file"] {
           projetTitle.style.visibility = 'hidden';
         } else {
          projetTitle.style.visibility = 'visible';
+        }
+        //part2
+        if (course.length ==0) {
+         courseTitle.style.visibility = 'hidden';
+        } else {
+        courseTitle.style.visibility = 'visible';
         }
       }
       function image(params) {
@@ -627,6 +642,7 @@ input[type="file"] {
 
                     <div class="part-2-2">
                       <div class="formations">
+                        <p class="title d-block" id="course-title" style="visibility: hidden;">Formations</p>
                         <p class="cv-input-view" id="formations"></p>
                       </div>
 
