@@ -207,6 +207,14 @@ input[type="file"] {
           e.preventDefault();
         });
       }
+      //autofill inputs
+      function autofill(params) {
+        var cvinputsclasses1 = document.getElementsByClassName("cv-input-1");
+        for (let i = 0; i < cvinputsclasses1.length; i++) {
+           cvinputsclasses1[i].value = "Lorem ipsum dolor sit ." ;
+          
+        }
+      }
         //script popup products
         function showpopup(params) {
         var popup=document.getElementById(params);
@@ -559,6 +567,7 @@ input[type="file"] {
                         <div class="perso-details">
                           <img class="img-fluid output-cv" id="output-cv"/>
                           <br> 
+                          
                           <span class="email-v d-block">
                             <i id="emailIcon" class="fas fa-envelope d-inline" style="visibility: hidden;"></i>
                             <p class="cv-input-view-1 d-inline" id="email-view"></p>
@@ -661,6 +670,7 @@ input[type="file"] {
                   <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-warning" onclick="resetCV()">reset</button>
                     <button type="button" class="btn btn-sm btn-light">telecharger</button>
+                    <button type="button" class="btn btn-sm btn-light" onclick="autofill()">Autofill</button>
                     <div class="btn-group">
                       <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown">choisire un cv model</button>
                       <div class="dropdown-menu">
